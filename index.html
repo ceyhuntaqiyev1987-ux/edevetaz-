@@ -314,6 +314,34 @@ body::before{content:'';position:fixed;inset:0;background-image:var(--ornament);
   .pay-summary{grid-template-columns:1fr 1fr;}
   .photo-masonry{columns:2 150px;}
   .f2{grid-template-columns:1fr;}
+  .panel{padding:16px 14px 90px;}
+  .topbar{padding:11px 14px;}
+  .topbar-title{font-size:1rem;}
+  .tb-btn{padding:7px 14px;font-size:.7rem;}
+  .ev-grid{grid-template-columns:1fr;}
+  .rest-grid{grid-template-columns:1fr;}
+  .svc-grid{grid-template-columns:1fr;}
+  .rev-grid{grid-template-columns:1fr;}
+  .metrics{grid-template-columns:1fr 1fr;}
+  .modal-box{padding:18px 16px;border-radius:14px 14px 0 0;position:fixed;bottom:0;left:0;right:0;max-height:90vh;margin:0;max-width:100%;}
+  .modal-ov{align-items:flex-end;padding:0;}
+  .gtable td,.gtable th{padding:9px 10px;font-size:.75rem;}
+  .sec-hdr{flex-direction:column;align-items:flex-start;gap:8px;}
+  .sec-hdr>div+*{width:100%;}
+}
+
+/* ── ALT NAVİQASİYA (Mobil) ── */
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--dark);border-top:1px solid rgba(201,168,76,.15);z-index:200;padding:8px 0 env(safe-area-inset-bottom,8px);}
+.bottom-nav-inner{display:flex;align-items:center;justify-content:space-around;}
+.bn-item{display:flex;flex-direction:column;align-items:center;gap:3px;padding:5px 10px;cursor:pointer;background:none;border:none;flex:1;transition:color .2s;}
+.bn-item span.bn-icon{font-size:1.3rem;line-height:1;}
+.bn-item span.bn-lbl{font-size:.58rem;letter-spacing:.5px;color:rgba(250,246,239,.4);font-family:'Montserrat',sans-serif;font-weight:500;}
+.bn-item.active span.bn-lbl{color:var(--gold);}
+.bn-item:hover span.bn-lbl{color:var(--gl);}
+
+@media(max-width:768px){
+  .bottom-nav{display:block;}
+  .topbar-actions .tb-btn:not(:last-child){display:none;}
 }
 </style>
 <!-- Firebase SDK -->
@@ -336,6 +364,32 @@ body::before{content:'';position:fixed;inset:0;background-image:var(--ornament);
 
 <!-- SIDEBAR OVERLAY -->
 <div class="sb-overlay" id="sbOverlay" onclick="closeSB()"></div>
+
+<!-- ALT NAVİQASİYA (Mobil) -->
+<nav class="bottom-nav">
+  <div class="bottom-nav-inner">
+    <button class="bn-item active" id="bn-home" onclick="bnGo('overview',this)">
+      <span class="bn-icon">🏠</span>
+      <span class="bn-lbl">Əsas</span>
+    </button>
+    <button class="bn-item" id="bn-events" onclick="bnGo('ev-toy',this)">
+      <span class="bn-icon">🎊</span>
+      <span class="bn-lbl">Tədbirlər</span>
+    </button>
+    <button class="bn-item" id="bn-new" onclick="openNewEvent()">
+      <span class="bn-icon" style="background:var(--gold);border-radius:50%;width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-top:-14px;box-shadow:0 4px 16px rgba(201,168,76,.4);">＋</span>
+      <span class="bn-lbl">Yeni</span>
+    </button>
+    <button class="bn-item" id="bn-guests" onclick="bnGo('guests-all',this)">
+      <span class="bn-icon">👥</span>
+      <span class="bn-lbl">Qonaqlar</span>
+    </button>
+    <button class="bn-item" id="bn-menu" onclick="openSB()">
+      <span class="bn-icon">☰</span>
+      <span class="bn-lbl">Menyu</span>
+    </button>
+  </div>
+</nav>
 
 <!-- ══════════════ SIDEBAR ══════════════ -->
 <aside class="sidebar" id="sidebar">
@@ -3752,6 +3806,13 @@ async function saveMyCard(){
 
 // toast alias
 function showToast(msg){toast(msg);}
+
+// Alt naviqasiya
+function bnGo(panelId, btn){
+  showPanel(panelId);
+  document.querySelectorAll('.bn-item').forEach(b=>b.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+}
 
 // ── INIT ──
 showPanel('overview');
