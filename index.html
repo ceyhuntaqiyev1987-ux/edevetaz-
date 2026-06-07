@@ -3619,23 +3619,26 @@ function showLoginScreen(){
         <div style="margin-top:22px;font-size:.65rem;color:rgba(255,255,255,.18);line-height:1.7;">Daxil olaraq <span style="color:rgba(201,168,76,.4);">İstifadəçi Razılığını</span> qəbul etmiş olursunuz</div>
       </div>`;
     document.body.appendChild(loginDiv);
-    // reCAPTCHA yüklə
-    setTimeout(()=>{
-      try{
-        window.recaptchaVerifier=new firebase.auth.RecaptchaVerifier('recaptcha-container',{
-          'size':'normal',
-          'callback':()=>{},
-          'expired-callback':()=>{}
-        });
-        window.recaptchaVerifier.render();
-      }catch(e){}
-    },500);
+    // reCAPTCHA yüklə (görünməz — istifadəçi əlavə addım atmadan avtomatik işləyir)
+    setTimeout(()=>{ initRecaptcha(); },500);
   }
   loginDiv.style.display='flex';
 }
 
 // ── Telefon OTP ──
 let confirmationResult=null;
+
+function initRecaptcha(){
+  try{ if(window.recaptchaVerifier)window.recaptchaVerifier.clear(); }catch(e){}
+  try{
+    window.recaptchaVerifier=new firebase.auth.RecaptchaVerifier('recaptcha-container',{
+      'size':'invisible',
+      'callback':()=>{},
+      'expired-callback':()=>{ initRecaptcha(); }
+    });
+    window.recaptchaVerifier.render();
+  }catch(e){}
+}
 
 async function sendOTP(){
   const cc=document.getElementById('country-code').value;
@@ -3659,8 +3662,8 @@ async function sendOTP(){
       'auth/captcha-check-failed':'reCAPTCHA xətası. Səhifəni yeniləyin.',
     };
     showLoginError(msgs[err.code]||'Xəta: '+err.message);
-    // reCAPTCHA reset
-    try{window.recaptchaVerifier.clear();window.recaptchaVerifier.render();}catch(e){}
+    // reCAPTCHA-nı sıfırdan qur ki, növbəti cəhd köhnə (xətalı) instansla toqquşmasın
+    initRecaptcha();
   }
 }
 
