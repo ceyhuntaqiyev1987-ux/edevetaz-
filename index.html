@@ -3933,7 +3933,6 @@ function bnGo(panelId, btn){
 
 // ── INIT ──
 showPanel('overview');
-checkURLHash();
 
 // Loading ekranını gizlət
 window.addEventListener('load',()=>{
@@ -3944,7 +3943,17 @@ window.addEventListener('load',()=>{
   },1800);
 });
 
-initFirebase();
+// Firebase yüklənəndən sonra başlat
+window.addEventListener('load',()=>{
+  try{
+    initFirebase();
+    checkURLHash();
+  }catch(e){
+    console.log('Init error:',e);
+    // Firebase olmasa da tətbiq işləsin
+    checkURLHash();
+  }
+});
 </script>
 </body>
 </html>
