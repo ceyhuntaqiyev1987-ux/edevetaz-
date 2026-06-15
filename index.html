@@ -960,6 +960,59 @@ body::before{content:'';position:fixed;inset:0;background-image:var(--ornament);
     </div>
   </div>
 
+  <!-- ══ ADMİN PANELİ ══ -->
+  <div class="panel" id="panel-admin">
+    <div class="sec-hdr">
+      <div><h2>⚙️ Admin <span>Paneli</span></h2><div class="sec-hdr-sub">eDevetAz idarəetmə mərkəzi</div></div>
+      <button class="tb-btn" onclick="loadAdminData()">🔄 Yenilə</button>
+    </div>
+
+    <!-- Stats row -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-bottom:24px;">
+      <div class="ov-card" style="background:linear-gradient(135deg,#1a0a2e,#2d1458);">
+        <div class="ov-icon">👤</div>
+        <div class="ov-val" id="adm-users">—</div>
+        <div class="ov-lbl">İstifadəçilər</div>
+      </div>
+      <div class="ov-card" style="background:linear-gradient(135deg,#0a2618,#0f3d22);">
+        <div class="ov-icon">🎊</div>
+        <div class="ov-val" id="adm-events">—</div>
+        <div class="ov-lbl">Tədbirlər</div>
+      </div>
+      <div class="ov-card" style="background:linear-gradient(135deg,#2e0a1a,#581428);">
+        <div class="ov-icon">👥</div>
+        <div class="ov-val" id="adm-guests">—</div>
+        <div class="ov-lbl">Qonaqlar</div>
+      </div>
+      <div class="ov-card" style="background:linear-gradient(135deg,#1a0e04,#3d2008);">
+        <div class="ov-icon">💰</div>
+        <div class="ov-val" id="adm-payments">—</div>
+        <div class="ov-lbl">Ödənişlər</div>
+      </div>
+    </div>
+
+    <!-- Users table -->
+    <div style="background:#fff;border-radius:14px;box-shadow:var(--sh);overflow:hidden;margin-bottom:20px;">
+      <div style="padding:14px 18px;border-bottom:1px solid #f0e8d8;display:flex;align-items:center;justify-content:space-between;">
+        <div style="font-size:.85rem;font-weight:600;color:var(--text);">👤 Qeydiyyatdan keçənlər</div>
+        <div id="adm-user-count" style="font-size:.75rem;color:var(--muted);"></div>
+      </div>
+      <div id="adm-users-list" style="padding:8px 0;">
+        <div style="padding:20px;text-align:center;color:var(--muted);font-size:.82rem;">Yüklənir...</div>
+      </div>
+    </div>
+
+    <!-- Recent activity -->
+    <div style="background:#fff;border-radius:14px;box-shadow:var(--sh);overflow:hidden;">
+      <div style="padding:14px 18px;border-bottom:1px solid #f0e8d8;">
+        <div style="font-size:.85rem;font-weight:600;color:var(--text);">📊 Son Tədbirlər</div>
+      </div>
+      <div id="adm-events-list" style="padding:8px 0;">
+        <div style="padding:20px;text-align:center;color:var(--muted);font-size:.82rem;">Yüklənir...</div>
+      </div>
+    </div>
+  </div>
+
   <!-- ABOUT PANEL -->
   <div class="panel" id="panel-about" style="padding:0;background:transparent;">
     <div style="font-family:'Montserrat',sans-serif;">
@@ -1106,6 +1159,36 @@ body::before{content:'';position:fixed;inset:0;background-image:var(--ornament);
         </div>
       </div>
 
+    </div>
+  </div>
+
+  <!-- ── ADMIN PANELİ ── -->
+  <div class="panel" id="panel-admin">
+    <div class="sec-hdr">
+      <div><h2>⚙️ Admin <span>Panel</span></h2><div class="sec-hdr-sub">Bütün istifadəçilər və statistika</div></div>
+      <button class="tb-btn" onclick="loadAdminData()">🔄 Yenilə</button>
+    </div>
+
+    <!-- Stats -->
+    <div class="ov-grid" id="admin-stats-grid" style="margin-bottom:20px;">
+      <div class="ov-card"><div class="ov-icon">👥</div><div class="ov-val" id="admin-stat-users">—</div><div class="ov-lbl">Ümumi İstifadəçi</div></div>
+      <div class="ov-card"><div class="ov-icon">🎊</div><div class="ov-val" id="admin-stat-events">—</div><div class="ov-lbl">Ümumi Tədbir</div></div>
+      <div class="ov-card"><div class="ov-icon">📅</div><div class="ov-val" id="admin-stat-today">—</div><div class="ov-lbl">Bu gün qeydiyyat</div></div>
+      <div class="ov-card"><div class="ov-icon">📊</div><div class="ov-val" id="admin-stat-active">—</div><div class="ov-lbl">Aktiv (30 gün)</div></div>
+    </div>
+
+    <!-- Users table -->
+    <div style="background:#fff;border-radius:14px;box-shadow:var(--sh);overflow:hidden;">
+      <div style="padding:14px 18px;border-bottom:1px solid #F0E8D8;display:flex;align-items:center;justify-content:space-between;">
+        <div style="font-weight:600;font-size:.88rem;color:var(--text);">İstifadəçilər</div>
+        <input type="text" id="admin-search" placeholder="Email axtar..." oninput="filterAdminUsers()" style="border:1.5px solid #E8E0D0;border-radius:8px;padding:6px 12px;font-size:.78rem;outline:none;font-family:Montserrat,sans-serif;width:180px;">
+      </div>
+      <div id="admin-users-table" style="overflow-x:auto;">
+        <table class="gtable" style="width:100%;min-width:500px;">
+          <thead><tr><th>Email</th><th>Qeydiyyat</th><th>Son giriş</th><th>Tədbirlər</th><th>Status</th></tr></thead>
+          <tbody id="admin-users-body"><tr><td colspan="5" style="text-align:center;padding:24px;color:var(--muted);">Yüklənir...</td></tr></tbody>
+        </table>
+      </div>
     </div>
   </div>
 
@@ -1792,7 +1875,9 @@ const PANEL_TITLES={
   'services-decor':'Dekor & Çiçək <span>Xidmətləri</span>',
   'services-music':'Musiqi & DJ <span>Xidmətləri</span>',
   cards:'Saxlanan <span>Kartlarım</span>',
+  admin:'Admin <span>Panel</span>',
   about:'eDevetAz <span>Haqqında</span>',
+  admin:'Admin <span>Paneli</span>',
 };
 
 function showPanel(id){
@@ -1802,10 +1887,12 @@ function showPanel(id){
   document.getElementById('topbar-title').innerHTML=PANEL_TITLES[id]||id;
   closeSB();
   renderPanel(id);
+  if(id==='admin')setTimeout(loadAdminData,300);
 }
 function setPage(id){showPanel(id);}
 
 function renderPanel(id){
+  if(id==='admin')loadAdminData();
   if(id==='overview')renderOverview();
   else if(id==='ev-toy')renderEvGrid('ev-grid-toy',EVENTS.filter(e=>e.type==='toy'));
   else if(id==='ev-nishan')renderEvGrid('ev-grid-nishan',EVENTS.filter(e=>e.type==='nishan'));
@@ -3971,6 +4058,8 @@ function initFirebase(){
       if(user){
         currentUser=user;
         userId=user.uid;
+        const ADMIN_EMAIL='ceyhuntaqiyev1987@gmail.com';
+        const isAdmin=user.email===ADMIN_EMAIL;
         // Sidebar-da istifadəçi adını göstər
         const nameEl=document.querySelector('.sb-user-name');
         const roleEl=document.querySelector('.sb-user-role');
@@ -3978,8 +4067,21 @@ function initFirebase(){
         const displayName=user.displayName||user.phoneNumber||user.email||'İstifadəçi';
         const shortName=user.phoneNumber?user.phoneNumber:(user.displayName||user.email||'İstifadəçi');
         if(nameEl)nameEl.textContent=shortName;
-        if(roleEl)roleEl.textContent=user.phoneNumber?'Telefon ilə giriş':user.email||'';
-        if(avatarEl)avatarEl.textContent=user.phoneNumber?'📱':(user.displayName||'U').charAt(0).toUpperCase();
+        if(roleEl)roleEl.textContent=isAdmin?'⚙️ Admin':user.email||'';
+        if(avatarEl)avatarEl.textContent=isAdmin?'⚙️':(user.displayName||'U').charAt(0).toUpperCase();
+        // Admin menyu əlavə et
+        if(isAdmin&&!document.getElementById('admin-sb-btn')){
+          const sbNav=document.querySelector('.sb-nav');
+          if(sbNav){
+            const div=document.createElement('div');
+            div.style.cssText='border-top:1px solid rgba(201,168,76,.15);padding:10px 0 0;margin-top:8px;';
+            div.innerHTML=`<button id="admin-sb-btn" onclick="showPanel('admin')" style="width:100%;display:flex;align-items:center;gap:10px;padding:9px 20px;background:none;border:none;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(201,168,76,.08)'" onmouseout="this.style.background='none'">
+              <span style="font-size:1rem;">⚙️</span>
+              <span style="font-size:.8rem;font-weight:600;color:var(--gold);font-family:Montserrat,sans-serif;">Admin Panel</span>
+            </button>`;
+            sbNav.appendChild(div);
+          }
+        }
         // Çıxış düyməsi əlavə et
         const sbUser=document.querySelector('.sb-user');
         if(sbUser&&!document.getElementById('signout-btn')){
@@ -4468,6 +4570,155 @@ async function vcMakeVideo(){
     setTimeout(renderNextFrame,1000/fps/2);
   }
   renderNextFrame();
+}
+
+// ══════════════════════════════════════════
+//  ADMİN PANELİ
+// ══════════════════════════════════════════
+let adminUsersCache=[];
+
+async function loadAdminData(){
+  if(!db||!currentUser||currentUser.email!=='ceyhuntaqiyev1987@gmail.com'){
+    toast('Admin icazəsi yoxdur!');return;
+  }
+  try{
+    // Get all users from Firebase Auth via Firestore users collection
+    const usersSnap=await db.collection('users').get();
+    adminUsersCache=[];
+    let totalEvents=0;
+    const today=new Date();today.setHours(0,0,0,0);
+    let todayCount=0,activeCount=0;
+    const thirtyDaysAgo=new Date();thirtyDaysAgo.setDate(thirtyDaysAgo.getDate()-30);
+
+    usersSnap.forEach(doc=>{
+      const d=doc.data();
+      adminUsersCache.push({uid:doc.id,...d});
+    });
+
+    // Get events count per user
+    for(let u of adminUsersCache){
+      try{
+        const evSnap=await db.collection('users').doc(u.uid).collection('events').get();
+        u.eventCount=evSnap.size;
+        totalEvents+=evSnap.size;
+      }catch(e){u.eventCount=0;}
+    }
+
+    // Update stats
+    document.getElementById('admin-stat-users').textContent=adminUsersCache.length;
+    document.getElementById('admin-stat-events').textContent=totalEvents;
+    document.getElementById('admin-stat-today').textContent=todayCount;
+    document.getElementById('admin-stat-active').textContent=adminUsersCache.length;
+
+    renderAdminUsers(adminUsersCache);
+    toast('Məlumatlar yükləndi ✓');
+  }catch(e){
+    // Fallback: use Firebase Auth REST API data we have
+    document.getElementById('admin-stat-users').textContent='Firebase-dən yüklə';
+    document.getElementById('admin-users-body').innerHTML=`<tr><td colspan="5" style="text-align:center;padding:24px;color:var(--muted);">
+      İstifadəçi məlumatları üçün <a href="https://console.firebase.google.com/project/davetname-c4591/authentication/users" target="_blank" style="color:var(--gold);">Firebase Konsolu</a>-nu açın
+    </td></tr>`;
+    toast('Məlumat yüklənərkən xəta: '+e.message);
+  }
+}
+
+function renderAdminUsers(users){
+  const tbody=document.getElementById('admin-users-body');
+  if(!users.length){
+    tbody.innerHTML='<tr><td colspan="5" style="text-align:center;padding:24px;color:var(--muted);">İstifadəçi yoxdur</td></tr>';
+    return;
+  }
+  tbody.innerHTML=users.map(u=>`<tr>
+    <td><div style="font-size:.82rem;font-weight:500;">${u.email||u.phone||u.uid.slice(0,8)+'...'}</div></td>
+    <td style="font-size:.75rem;color:var(--muted);">${u.createdAt?new Date(u.createdAt).toLocaleDateString('az-AZ'):'-'}</td>
+    <td style="font-size:.75rem;color:var(--muted);">${u.lastLogin?new Date(u.lastLogin).toLocaleDateString('az-AZ'):'-'}</td>
+    <td><span style="background:rgba(201,168,76,.1);color:var(--gd);padding:2px 8px;border-radius:10px;font-size:.75rem;">${u.eventCount||0}</span></td>
+    <td><span style="background:rgba(25,135,84,.1);color:#0f6e40;padding:2px 8px;border-radius:10px;font-size:.72px;font-size:.72rem;">Aktiv</span></td>
+  </tr>`).join('');
+}
+
+function filterAdminUsers(){
+  const q=document.getElementById('admin-search').value.toLowerCase();
+  const filtered=adminUsersCache.filter(u=>(u.email||'').toLowerCase().includes(q)||(u.phone||'').includes(q));
+  renderAdminUsers(filtered);
+}
+
+// ══ ADMİN PANELİ ══
+const ADMIN_EMAIL_CHECK='ceyhuntaqiyev1987@gmail.com';
+
+async function loadAdminData(){
+  if(!db||!currentUser||currentUser.email!==ADMIN_EMAIL_CHECK){
+    toast('İcazəniz yoxdur!');return;
+  }
+
+  // Load all users collections from Firestore
+  try{
+    // Get all user documents
+    const usersSnap=await db.collection('users').get();
+    const users=[];
+    let totalEvents=0,totalGuests=0,totalPayments=0;
+
+    for(const userDoc of usersSnap.docs){
+      const uid=userDoc.id;
+      const evSnap=await db.collection('users').doc(uid).collection('events').get();
+      const gSnap=await db.collection('users').doc(uid).collection('guests').get();
+      const pSnap=await db.collection('users').doc(uid).collection('payments').get();
+
+      totalEvents+=evSnap.size;
+      totalGuests+=gSnap.size;
+      totalPayments+=pSnap.docs.reduce((s,d)=>s+(d.data().amount||0),0);
+
+      const evList=evSnap.docs.map(d=>d.data());
+      users.push({uid,evCount:evSnap.size,gCount:gSnap.size,pCount:pSnap.size,events:evList});
+    }
+
+    // Firebase Auth users — get from auth (we can only see via Firestore data)
+    document.getElementById('adm-users').textContent=usersSnap.size;
+    document.getElementById('adm-events').textContent=totalEvents;
+    document.getElementById('adm-guests').textContent=totalGuests;
+    document.getElementById('adm-payments').textContent=totalPayments+'₼';
+    document.getElementById('adm-user-count').textContent=usersSnap.size+' istifadəçi';
+
+    // Render users list
+    const ul=document.getElementById('adm-users-list');
+    if(!users.length){
+      ul.innerHTML='<div style="padding:16px;text-align:center;color:var(--muted);font-size:.82rem;">Hələ istifadəçi yoxdur</div>';
+    }else{
+      ul.innerHTML=users.map((u,i)=>`
+        <div style="padding:12px 18px;${i<users.length-1?'border-bottom:1px solid #f8f0e8;':''}display:flex;align-items:center;gap:14px;">
+          <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gd));display:flex;align-items:center;justify-content:center;color:#1a1209;font-weight:700;font-size:.85rem;flex-shrink:0;">${i+1}</div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-size:.82rem;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${u.uid.substring(0,20)}...</div>
+            <div style="font-size:.72rem;color:var(--muted);margin-top:2px;">
+              🎊 ${u.evCount} tədbir &nbsp;·&nbsp; 👥 ${u.gCount} qonaq &nbsp;·&nbsp; 💰 ${u.pCount} ödəniş
+            </div>
+          </div>
+          <div style="font-size:.72rem;color:var(--gr);font-weight:600;">${u.evCount>0?'Aktiv':'Boş'}</div>
+        </div>`).join('');
+    }
+
+    // Render recent events
+    const el=document.getElementById('adm-events-list');
+    const allEvents=users.flatMap(u=>u.events.map(e=>({...e,userId:u.uid})));
+    if(!allEvents.length){
+      el.innerHTML='<div style="padding:16px;text-align:center;color:var(--muted);font-size:.82rem;">Hələ tədbir yoxdur</div>';
+    }else{
+      el.innerHTML=allEvents.slice(0,20).map((ev,i)=>`
+        <div style="padding:11px 18px;${i<allEvents.length-1?'border-bottom:1px solid #f8f0e8;':''}display:flex;align-items:center;gap:12px;">
+          <div style="font-size:1.2rem;">${{toy:'💍',nishan:'💝',xina:'🌿',birthday:'🎂',corp:'🏢',kids:'🎈'}[ev.type]||'🎊'}</div>
+          <div style="flex:1;">
+            <div style="font-size:.82rem;font-weight:600;color:var(--text);">${ev.n1||'—'}${ev.n2?' & '+ev.n2:''}</div>
+            <div style="font-size:.72rem;color:var(--muted);">📅 ${ev.date||'—'} &nbsp;·&nbsp; 📍 ${ev.venue||'—'}</div>
+          </div>
+          <div style="font-size:.68rem;padding:3px 10px;border-radius:20px;background:rgba(25,135,84,.1);color:var(--gr);">${ev.status||'—'}</div>
+        </div>`).join('');
+    }
+
+    toast('Admin məlumatları yükləndi ✓');
+  }catch(e){
+    toast('Xəta: '+e.message);
+    console.log('Admin load error:',e);
+  }
 }
 
 // ── Tətbiqi paylaş ──
