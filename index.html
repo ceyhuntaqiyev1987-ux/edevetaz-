@@ -900,145 +900,81 @@ body::before{content:'';position:fixed;inset:0;background-image:var(--ornament);
       <div><h2>⚙️ Admin <span>Paneli</span></h2><div class="sec-hdr-sub">eDevetAz idarəetmə mərkəzi</div></div>
       <button class="tb-btn" onclick="loadAdminData()">🔄 Yenilə</button>
     </div>
-
-    <!-- Stats row -->
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-bottom:24px;">
-      <div class="ov-card" style="background:linear-gradient(135deg,#1a0a2e,#2d1458);">
-        <div class="ov-icon">👤</div>
-        <div class="ov-val" id="adm-users">—</div>
-        <div class="ov-lbl">İstifadəçilər</div>
-      </div>
-      <div class="ov-card" style="background:linear-gradient(135deg,#0a2618,#0f3d22);">
-        <div class="ov-icon">🎊</div>
-        <div class="ov-val" id="adm-events">—</div>
-        <div class="ov-lbl">Tədbirlər</div>
-      </div>
-      <div class="ov-card" style="background:linear-gradient(135deg,#2e0a1a,#581428);">
-        <div class="ov-icon">👥</div>
-        <div class="ov-val" id="adm-guests">—</div>
-        <div class="ov-lbl">Qonaqlar</div>
-      </div>
-      <div class="ov-card" style="background:linear-gradient(135deg,#1a0e04,#3d2008);">
-        <div class="ov-icon">💰</div>
-        <div class="ov-val" id="adm-payments">—</div>
-        <div class="ov-lbl">Ödənişlər</div>
-      </div>
+      <div class="ov-card" style="background:linear-gradient(135deg,#1a0a2e,#2d1458);"><div class="ov-icon">👤</div><div class="ov-val" id="adm-users">—</div><div class="ov-lbl">İstifadəçilər</div></div>
+      <div class="ov-card" style="background:linear-gradient(135deg,#0a2618,#0f3d22);"><div class="ov-icon">🎊</div><div class="ov-val" id="adm-events">—</div><div class="ov-lbl">Tədbirlər</div></div>
+      <div class="ov-card" style="background:linear-gradient(135deg,#2e0a1a,#581428);"><div class="ov-icon">👥</div><div class="ov-val" id="adm-guests">—</div><div class="ov-lbl">Qonaqlar</div></div>
+      <div class="ov-card" style="background:linear-gradient(135deg,#1a0e04,#3d2008);"><div class="ov-icon">🍽️</div><div class="ov-val" id="adm-rests">—</div><div class="ov-lbl">Restoranlar</div></div>
     </div>
-
-    <!-- Restaurant approvals -->
-    <div style="background:#fff;border-radius:14px;box-shadow:var(--sh);overflow:hidden;margin-bottom:20px;">
-      <div style="padding:14px 18px;border-bottom:1px solid #f0e8d8;display:flex;align-items:center;justify-content:space-between;">
-        <div style="font-size:.85rem;font-weight:600;color:var(--text);">🍽️ Restoran Müraciətləri</div>
-        <div id="adm-rest-count" style="font-size:.75rem;color:var(--muted);"></div>
-      </div>
+    <div style="background:#fff;border-radius:14px;box-shadow:var(--sh);overflow:hidden;margin-bottom:16px;">
+      <div style="padding:14px 18px;border-bottom:1px solid #f0e8d8;font-size:.85rem;font-weight:600;color:var(--text);">🍽️ Restoranlar</div>
       <div id="adm-rest-list" style="padding:8px 0;"><div style="padding:20px;text-align:center;color:var(--muted);font-size:.82rem;">Yüklənir...</div></div>
     </div>
-
-    <!-- Users table -->
-    <div style="background:#fff;border-radius:14px;box-shadow:var(--sh);overflow:hidden;margin-bottom:20px;">
-      <div style="padding:14px 18px;border-bottom:1px solid #f0e8d8;display:flex;align-items:center;justify-content:space-between;">
-        <div style="font-size:.85rem;font-weight:600;color:var(--text);">👤 Qeydiyyatdan keçənlər</div>
-        <div id="adm-user-count" style="font-size:.75rem;color:var(--muted);"></div>
-      </div>
-      <div id="adm-users-list" style="padding:8px 0;">
-        <div style="padding:20px;text-align:center;color:var(--muted);font-size:.82rem;">Yüklənir...</div>
-      </div>
+    <div style="background:#fff;border-radius:14px;box-shadow:var(--sh);overflow:hidden;margin-bottom:16px;">
+      <div style="padding:14px 18px;border-bottom:1px solid #f0e8d8;font-size:.85rem;font-weight:600;color:var(--text);">👤 İstifadəçilər</div>
+      <div id="adm-users-list" style="padding:8px 0;"><div style="padding:20px;text-align:center;color:var(--muted);font-size:.82rem;">Yüklənir...</div></div>
     </div>
-
-    <!-- Recent activity -->
     <div style="background:#fff;border-radius:14px;box-shadow:var(--sh);overflow:hidden;">
-      <div style="padding:14px 18px;border-bottom:1px solid #f0e8d8;">
-        <div style="font-size:.85rem;font-weight:600;color:var(--text);">📊 Son Tədbirlər</div>
-      </div>
-      <div id="adm-events-list" style="padding:8px 0;">
-        <div style="padding:20px;text-align:center;color:var(--muted);font-size:.82rem;">Yüklənir...</div>
-      </div>
+      <div style="padding:14px 18px;border-bottom:1px solid #f0e8d8;font-size:.85rem;font-weight:600;color:var(--text);">📊 Son Tədbirlər</div>
+      <div id="adm-events-list" style="padding:8px 0;"><div style="padding:20px;text-align:center;color:var(--muted);font-size:.82rem;">Yüklənir...</div></div>
     </div>
   </div>
 
-  <!-- ══ RESTORAN İDARƏETMƏ PANELİ ══ -->
+  <!-- ══ RESTORAN PANELİ ══ -->
   <div class="panel" id="panel-rest-dashboard">
     <div class="sec-hdr">
       <div><h2>🍽️ Restoran <span>Paneli</span></h2><div class="sec-hdr-sub" id="rest-dash-name">Menyunu idarə edin</div></div>
       <button class="tb-btn" onclick="saveRestProfile()">💾 Saxla</button>
     </div>
-
-    <!-- Status banner - yalnız admin tərəfindən deaktiv ediləndə -->
-    <div id="rest-status-banner" style="background:rgba(220,53,69,.1);border:1px solid rgba(220,53,69,.2);border-radius:12px;padding:12px 16px;margin-bottom:18px;font-size:.8rem;color:#842029;display:none;">
-      ⛔ Profiliniz admin tərəfindən deaktiv edilib. Ətraflı məlumat üçün əlaqə saxlayın.
-    </div>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;">
-
-      <!-- Sol sütun: Restoran məlumatları -->
+    <div id="rest-status-banner" style="display:none;background:rgba(220,53,69,.1);border:1px solid rgba(220,53,69,.2);border-radius:12px;padding:12px 16px;margin-bottom:16px;font-size:.8rem;color:#842029;">⛔ Profiliniz admin tərəfindən deaktiv edilib.</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;">
       <div style="background:#fff;border-radius:14px;box-shadow:var(--sh);padding:18px;">
-        <div style="font-size:.82rem;font-weight:600;color:var(--text);margin-bottom:14px;">📋 Restoran Məlumatları</div>
-        <div class="form-row2"><label>Restoran Adı</label><input type="text" id="rd-name" style="width:100%;border:1.5px solid #E8E0D0;border-radius:9px;padding:9px 12px;font-family:'Montserrat',sans-serif;font-size:.8rem;outline:none;background:var(--cream);"></div>
-        <div class="form-row2"><label>Telefon</label><input type="text" id="rd-phone" placeholder="+994501234567" style="width:100%;border:1.5px solid #E8E0D0;border-radius:9px;padding:9px 12px;font-family:'Montserrat',sans-serif;font-size:.8rem;outline:none;background:var(--cream);"></div>
-        <div class="form-row2"><label>Şəhər</label><input type="text" id="rd-city" placeholder="Bakı" style="width:100%;border:1.5px solid #E8E0D0;border-radius:9px;padding:9px 12px;font-family:'Montserrat',sans-serif;font-size:.8rem;outline:none;background:var(--cream);"></div>
-        <div class="form-row2"><label>Tutum (nəfər)</label><input type="number" id="rd-capacity" placeholder="300" style="width:100%;border:1.5px solid #E8E0D0;border-radius:9px;padding:9px 12px;font-family:'Montserrat',sans-serif;font-size:.8rem;outline:none;background:var(--cream);"></div>
-        <div class="form-row2"><label>Vebsayt / Instagram</label><input type="text" id="rd-link" placeholder="https://instagram.com/..." style="width:100%;border:1.5px solid #E8E0D0;border-radius:9px;padding:9px 12px;font-family:'Montserrat',sans-serif;font-size:.8rem;outline:none;background:var(--cream);"></div>
-        <div class="form-row2"><label>Haqqında</label>
-          <textarea id="rd-desc" rows="3" style="width:100%;border:1.5px solid #E8E0D0;border-radius:9px;padding:9px 12px;font-family:'Montserrat',sans-serif;font-size:.8rem;resize:none;outline:none;background:var(--cream);" placeholder="Restoran haqqında qısa məlumat..."></textarea>
-        </div>
-        <!-- Logo -->
+        <div style="font-size:.82rem;font-weight:600;color:var(--text);margin-bottom:14px;">📋 Məlumatlar</div>
+        <div class="form-row2"><label>Restoran Adı</label><input type="text" id="rd-name" style="width:100%;border:1.5px solid #E8E0D0;border-radius:9px;padding:9px 12px;font-family:Montserrat,sans-serif;font-size:.8rem;outline:none;background:var(--cream);"></div>
+        <div class="form-row2"><label>Telefon</label><input type="text" id="rd-phone" style="width:100%;border:1.5px solid #E8E0D0;border-radius:9px;padding:9px 12px;font-family:Montserrat,sans-serif;font-size:.8rem;outline:none;background:var(--cream);"></div>
+        <div class="form-row2"><label>Şəhər</label><input type="text" id="rd-city" style="width:100%;border:1.5px solid #E8E0D0;border-radius:9px;padding:9px 12px;font-family:Montserrat,sans-serif;font-size:.8rem;outline:none;background:var(--cream);"></div>
+        <div class="form-row2"><label>Tutum (nəfər)</label><input type="number" id="rd-capacity" style="width:100%;border:1.5px solid #E8E0D0;border-radius:9px;padding:9px 12px;font-family:Montserrat,sans-serif;font-size:.8rem;outline:none;background:var(--cream);"></div>
+        <div class="form-row2"><label>Vebsayt / Instagram</label><input type="text" id="rd-link" placeholder="https://..." style="width:100%;border:1.5px solid #E8E0D0;border-radius:9px;padding:9px 12px;font-family:Montserrat,sans-serif;font-size:.8rem;outline:none;background:var(--cream);"></div>
+        <div class="form-row2"><label>Haqqında</label><textarea id="rd-desc" rows="3" style="width:100%;border:1.5px solid #E8E0D0;border-radius:9px;padding:9px 12px;font-family:Montserrat,sans-serif;font-size:.8rem;resize:none;outline:none;background:var(--cream);"></textarea></div>
         <div class="form-row2"><label>Logo / Şəkil</label>
           <div onclick="document.getElementById('rd-logo-inp').click()" style="border:2px dashed #E0D0B0;border-radius:10px;padding:14px;text-align:center;cursor:pointer;">
-            <img id="rd-logo-prev" src="" style="max-height:60px;display:none;border-radius:6px;margin-bottom:6px;">
+            <img id="rd-logo-prev" src="" style="max-height:60px;display:none;border-radius:6px;">
             <div id="rd-logo-ph" style="font-size:.78rem;color:var(--muted);">🖼️ Şəkil seçin</div>
           </div>
           <input type="file" id="rd-logo-inp" accept="image/*" style="display:none" onchange="rdLoadLogo(this)">
         </div>
       </div>
-
-      <!-- Sağ sütun: Paketlər -->
       <div style="background:#fff;border-radius:14px;box-shadow:var(--sh);padding:18px;">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
-          <div style="font-size:.82rem;font-weight:600;color:var(--text);">💰 Paketlər & Qiymətlər</div>
-          <button onclick="rdAddPackage()" class="tb-btn" style="font-size:.72rem;padding:5px 12px;">+ Paket Əlavə et</button>
+          <div style="font-size:.82rem;font-weight:600;color:var(--text);">💰 Paketlər</div>
+          <button onclick="rdAddPackage()" class="tb-btn" style="font-size:.72rem;padding:5px 12px;">+ Paket</button>
         </div>
         <div id="rd-packages-list"></div>
       </div>
     </div>
-
-    <!-- Menyu bölməsi -->
-    <div style="background:#fff;border-radius:14px;box-shadow:var(--sh);padding:18px;margin-bottom:20px;">
+    <div style="background:#fff;border-radius:14px;box-shadow:var(--sh);padding:18px;">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
         <div style="font-size:.82rem;font-weight:600;color:var(--text);">🍴 Menyu</div>
-        <button onclick="rdAddMenuItem()" class="tb-btn" style="font-size:.72rem;padding:5px 12px;">+ Menyu maddəsi</button>
+        <button onclick="rdAddMenuItem()" class="tb-btn" style="font-size:.72rem;padding:5px 12px;">+ Maddə</button>
       </div>
       <div id="rd-menu-list"></div>
     </div>
-
-    <!-- Statistika -->
-    <div style="background:#fff;border-radius:14px;box-shadow:var(--sh);padding:18px;">
-      <div style="font-size:.82rem;font-weight:600;color:var(--text);margin-bottom:14px;">📊 Statistika</div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;text-align:center;">
-        <div><div style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--gold);" id="rd-stat-views">0</div><div style="font-size:.7rem;color:var(--muted);">Baxış</div></div>
-        <div><div style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--gr);" id="rd-stat-contacts">0</div><div style="font-size:.7rem;color:var(--muted);">Əlaqə</div></div>
-        <div><div style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--gd);" id="rd-stat-bookings">0</div><div style="font-size:.7rem;color:var(--muted);">Bron</div></div>
-      </div>
-    </div>
   </div>
 
-  <!-- ABOUT PANEL -->
+  <!-- ══ HAQQINDA PANELİ ══ -->
   <div class="panel" id="panel-about" style="padding:0;background:transparent;">
-    <div style="font-family:'Montserrat',sans-serif;">
-
-      <!-- 1. HERO -->
-      <div style="min-height:88vh;background:linear-gradient(160deg,#0a0414 0%,#1a0a2e 45%,#0f0b06 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;text-align:center;position:relative;overflow:hidden;">
+    <div style="font-family:Montserrat,sans-serif;">
+      <div style="min-height:88vh;background:linear-gradient(160deg,#0a0414,#1a0a2e,#0f0b06);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;text-align:center;position:relative;overflow:hidden;">
         <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(201,168,76,.1),transparent 65%);pointer-events:none;"></div>
-        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;border-radius:50%;border:1px solid rgba(201,168,76,.07);pointer-events:none;"></div>
-        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:320px;height:320px;border-radius:50%;border:1px solid rgba(201,168,76,.1);pointer-events:none;"></div>
         <div style="position:relative;z-index:2;max-width:600px;">
-          <div style="font-size:4rem;margin-bottom:16px;filter:drop-shadow(0 0 30px rgba(201,168,76,.5));">&#x1F48D;</div>
-          <div style="font-family:'Playfair Display',serif;font-size:clamp(2.2rem,7vw,4rem);color:#C9A84C;letter-spacing:4px;margin-bottom:8px;line-height:1.1;">eDevetAz</div>
+          <div style="font-size:4rem;margin-bottom:16px;">&#x1F48D;</div>
+          <div style="font-family:'Playfair Display',serif;font-size:clamp(2.2rem,7vw,4rem);color:#C9A84C;letter-spacing:4px;margin-bottom:8px;">eDevetAz</div>
           <div style="font-size:.68rem;letter-spacing:4px;text-transform:uppercase;color:rgba(201,168,76,.45);margin-bottom:22px;">Azərbaycanın İlk Elektron Dəvətnamə Platforması</div>
           <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1rem,3vw,1.3rem);color:rgba(255,255,255,.72);margin-bottom:32px;line-height:1.8;">Toyunuzu rəqəmsal dünyaya daşıyın — qonaqlarınız birbaşa onlayn ödəniş etsin!</div>
           <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:40px;">
-            <button onclick="shareApp('wp')" style="background:linear-gradient(135deg,#25D366,#1ea855);color:#fff;border:none;padding:13px 26px;border-radius:40px;font-family:'Montserrat',sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;box-shadow:0 6px 24px rgba(37,211,102,.35);">&#x1F4F1; WhatsApp ilə Paylaş</button>
-            <button onclick="copyAppLink()" style="background:rgba(201,168,76,.1);color:#C9A84C;border:1.5px solid rgba(201,168,76,.3);padding:12px 24px;border-radius:40px;font-family:'Montserrat',sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;">&#x1F517; Linki Kopyala</button>
-            <button onclick="shareApp('tg')" style="background:rgba(42,171,238,.12);color:#2AABEE;border:1.5px solid rgba(42,171,238,.25);padding:12px 20px;border-radius:40px;font-family:'Montserrat',sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;">&#x2708;&#xFE0F; Telegram</button>
+            <button onclick="shareApp('wp')" style="background:linear-gradient(135deg,#25D366,#1ea855);color:#fff;border:none;padding:13px 26px;border-radius:40px;font-family:Montserrat,sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;">&#x1F4F1; WhatsApp ilə Paylaş</button>
+            <button onclick="copyAppLink()" style="background:rgba(201,168,76,.1);color:#C9A84C;border:1.5px solid rgba(201,168,76,.3);padding:12px 24px;border-radius:40px;font-family:Montserrat,sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;">&#x1F517; Linki Kopyala</button>
+            <button onclick="shareApp('tg')" style="background:rgba(42,171,238,.12);color:#2AABEE;border:1.5px solid rgba(42,171,238,.25);padding:12px 20px;border-radius:40px;font-family:Montserrat,sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;">&#x2708;&#xFE0F; Telegram</button>
           </div>
           <div style="display:flex;gap:28px;justify-content:center;flex-wrap:wrap;">
             <div style="text-align:center;"><div style="font-family:'Playfair Display',serif;font-size:2rem;color:#C9A84C;">54K+</div><div style="font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:3px;">İllik Toy</div></div>
@@ -1049,130 +985,18 @@ body::before{content:'';position:fixed;inset:0;background-image:var(--ornament);
           </div>
         </div>
       </div>
-
-      <!-- 2. PROBLEM / HƏL -->
-      <div style="background:#FAF6EF;padding:56px 24px;">
-        <div style="max-width:680px;margin:0 auto;text-align:center;">
-          <div style="font-size:.68rem;letter-spacing:3px;text-transform:uppercase;color:#C9A84C;margin-bottom:10px;">PROBLEM</div>
-          <div style="font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2.1rem);color:#1A1209;margin-bottom:14px;line-height:1.35;">Toydan sonra pul toplamaq niyə bu qədər çətin?</div>
-          <div style="font-size:.85rem;color:#7A5C2E;line-height:1.8;max-width:500px;margin:0 auto 36px;">Hər qonağa zəng etmək, kağız dəvətnamə, pul almaq üçün kart nömrəsini ayrıca bildirmək... Bunlar artıq köhnəlmiş yollardır.</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;text-align:left;">
-            <div style="background:#fff;border-radius:16px;padding:22px;border:2px solid #F8D7DA;">
-              <div style="font-size:1.3rem;margin-bottom:10px;">&#x1F629;</div>
-              <div style="font-weight:700;color:#842029;margin-bottom:12px;font-size:.85rem;">Əvvəl:</div>
-              <div style="font-size:.78rem;color:#842029;padding:5px 0;display:flex;gap:6px;"><span>&#x2717;</span>Kağız dəvətnamə çap</div>
-              <div style="font-size:.78rem;color:#842029;padding:5px 0;display:flex;gap:6px;"><span>&#x2717;</span>Hər qonağa ayrıca zəng</div>
-              <div style="font-size:.78rem;color:#842029;padding:5px 0;display:flex;gap:6px;"><span>&#x2717;</span>Kart nömrəsi SMS ilə</div>
-              <div style="font-size:.78rem;color:#842029;padding:5px 0;display:flex;gap:6px;"><span>&#x2717;</span>Kim gəlir bilmək çətin</div>
-              <div style="font-size:.78rem;color:#842029;padding:5px 0;display:flex;gap:6px;"><span>&#x2717;</span>Şəkillər telefonda qalır</div>
-            </div>
-            <div style="background:#fff;border-radius:16px;padding:22px;border:2px solid #D1E7DD;">
-              <div style="font-size:1.3rem;margin-bottom:10px;">&#x2728;</div>
-              <div style="font-weight:700;color:#0F5132;margin-bottom:12px;font-size:.85rem;">eDevetAz ilə:</div>
-              <div style="font-size:.78rem;color:#0F5132;padding:5px 0;display:flex;gap:6px;"><span>&#x2713;</span>Elektron dəvətnamə WhatsApp</div>
-              <div style="font-size:.78rem;color:#0F5132;padding:5px 0;display:flex;gap:6px;"><span>&#x2713;</span>Qonaq özü RSVP edir</div>
-              <div style="font-size:.78rem;color:#0F5132;padding:5px 0;display:flex;gap:6px;"><span>&#x2713;</span>Onlayn ödəniş birbaşa</div>
-              <div style="font-size:.78rem;color:#0F5132;padding:5px 0;display:flex;gap:6px;"><span>&#x2713;</span>Panel-də hamısı görünür</div>
-              <div style="font-size:.78rem;color:#0F5132;padding:5px 0;display:flex;gap:6px;"><span>&#x2713;</span>Şəkil qalereyası + video</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 3. XÜSUSİYYƏTLƏR -->
-      <div style="background:#1A1209;padding:56px 24px;">
-        <div style="max-width:680px;margin:0 auto;">
-          <div style="text-align:center;margin-bottom:32px;">
-            <div style="font-size:.68rem;letter-spacing:3px;text-transform:uppercase;color:#C9A84C;margin-bottom:10px;">XÜSUSİYYƏTLƏR</div>
-            <div style="font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2rem);color:#fff;">Bir platformada hər şey</div>
-          </div>
-          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:12px;">
-            <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px 14px;">
-              <div style="font-size:1.7rem;margin-bottom:8px;">&#x1F4F2;</div>
-              <div style="font-size:.82rem;font-weight:600;color:#4A90D9;margin-bottom:5px;">Elektron Dəvətnamə</div>
-              <div style="font-size:.7rem;color:rgba(255,255,255,.4);line-height:1.5;">WhatsApp ilə göndər, qonaq açıb cavab versin</div>
-            </div>
-            <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px 14px;">
-              <div style="font-size:1.7rem;margin-bottom:8px;">&#x1F4B0;</div>
-              <div style="font-size:.82rem;font-weight:600;color:#198754;margin-bottom:5px;">Onlayn Ödəniş</div>
-              <div style="font-size:.7rem;color:rgba(255,255,255,.4);line-height:1.5;">Qonaq kart ilə birbaşa toy sahibinə ödəsin</div>
-            </div>
-            <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px 14px;">
-              <div style="font-size:1.7rem;margin-bottom:8px;">&#x1F465;</div>
-              <div style="font-size:.82rem;font-weight:600;color:#C9A84C;margin-bottom:5px;">Qonaq İdarəetməsi</div>
-              <div style="font-size:.7rem;color:rgba(255,255,255,.4);line-height:1.5;">RSVP, masa nömrəsi, VIP — hamısı burada</div>
-            </div>
-            <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px 14px;">
-              <div style="font-size:1.7rem;margin-bottom:8px;">&#x1F37D;&#xFE0F;</div>
-              <div style="font-size:.82rem;font-weight:600;color:#E44D26;margin-bottom:5px;">Restoran Seçimi</div>
-              <div style="font-size:.7rem;color:rgba(255,255,255,.4);line-height:1.5;">Qeydiyyatlı restoranlar, menyu, sifariş</div>
-            </div>
-            <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px 14px;">
-              <div style="font-size:1.7rem;margin-bottom:8px;">&#x1F4F8;</div>
-              <div style="font-size:.82rem;font-weight:600;color:#9B59B6;margin-bottom:5px;">Şəkil Qalereyası</div>
-              <div style="font-size:.7rem;color:rgba(255,255,255,.4);line-height:1.5;">Toy şəkillərini yüklə, paylaş, bax</div>
-            </div>
-            <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px 14px;">
-              <div style="font-size:1.7rem;margin-bottom:8px;">&#x1F3AC;</div>
-              <div style="font-size:.82rem;font-weight:600;color:#E74C3C;margin-bottom:5px;">Musiqili Video</div>
-              <div style="font-size:.7rem;color:rgba(255,255,255,.4);line-height:1.5;">Şəkillərdən avtomatik toy videosu yarat</div>
-            </div>
-            <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px 14px;">
-              <div style="font-size:1.7rem;margin-bottom:8px;">&#x1F5FA;&#xFE0F;</div>
-              <div style="font-size:.82rem;font-weight:600;color:#27AE60;margin-bottom:5px;">Məkan Xəritəsi</div>
-              <div style="font-size:.7rem;color:rgba(255,255,255,.4);line-height:1.5;">Dəvətnamədə Google Maps konumu</div>
-            </div>
-            <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px 14px;">
-              <div style="font-size:1.7rem;margin-bottom:8px;">&#x2601;&#xFE0F;</div>
-              <div style="font-size:.82rem;font-weight:600;color:#3498DB;margin-bottom:5px;">Bulud Sinxron</div>
-              <div style="font-size:.7rem;color:rgba(255,255,255,.4);line-height:1.5;">Firebase ilə məlumatlar daim saxlanır</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 4. NECƏ İŞLƏYİR -->
-      <div style="background:#FAF6EF;padding:56px 24px;">
-        <div style="max-width:560px;margin:0 auto;text-align:center;">
-          <div style="font-size:.68rem;letter-spacing:3px;text-transform:uppercase;color:#C9A84C;margin-bottom:10px;">NECƏ İŞLƏYİR</div>
-          <div style="font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2rem);color:#1A1209;margin-bottom:32px;">3 addımda hazır</div>
-          <div style="display:flex;flex-direction:column;gap:0;text-align:left;">
-            <div style="display:flex;gap:16px;align-items:flex-start;padding:18px 0;border-bottom:1px solid #E8E0D0;">
-              <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#C9A84C,#8B6914);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.1rem;color:#1A1209;font-weight:700;flex-shrink:0;">1</div>
-              <div><div style="font-weight:700;color:#1A1209;margin-bottom:5px;">&#x1F4DD; Qeydiyyatdan keç</div><div style="font-size:.8rem;color:#7A5C2E;line-height:1.5;">Email ilə 30 saniyədə hesab aç — kredit kartı lazım deyil</div></div>
-            </div>
-            <div style="display:flex;gap:16px;align-items:flex-start;padding:18px 0;border-bottom:1px solid #E8E0D0;">
-              <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#C9A84C,#8B6914);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.1rem;color:#1A1209;font-weight:700;flex-shrink:0;">2</div>
-              <div><div style="font-weight:700;color:#1A1209;margin-bottom:5px;">&#x1F38A; Tədbirini yarat</div><div style="font-size:.8rem;color:#7A5C2E;line-height:1.5;">Ad, tarix, məkan, şəkil, ödəniş kartını əlavə et</div></div>
-            </div>
-            <div style="display:flex;gap:16px;align-items:flex-start;padding:18px 0;">
-              <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#C9A84C,#8B6914);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.1rem;color:#1A1209;font-weight:700;flex-shrink:0;">3</div>
-              <div><div style="font-weight:700;color:#1A1209;margin-bottom:5px;">&#x1F4F2; Dəvət göndər</div><div style="font-size:.8rem;color:#7A5C2E;line-height:1.5;">WhatsApp ilə link göndər — qonaq açıb RSVP etsin və birbaşa ödəniş etsin</div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 5. CTA FINAL -->
-      <div style="background:linear-gradient(135deg,#C9A84C 0%,#8B6914 100%);padding:56px 24px;text-align:center;">
+      <div style="background:linear-gradient(135deg,#C9A84C,#8B6914);padding:56px 24px;text-align:center;">
         <div style="max-width:480px;margin:0 auto;">
-          <div style="font-size:2.5rem;margin-bottom:14px;">&#x1F48D;</div>
           <div style="font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2.1rem);color:#1A1209;margin-bottom:8px;">Toyunuzu rəqəmsal edin!</div>
-          <div style="font-size:.83rem;color:rgba(26,18,9,.65);margin-bottom:28px;line-height:1.7;">Azərbaycanda ilk dəfə — elektron dəvətnamə və onlayn ödəniş bir yerdə. Pulsuz başlayın!</div>
-          <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:16px;">
-            <button onclick="shareApp('wp')" style="background:#1A1209;color:#C9A84C;border:none;padding:13px 26px;border-radius:40px;font-family:'Montserrat',sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.25);">&#x1F4F1; WhatsApp ilə Paylaş</button>
-            <button onclick="shareApp('tg')" style="background:rgba(255,255,255,.2);color:#1A1209;border:none;padding:13px 22px;border-radius:40px;font-family:'Montserrat',sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;">&#x2708;&#xFE0F; Telegram</button>
+          <div style="font-size:.83rem;color:rgba(26,18,9,.65);margin-bottom:28px;line-height:1.7;">Azərbaycanda ilk dəfə — elektron dəvətnamə və onlayn ödəniş bir yerdə.</div>
+          <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+            <button onclick="shareApp('wp')" style="background:#1A1209;color:#C9A84C;border:none;padding:13px 26px;border-radius:40px;font-family:Montserrat,sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;">&#x1F4F1; WhatsApp ilə Paylaş</button>
+            <button onclick="shareApp('tg')" style="background:rgba(255,255,255,.2);color:#1A1209;border:none;padding:13px 22px;border-radius:40px;font-family:Montserrat,sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;">&#x2708;&#xFE0F; Telegram</button>
           </div>
-          <div style="font-size:.72rem;color:rgba(26,18,9,.5);letter-spacing:1.5px;">&#x1F310; edevetaz.vercel.app</div>
         </div>
       </div>
-
     </div>
   </div>
-
-
-
-
 
 </div><!-- end .main -->
 
@@ -1804,10 +1628,10 @@ const PANEL_TITLES={
   'services-photo':'Fotoqraf <span>Xidmətləri</span>',
   'services-decor':'Dekor & Çiçək <span>Xidmətləri</span>',
   'services-music':'Musiqi & DJ <span>Xidmətləri</span>',
-  cards:'Saxlanan <span>Kartlarım</span>',
-  about:'eDevetAz <span>Haqqında</span>',
   admin:'Admin <span>Paneli</span>',
   'rest-dashboard':'Restoran <span>Paneli</span>',
+  about:'eDevetAz <span>Haqqında</span>',
+  cards:'Saxlanan <span>Kartlarım</span>',
 };
 
 function showPanel(id){
@@ -3771,7 +3595,35 @@ function showLoginScreen(){
         <div style="font-size:3rem;margin-bottom:16px;">💍</div>
         <div style="font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--gold);letter-spacing:3px;margin-bottom:6px;">eDevetAz</div>
         <div style="font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:rgba(201,168,76,.45);margin-bottom:36px;">Elektron Dəvətnamə Platforması</div>
-        <button id="google-signin-btn" onclick="signInWithGoogle()" style="width:100%;padding:14px 20px;background:#fff;color:#3c4043;border:none;border-radius:40px;font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 4px 20px rgba(0,0,0,.3);">
+        <!-- Hesab növü seçimi -->
+        <div style="display:flex;gap:6px;margin-bottom:16px;background:rgba(255,255,255,.05);border-radius:12px;padding:4px;">
+          <button onclick="setAccountType('user')" id="type-user-btn" style="flex:1;padding:8px;background:rgba(201,168,76,.2);border:none;border-radius:9px;color:#C9A84C;font-family:Montserrat,sans-serif;font-size:.72rem;font-weight:600;cursor:pointer;">👤 İstifadəçi</button>
+          <button onclick="setAccountType('rest')" id="type-rest-btn" style="flex:1;padding:8px;background:transparent;border:none;border-radius:9px;color:rgba(255,255,255,.4);font-family:Montserrat,sans-serif;font-size:.72rem;cursor:pointer;">🍽️ Restoran</button>
+        </div>
+        <!-- Email / Şifrə -->
+        <input id="auth-email" type="email" placeholder="email@gmail.com" style="width:100%;background:#26180A;border:1.5px solid rgba(201,168,76,.2);border-radius:10px;padding:12px 14px;color:#FAF6EF;font-family:Montserrat,sans-serif;font-size:.88rem;outline:none;margin-bottom:10px;">
+        <input id="auth-pass" type="password" placeholder="Şifrə" style="width:100%;background:#26180A;border:1.5px solid rgba(201,168,76,.2);border-radius:10px;padding:12px 14px;color:#FAF6EF;font-family:Montserrat,sans-serif;font-size:.88rem;outline:none;margin-bottom:10px;" onkeydown="if(event.key==='Enter')emailAuth()">
+        <input id="auth-name" type="text" placeholder="Ad Soyad" style="width:100%;background:#26180A;border:1.5px solid rgba(201,168,76,.15);border-radius:10px;padding:12px 14px;color:#FAF6EF;font-family:Montserrat,sans-serif;font-size:.88rem;outline:none;margin-bottom:10px;display:none;">
+        <!-- Restoran əlavə sahələri -->
+        <div id="rest-extra-fields" style="display:none;">
+          <input id="auth-rest-name" type="text" placeholder="Restoran adı" style="width:100%;background:#26180A;border:1.5px solid rgba(201,168,76,.2);border-radius:10px;padding:12px 14px;color:#FAF6EF;font-family:Montserrat,sans-serif;font-size:.88rem;outline:none;margin-bottom:10px;">
+          <input id="auth-rest-phone" type="tel" placeholder="+994501234567" style="width:100%;background:#26180A;border:1.5px solid rgba(201,168,76,.2);border-radius:10px;padding:12px 14px;color:#FAF6EF;font-family:Montserrat,sans-serif;font-size:.88rem;outline:none;margin-bottom:10px;">
+          <input id="auth-rest-city" type="text" placeholder="Şəhər: Bakı" style="width:100%;background:#26180A;border:1.5px solid rgba(201,168,76,.2);border-radius:10px;padding:12px 14px;color:#FAF6EF;font-family:Montserrat,sans-serif;font-size:.88rem;outline:none;margin-bottom:10px;">
+        </div>
+        <!-- Giriş / Qeydiyyat tabları -->
+        <div style="display:flex;gap:8px;margin-bottom:10px;">
+          <button onclick="setAuthMode('login')" id="btn-login-tab" style="flex:1;padding:8px;background:rgba(201,168,76,.2);border:1px solid rgba(201,168,76,.3);color:var(--gold);border-radius:8px;font-family:Montserrat,sans-serif;font-size:.78rem;font-weight:600;cursor:pointer;">Giriş</button>
+          <button onclick="setAuthMode('register')" id="btn-reg-tab" style="flex:1;padding:8px;background:transparent;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.4);border-radius:8px;font-family:Montserrat,sans-serif;font-size:.78rem;cursor:pointer;">Qeydiyyat</button>
+        </div>
+        <button id="email-auth-btn" onclick="emailAuth()" style="width:100%;padding:14px;background:linear-gradient(135deg,var(--gold),var(--gd));color:var(--dark);border:none;border-radius:40px;font-family:Montserrat,sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;margin-bottom:10px;">📧 Daxil Ol</button>
+        <button onclick="forgotPassword()" style="background:none;border:none;color:rgba(255,255,255,.3);font-size:.72rem;cursor:pointer;font-family:Montserrat,sans-serif;width:100%;margin-bottom:16px;">Şifrəni unutdum?</button>
+        <!-- Ayırıcı -->
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+          <div style="flex:1;height:1px;background:rgba(255,255,255,.08);"></div>
+          <span style="font-size:.7rem;color:rgba(255,255,255,.25);">və ya</span>
+          <div style="flex:1;height:1px;background:rgba(255,255,255,.08);"></div>
+        </div>
+        <button id="google-signin-btn" onclick="signInWithGoogle()" style="width:100%;padding:13px 20px;background:#fff;color:#3c4043;border:none;border-radius:40px;font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 4px 20px rgba(0,0,0,.3);">
           <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M16.51 8H8.98v3h4.3c-.18 1-.74 1.48-1.6 2.04v2.01h2.6a7.8 7.8 0 002.38-5.88c0-.57-.05-.66-.15-1.18z"/><path fill="#34A853" d="M8.98 17c2.16 0 3.97-.72 5.3-1.94l-2.6-2.01a4.8 4.8 0 01-7.18-2.54H1.83v2.07A8 8 0 008.98 17z"/><path fill="#FBBC05" d="M4.5 10.52a4.8 4.8 0 010-3.04V5.41H1.83a8 8 0 000 7.18l2.67-2.07z"/><path fill="#EA4335" d="M8.98 4.18c1.17 0 2.23.4 3.06 1.2l2.3-2.3A8 8 0 001.83 5.4L4.5 7.49a4.77 4.77 0 014.48-3.3z"/></svg>
           Google ilə daxil ol
         </button>
@@ -3839,6 +3691,35 @@ function initFirebase(){
         }
         hideLoginScreen();
         loadFromFirestore();
+        loadFirebaseRestaurants();
+        // Admin sidebar düyməsi
+        if(user.email===ADMIN_EMAIL&&!document.getElementById('admin-sb-btn')){
+          const sbNav=document.querySelector('.sb-nav');
+          if(sbNav){
+            const div=document.createElement('div');
+            div.style.cssText='border-top:1px solid rgba(201,168,76,.15);padding:10px 0 0;margin-top:4px;';
+            div.innerHTML='<button id="admin-sb-btn" onclick="showPanel(\'admin\')" style="width:100%;display:flex;align-items:center;gap:10px;padding:9px 20px;background:none;border:none;cursor:pointer;" onmouseover="this.style.background=\'rgba(201,168,76,.08)\'" onmouseout="this.style.background=\'none\'">'+
+              '<span style="font-size:1rem;">⚙️</span><span style="font-size:.8rem;font-weight:600;color:var(--gold);font-family:Montserrat,sans-serif;">Admin Paneli</span></button>'+
+              '<button onclick="showPanel(\'about\')" style="width:100%;display:flex;align-items:center;gap:10px;padding:9px 20px;background:none;border:none;cursor:pointer;" onmouseover="this.style.background=\'rgba(201,168,76,.08)\'" onmouseout="this.style.background=\'none\'">'+
+              '<span style="font-size:1rem;">✨</span><span style="font-size:.8rem;font-weight:600;color:var(--gold);font-family:Montserrat,sans-serif;">eDevetAz Haqqında</span></button>';
+            sbNav.appendChild(div);
+          }
+        }
+        // Restoran hesabı yoxla
+        if(db){
+          db.collection('users').doc(user.uid).get().then(doc=>{
+            if(doc.exists&&doc.data().role==='restaurant'&&!document.getElementById('rest-sb-btn')){
+              const sbNav=document.querySelector('.sb-nav');
+              if(sbNav){
+                const div=document.createElement('div');
+                div.style.cssText='border-top:1px solid rgba(201,168,76,.15);padding:10px 0 0;margin-top:4px;';
+                div.innerHTML='<button id="rest-sb-btn" onclick="showPanel(\'rest-dashboard\')" style="width:100%;display:flex;align-items:center;gap:10px;padding:9px 20px;background:none;border:none;cursor:pointer;" onmouseover="this.style.background=\'rgba(201,168,76,.08)\'" onmouseout="this.style.background=\'none\'">'+
+                  '<span>🍽️</span><span style="font-size:.8rem;font-weight:600;color:var(--gold);font-family:Montserrat,sans-serif;">Restoran Paneli</span></button>';
+                sbNav.appendChild(div);
+              }
+            }
+          }).catch(()=>{});
+        }
       } else {
         // Giriş edilməyib
         showLoginScreen();
@@ -4039,114 +3920,162 @@ async function saveMyCard(){
 // toast alias
 function showToast(msg){toast(msg);}
 
+
+// ══ HESAB NÖV SEÇİMİ ══
+let currentAccountType='user';
+let authMode='login';
+
+function setAccountType(type){
+  currentAccountType=type;
+  const uBtn=document.getElementById('type-user-btn');
+  const rBtn=document.getElementById('type-rest-btn');
+  const rf=document.getElementById('rest-extra-fields');
+  if(type==='rest'){
+    rBtn.style.background='rgba(201,168,76,.2)';rBtn.style.color='#C9A84C';
+    uBtn.style.background='transparent';uBtn.style.color='rgba(255,255,255,.4)';
+    if(rf)rf.style.display='block';
+    setAuthMode('register');
+  }else{
+    uBtn.style.background='rgba(201,168,76,.2)';uBtn.style.color='#C9A84C';
+    rBtn.style.background='transparent';rBtn.style.color='rgba(255,255,255,.4)';
+    if(rf)rf.style.display='none';
+  }
+}
+
+function setAuthMode(mode){
+  authMode=mode;
+  const nameEl=document.getElementById('auth-name');
+  const btnLogin=document.getElementById('btn-login-tab');
+  const btnReg=document.getElementById('btn-reg-tab');
+  const authBtn=document.getElementById('email-auth-btn');
+  if(mode==='register'){
+    if(nameEl)nameEl.style.display='block';
+    if(authBtn)authBtn.textContent='✓ Qeydiyyatdan Keç';
+    if(btnReg){btnReg.style.background='rgba(201,168,76,.2)';btnReg.style.color='var(--gold)';}
+    if(btnLogin){btnLogin.style.background='transparent';btnLogin.style.color='rgba(255,255,255,.4)';}
+  }else{
+    if(nameEl)nameEl.style.display='none';
+    const rf=document.getElementById('rest-extra-fields');
+    if(rf)rf.style.display='none';
+    if(authBtn)authBtn.textContent='📧 Daxil Ol';
+    if(btnLogin){btnLogin.style.background='rgba(201,168,76,.2)';btnLogin.style.color='var(--gold)';}
+    if(btnReg){btnReg.style.background='transparent';btnReg.style.color='rgba(255,255,255,.4)';}
+  }
+}
+
+async function emailAuth(){
+  const email=document.getElementById('auth-email').value.trim();
+  const pass=document.getElementById('auth-pass').value.trim();
+  const name=document.getElementById('auth-name')?.value.trim()||'';
+  if(!email){showLoginError('Email daxil edin!');return;}
+  if(!pass||pass.length<6){showLoginError('Şifrə ən az 6 simvol!');return;}
+  const btn=document.getElementById('email-auth-btn');
+  btn.disabled=true;btn.textContent='Gözləyin...';
+  try{
+    if(authMode==='register'){
+      if(currentAccountType==='rest'){
+        const rn=document.getElementById('auth-rest-name')?.value.trim()||'';
+        if(!rn){showLoginError('Restoran adını daxil edin!');btn.disabled=false;btn.textContent='✓ Qeydiyyatdan Keç';return;}
+      }
+      const cred=await auth.createUserWithEmailAndPassword(email,pass);
+      if(name)await cred.user.updateProfile({displayName:name});
+      if(db){
+        if(currentAccountType==='rest'){
+          const rn=document.getElementById('auth-rest-name')?.value.trim()||'';
+          const rp=document.getElementById('auth-rest-phone')?.value.trim()||'';
+          const rc=document.getElementById('auth-rest-city')?.value.trim()||'Bakı';
+          await db.collection('restaurants').doc(cred.user.uid).set({uid:cred.user.uid,email,name:rn,phone:rp,city:rc,status:'active',createdAt:new Date().toISOString(),menu:[],packages:[],link:'',logo:'',desc:'',capacity:'',verified:false,featured:false});
+          await db.collection('users').doc(cred.user.uid).set({role:'restaurant',restName:rn,email});
+        }else{
+          await db.collection('users').doc(cred.user.uid).set({role:'user',email,displayName:name});
+        }
+      }
+    }else{
+      await auth.signInWithEmailAndPassword(email,pass);
+    }
+    showLoginError('');
+  }catch(err){
+    btn.disabled=false;btn.textContent=authMode==='register'?'✓ Qeydiyyatdan Keç':'📧 Daxil Ol';
+    const msgs={'auth/email-already-in-use':'Bu email artıq qeydiyyatdadır.','auth/wrong-password':'Şifrə yanlışdır.','auth/user-not-found':'Bu email ilə hesab yoxdur.','auth/invalid-email':'Email formatı yanlışdır.','auth/weak-password':'Şifrə çox sadədir.','auth/too-many-requests':'Çox cəhd edildi.','auth/invalid-credential':'Email və ya şifrə yanlışdır.'};
+    showLoginError(msgs[err.code]||'Xəta: '+err.message);
+  }
+}
+
+function showLoginError(msg){const el=document.getElementById('login-error');if(el){el.style.display=msg?'block':'none';el.textContent=msg;}}
+
+async function forgotPassword(){
+  const email=document.getElementById('auth-email')?.value.trim();
+  if(!email){showLoginError('Əvvəlcə email daxil edin!');return;}
+  try{await auth.sendPasswordResetEmail(email);showLoginError('✓ Şifrə sıfırlama linki göndərildi!');}
+  catch(err){showLoginError('Xəta: '+err.message);}
+}
+
 // ══ ADMİN PANELİ ══
-const ADMIN_EMAIL_CHECK='ceyhuntaqiyev1987@gmail.com';
+const ADMIN_EMAIL='ceyhuntaqiyev1987@gmail.com';
 
 async function loadAdminData(){
-  if(!db||!currentUser||currentUser.email!==ADMIN_EMAIL_CHECK){
-    toast('İcazəniz yoxdur!');return;
-  }
-
-  // Load all users collections from Firestore
+  if(!db||!currentUser||currentUser.email!==ADMIN_EMAIL){toast('İcazəniz yoxdur!');return;}
   try{
-    // Get all user documents
     const usersSnap=await db.collection('users').get();
+    let totalEvents=0,totalGuests=0;
     const users=[];
-    let totalEvents=0,totalGuests=0,totalPayments=0;
-
     for(const userDoc of usersSnap.docs){
       const uid=userDoc.id;
       const evSnap=await db.collection('users').doc(uid).collection('events').get();
       const gSnap=await db.collection('users').doc(uid).collection('guests').get();
-      const pSnap=await db.collection('users').doc(uid).collection('payments').get();
-
-      totalEvents+=evSnap.size;
-      totalGuests+=gSnap.size;
-      totalPayments+=pSnap.docs.reduce((s,d)=>s+(d.data().amount||0),0);
-
-      const evList=evSnap.docs.map(d=>d.data());
-      users.push({uid,evCount:evSnap.size,gCount:gSnap.size,pCount:pSnap.size,events:evList});
+      totalEvents+=evSnap.size;totalGuests+=gSnap.size;
+      users.push({uid,data:userDoc.data(),evCount:evSnap.size,gCount:gSnap.size,events:evSnap.docs.map(d=>d.data())});
     }
-
-    // Firebase Auth users — get from auth (we can only see via Firestore data)
+    const restSnap=await db.collection('restaurants').get();
     document.getElementById('adm-users').textContent=usersSnap.size;
     document.getElementById('adm-events').textContent=totalEvents;
     document.getElementById('adm-guests').textContent=totalGuests;
-    document.getElementById('adm-payments').textContent=totalPayments+'₼';
-    document.getElementById('adm-user-count').textContent=usersSnap.size+' istifadəçi';
-
-    // Render users list
-    const ul=document.getElementById('adm-users-list');
-    if(!users.length){
-      ul.innerHTML='<div style="padding:16px;text-align:center;color:var(--muted);font-size:.82rem;">Hələ istifadəçi yoxdur</div>';
-    }else{
-      ul.innerHTML=users.map((u,i)=>`
-        <div style="padding:12px 18px;${i<users.length-1?'border-bottom:1px solid #f8f0e8;':''}display:flex;align-items:center;gap:14px;">
-          <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gd));display:flex;align-items:center;justify-content:center;color:#1a1209;font-weight:700;font-size:.85rem;flex-shrink:0;">${i+1}</div>
-          <div style="flex:1;min-width:0;">
-            <div style="font-size:.82rem;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${u.uid.substring(0,20)}...</div>
-            <div style="font-size:.72rem;color:var(--muted);margin-top:2px;">
-              🎊 ${u.evCount} tədbir &nbsp;·&nbsp; 👥 ${u.gCount} qonaq &nbsp;·&nbsp; 💰 ${u.pCount} ödəniş
-            </div>
-          </div>
-          <div style="font-size:.72rem;color:var(--gr);font-weight:600;">${u.evCount>0?'Aktiv':'Boş'}</div>
-        </div>`).join('');
-    }
-
-    // Render recent events
-    const el=document.getElementById('adm-events-list');
-    const allEvents=users.flatMap(u=>u.events.map(e=>({...e,userId:u.uid})));
-    if(!allEvents.length){
-      el.innerHTML='<div style="padding:16px;text-align:center;color:var(--muted);font-size:.82rem;">Hələ tədbir yoxdur</div>';
-    }else{
-      el.innerHTML=allEvents.slice(0,20).map((ev,i)=>`
-        <div style="padding:11px 18px;${i<allEvents.length-1?'border-bottom:1px solid #f8f0e8;':''}display:flex;align-items:center;gap:12px;">
-          <div style="font-size:1.2rem;">${{toy:'💍',nishan:'💝',xina:'🌿',birthday:'🎂',corp:'🏢',kids:'🎈'}[ev.type]||'🎊'}</div>
-          <div style="flex:1;">
-            <div style="font-size:.82rem;font-weight:600;color:var(--text);">${ev.n1||'—'}${ev.n2?' & '+ev.n2:''}</div>
-            <div style="font-size:.72rem;color:var(--muted);">📅 ${ev.date||'—'} &nbsp;·&nbsp; 📍 ${ev.venue||'—'}</div>
-          </div>
-          <div style="font-size:.68rem;padding:3px 10px;border-radius:20px;background:rgba(25,135,84,.1);color:var(--gr);">${ev.status||'—'}</div>
-        </div>`).join('');
-    }
-
-    toast('Admin məlumatları yükləndi ✓');
-
-    // Restoranları yüklə
-    const restSnap=await db.collection('restaurants').get();
-    document.getElementById('adm-rest-count').textContent=restSnap.size+' müraciət';
+    document.getElementById('adm-rests').textContent=restSnap.size;
+    // Restoranlar
     const rl=document.getElementById('adm-rest-list');
-    if(!restSnap.size){
-      rl.innerHTML='<div style="padding:16px;text-align:center;color:var(--muted);font-size:.82rem;">Müraciət yoxdur</div>';
-    }else{
-      rl.innerHTML=restSnap.docs.map((doc,i)=>{
-        const d=doc.data();
-        const statusColor={active:'#198754',pending:'#198754',rejected:'#dc3545'}[d.status]||'#198754';
-        const statusLbl={active:'✓ Aktiv',pending:'✓ Aktiv',rejected:'⛔ Bloklanıb'}[d.status]||'Aktiv';
-        return`<div style="padding:12px 18px;${i<restSnap.size-1?'border-bottom:1px solid #f8f0e8;':''}display:flex;align-items:center;gap:12px;">
-          ${d.logo?`<img src="${d.logo}" style="width:40px;height:40px;border-radius:8px;object-fit:cover;flex-shrink:0;">`:'<div style="width:40px;height:40px;border-radius:8px;background:var(--cream);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;">🍽️</div>'}
-          <div style="flex:1;min-width:0;">
-            <div style="font-size:.85rem;font-weight:600;color:var(--text);">${d.name||'—'}</div>
-            <div style="font-size:.72rem;color:var(--muted);">📍 ${d.city||'—'} · 📞 ${d.phone||'—'}</div>
-            ${d.link?`<a href="${d.link}" target="_blank" style="font-size:.7rem;color:var(--gold);">🔗 ${d.link.substring(0,30)}...</a>`:''}
-          </div>
-          <div style="text-align:right;">
-            <div style="font-size:.72rem;font-weight:600;color:${statusColor};margin-bottom:6px;">${statusLbl}</div>
-            ${d.status==='active'?`
-              <button onclick="approveRestaurant('${doc.id}',false)" style="background:rgba(220,53,69,.08);color:#dc3545;border:1px solid rgba(220,53,69,.15);padding:4px 10px;border-radius:8px;font-size:.7rem;cursor:pointer;font-family:Montserrat,sans-serif;">⛔ Blokla</button>`:`
-              <button onclick="approveRestaurant('${doc.id}',true)" style="background:rgba(25,135,84,.12);color:#198754;border:1px solid rgba(25,135,84,.2);padding:4px 10px;border-radius:8px;font-size:.7rem;cursor:pointer;font-family:Montserrat,sans-serif;">✓ Aktiv et</button>`}
-          </div>
-        </div>`;
-      }).join('');
-    }
-  }catch(e){
-    toast('Xəta: '+e.message);
-    console.log('Admin load error:',e);
-  }
+    rl.innerHTML=restSnap.size?restSnap.docs.map((doc,i)=>{
+      const d=doc.data();
+      return`<div style="padding:12px 18px;${i<restSnap.size-1?'border-bottom:1px solid #f8f0e8;':''}display:flex;align-items:center;gap:12px;">
+        ${d.logo?`<img src="${d.logo}" style="width:36px;height:36px;border-radius:8px;object-fit:cover;flex-shrink:0;">`:'<div style="width:36px;height:36px;border-radius:8px;background:var(--cream);display:flex;align-items:center;justify-content:center;font-size:1rem;">🍽️</div>'}
+        <div style="flex:1;">
+          <div style="font-size:.83rem;font-weight:600;color:var(--text);">${d.name||'—'}</div>
+          <div style="font-size:.72rem;color:var(--muted);">📍 ${d.city||'—'} · 📞 ${d.phone||'—'}</div>
+        </div>
+        <div style="display:flex;gap:6px;align-items:center;">
+          <span style="font-size:.72rem;font-weight:600;color:${d.status==='active'?'#198754':'#dc3545'};">${d.status==='active'?'✓ Aktiv':'⛔ Blok'}</span>
+          ${d.status==='active'?`<button onclick="blockRest('${doc.id}')" style="background:rgba(220,53,69,.08);color:#dc3545;border:1px solid rgba(220,53,69,.15);padding:3px 9px;border-radius:6px;font-size:.68rem;cursor:pointer;">Blokla</button>`:`<button onclick="activateRest('${doc.id}')" style="background:rgba(25,135,84,.08);color:#198754;border:1px solid rgba(25,135,84,.15);padding:3px 9px;border-radius:6px;font-size:.68rem;cursor:pointer;">Aktiv et</button>`}
+        </div>
+      </div>`;}).join(''):
+      '<div style="padding:16px;text-align:center;color:var(--muted);font-size:.82rem;">Hələ restoran yoxdur</div>';
+    // İstifadəçilər
+    const ul=document.getElementById('adm-users-list');
+    ul.innerHTML=users.length?users.map((u,i)=>`
+      <div style="padding:11px 18px;${i<users.length-1?'border-bottom:1px solid #f8f0e8;':''}display:flex;align-items:center;gap:12px;">
+        <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gd));display:flex;align-items:center;justify-content:center;color:#1a1209;font-weight:700;font-size:.82rem;flex-shrink:0;">${i+1}</div>
+        <div style="flex:1;min-width:0;">
+          <div style="font-size:.8rem;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${u.data.email||u.uid.substring(0,20)+'...'}</div>
+          <div style="font-size:.7rem;color:var(--muted);">🎊 ${u.evCount} tədbir · 👥 ${u.gCount} qonaq · ${u.data.role==='restaurant'?'🍽️ Restoran':'👤 İstifadəçi'}</div>
+        </div>
+      </div>`).join(''):
+      '<div style="padding:16px;text-align:center;color:var(--muted);font-size:.82rem;">İstifadəçi yoxdur</div>';
+    // Son tədbirlər
+    const el=document.getElementById('adm-events-list');
+    const allEvs=users.flatMap(u=>u.events);
+    el.innerHTML=allEvs.length?allEvs.slice(0,15).map((ev,i)=>`
+      <div style="padding:10px 18px;${i<Math.min(14,allEvs.length-1)?'border-bottom:1px solid #f8f0e8;':''}display:flex;align-items:center;gap:10px;">
+        <div style="font-size:1.1rem;">${{toy:'💍',nishan:'💝',xina:'🌿',birthday:'🎂',corp:'🏢',kids:'🎈'}[ev.type]||'🎊'}</div>
+        <div style="flex:1;"><div style="font-size:.8rem;font-weight:600;color:var(--text);">${ev.n1||'—'}${ev.n2?' & '+ev.n2:''}</div><div style="font-size:.7rem;color:var(--muted);">📅 ${ev.date||'—'} · 📍 ${ev.venue||'—'}</div></div>
+      </div>`).join(''):
+      '<div style="padding:16px;text-align:center;color:var(--muted);font-size:.82rem;">Tədbir yoxdur</div>';
+    toast('Admin məlumatları yükləndi ✓');
+  }catch(e){toast('Xəta: '+e.message);}
 }
 
+async function blockRest(uid){if(!db)return;await db.collection('restaurants').doc(uid).set({status:'blocked'},{merge:true});toast('Restoran bloklandı');loadAdminData();}
+async function activateRest(uid){if(!db)return;await db.collection('restaurants').doc(uid).set({status:'active'},{merge:true});toast('Restoran aktivləşdirildi ✓');loadAdminData();}
+
 // ══ RESTORAN PANELİ ══
-let rdPackages=[], rdMenuItems=[], rdLogoData=null;
+let rdPackages=[],rdMenuItems=[],rdLogoData=null;
 
 async function loadRestDashboard(){
   if(!db||!currentUser)return;
@@ -4154,89 +4083,60 @@ async function loadRestDashboard(){
     const doc=await db.collection('restaurants').doc(currentUser.uid).get();
     if(!doc.exists)return;
     const d=doc.data();
+    ['rd-name','rd-phone','rd-city','rd-link','rd-desc'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=d[id.replace('rd-','')]||d[{'rd-name':'name','rd-phone':'phone','rd-city':'city','rd-link':'link','rd-desc':'desc'}[id]]||'';});
     document.getElementById('rd-name').value=d.name||'';
     document.getElementById('rd-phone').value=d.phone||'';
     document.getElementById('rd-city').value=d.city||'';
-    document.getElementById('rd-capacity').value=d.capacity||'';
     document.getElementById('rd-link').value=d.link||'';
     document.getElementById('rd-desc').value=d.desc||'';
-    document.getElementById('rest-dash-name').textContent=d.name||'Restoran Paneli';
-    if(d.logo){
-      document.getElementById('rd-logo-prev').src=d.logo;
-      document.getElementById('rd-logo-prev').style.display='block';
-      document.getElementById('rd-logo-ph').style.display='none';
-    }
-    rdPackages=d.packages||[];
-    rdMenuItems=d.menu||[];
-    renderRdPackages();
-    renderRdMenu();
-    if(d.status==='pending'){
-      document.getElementById('rest-status-banner').style.display='block';
-    }
+    const capEl=document.getElementById('rd-capacity');if(capEl)capEl.value=d.capacity||'';
+    const dname=document.getElementById('rest-dash-name');if(dname)dname.textContent=d.name||'Restoran Paneli';
+    if(d.logo){const lp=document.getElementById('rd-logo-prev');const lph=document.getElementById('rd-logo-ph');if(lp){lp.src=d.logo;lp.style.display='block';}if(lph)lph.style.display='none';}
+    rdPackages=d.packages||[];rdMenuItems=d.menu||[];
+    renderRdPackages();renderRdMenu();
+    if(d.status==='blocked'){const b=document.getElementById('rest-status-banner');if(b)b.style.display='block';}
   }catch(e){console.log('Rest load:',e);}
 }
 
-function rdLoadLogo(inp){
-  const file=inp.files[0];if(!file)return;
-  const r=new FileReader();
-  r.onload=e=>{
-    rdLogoData=e.target.result;
-    document.getElementById('rd-logo-prev').src=e.target.result;
-    document.getElementById('rd-logo-prev').style.display='block';
-    document.getElementById('rd-logo-ph').style.display='none';
-  };
-  r.readAsDataURL(file);
-}
+function rdLoadLogo(inp){const file=inp.files[0];if(!file)return;const r=new FileReader();r.onload=e=>{rdLogoData=e.target.result;const lp=document.getElementById('rd-logo-prev');const lph=document.getElementById('rd-logo-ph');if(lp){lp.src=e.target.result;lp.style.display='block';}if(lph)lph.style.display='none';};r.readAsDataURL(file);}
 
 function renderRdPackages(){
-  const el=document.getElementById('rd-packages-list');
-  if(!el)return;
-  if(!rdPackages.length){
-    el.innerHTML='<div style="text-align:center;color:var(--muted);font-size:.78rem;padding:16px;background:var(--cream);border-radius:10px;">Hələ paket yoxdur.<br><b>+ Paket Əlavə et</b> düyməsinə basın.</div>';
-    return;
-  }
+  const el=document.getElementById('rd-packages-list');if(!el)return;
+  if(!rdPackages.length){el.innerHTML='<div style="text-align:center;color:var(--muted);font-size:.78rem;padding:16px;background:var(--cream);border-radius:10px;">+ Paket Əlavə et düyməsini basın</div>';return;}
   el.innerHTML=rdPackages.map((p,i)=>`
     <div style="background:var(--cream);border-radius:10px;padding:12px;margin-bottom:8px;border:1.5px solid #E8E0D0;">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
-        <div style="font-size:.75rem;font-weight:600;color:var(--muted);">Paket ${i+1}</div>
-        <button onclick="rdPackages.splice(${i},1);renderRdPackages()" style="background:rgba(220,53,69,.1);border:none;border-radius:6px;padding:3px 8px;color:#dc3545;cursor:pointer;font-size:.75rem;">✕ Sil</button>
-      </div>
-      <input value="${p.name||''}" oninput="rdPackages[${i}].name=this.value" placeholder="Paket adı (məs. Standart Paket)" style="width:100%;border:1px solid #E0D0B0;border-radius:7px;padding:7px 10px;font-family:Montserrat,sans-serif;font-size:.8rem;background:#fff;outline:none;margin-bottom:6px;">
-      <input value="${p.desc||''}" oninput="rdPackages[${i}].desc=this.value" placeholder="Təsvir (məs. 5 yeməkli süfrə, içki daxil)" style="width:100%;border:1px solid #E0D0B0;border-radius:7px;padding:7px 10px;font-family:Montserrat,sans-serif;font-size:.78rem;background:#fff;outline:none;margin-bottom:6px;">
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><div style="font-size:.72rem;font-weight:600;color:var(--muted);">Paket ${i+1}</div><button onclick="rdPackages.splice(${i},1);renderRdPackages()" style="background:none;border:none;color:#dc3545;cursor:pointer;font-size:.75rem;">✕ Sil</button></div>
+      <input value="${p.name||''}" oninput="rdPackages[${i}].name=this.value" placeholder="Paket adı" style="width:100%;border:1px solid #E0D0B0;border-radius:7px;padding:7px 10px;font-family:Montserrat,sans-serif;font-size:.8rem;background:#fff;outline:none;margin-bottom:6px;">
+      <input value="${p.desc||''}" oninput="rdPackages[${i}].desc=this.value" placeholder="Təsvir" style="width:100%;border:1px solid #E0D0B0;border-radius:7px;padding:7px 10px;font-family:Montserrat,sans-serif;font-size:.78rem;background:#fff;outline:none;margin-bottom:6px;">
       <div style="display:flex;gap:8px;">
-        <input type="number" value="${p.price||''}" oninput="rdPackages[${i}].price=parseFloat(this.value)||0" placeholder="Qiymət (₼)" style="flex:1;border:1px solid #E0D0B0;border-radius:7px;padding:7px 10px;font-family:Montserrat,sans-serif;font-size:.8rem;background:#fff;outline:none;">
+        <input type="number" value="${p.price||''}" oninput="rdPackages[${i}].price=parseFloat(this.value)||0" placeholder="Qiymət ₼" style="flex:1;border:1px solid #E0D0B0;border-radius:7px;padding:7px 10px;font-family:Montserrat,sans-serif;font-size:.8rem;background:#fff;outline:none;">
         <select oninput="rdPackages[${i}].unit=this.value" style="flex:1;border:1px solid #E0D0B0;border-radius:7px;padding:7px 10px;font-family:Montserrat,sans-serif;font-size:.78rem;background:#fff;outline:none;">
           <option value="nəfər" ${(p.unit||'nəfər')==='nəfər'?'selected':''}>/ nəfər</option>
           <option value="paket" ${p.unit==='paket'?'selected':''}>/ paket</option>
           <option value="saat" ${p.unit==='saat'?'selected':''}>/ saat</option>
-          <option value="stol" ${p.unit==='stol'?'selected':''}>/ stol</option>
         </select>
       </div>
     </div>`).join('');
 }
 
+function rdAddPackage(){rdPackages.push({name:'',desc:'',price:0,unit:'nəfər'});renderRdPackages();}
+
 function renderRdMenu(){
-  const el=document.getElementById('rd-menu-list');
-  if(!el)return;
-  if(!rdMenuItems.length){
-    el.innerHTML='<div style="text-align:center;color:var(--muted);font-size:.78rem;padding:16px;background:var(--cream);border-radius:10px;">Hələ menyu maddəsi yoxdur.</div>';
-    return;
-  }
-  el.innerHTML=`<table style="width:100%;border-collapse:collapse;">
-    <thead><tr style="background:var(--cream);">
-      <th style="text-align:left;padding:8px 10px;font-size:.72rem;color:var(--muted);font-weight:500;">Ad</th>
-      <th style="text-align:left;padding:8px 10px;font-size:.72rem;color:var(--muted);font-weight:500;">Kateqoriya</th>
-      <th style="text-align:left;padding:8px 10px;font-size:.72rem;color:var(--muted);font-weight:500;">Qiymət (₼)</th>
-      <th style="padding:8px;"></th>
-    </tr></thead>
-    <tbody>${rdMenuItems.map((m,i)=>`<tr style="border-bottom:1px solid #f0e8d8;">
-      <td style="padding:6px 10px;"><input value="${m.name||''}" oninput="rdMenuItems[${i}].name=this.value" style="border:1px solid #E0D0B0;border-radius:6px;padding:5px 8px;font-family:Montserrat,sans-serif;font-size:.78rem;background:var(--cream);outline:none;width:100%;" placeholder="Məs. Toyuq kababı"></td>
-      <td style="padding:6px 10px;"><input value="${m.cat||''}" oninput="rdMenuItems[${i}].cat=this.value" style="border:1px solid #E0D0B0;border-radius:6px;padding:5px 8px;font-family:Montserrat,sans-serif;font-size:.78rem;background:var(--cream);outline:none;width:100%;" placeholder="Əsas yeməklər"></td>
-      <td style="padding:6px 10px;"><input type="number" value="${m.price||''}" oninput="rdMenuItems[${i}].price=parseFloat(this.value)||0" style="border:1px solid #E0D0B0;border-radius:6px;padding:5px 8px;font-family:Montserrat,sans-serif;font-size:.78rem;background:var(--cream);outline:none;width:70px;" placeholder="0"></td>
-      <td style="padding:6px;"><button onclick="rdMenuItems.splice(${i},1);renderRdMenu()" style="background:none;border:none;color:#dc3545;cursor:pointer;font-size:.85rem;">✕</button></td>
-    </tr>`).join('')}</tbody>
-  </table>`;
+  const el=document.getElementById('rd-menu-list');if(!el)return;
+  if(!rdMenuItems.length){el.innerHTML='<div style="text-align:center;color:var(--muted);font-size:.78rem;padding:16px;background:var(--cream);border-radius:10px;">+ Maddə əlavə edin</div>';return;}
+  el.innerHTML=`<table style="width:100%;border-collapse:collapse;"><thead><tr style="background:var(--cream);">
+    <th style="text-align:left;padding:8px 10px;font-size:.72rem;color:var(--muted);">Ad</th>
+    <th style="text-align:left;padding:8px 10px;font-size:.72rem;color:var(--muted);">Kateqoriya</th>
+    <th style="text-align:left;padding:8px 10px;font-size:.72rem;color:var(--muted);">Qiymət</th>
+    <th></th></tr></thead><tbody>${rdMenuItems.map((m,i)=>`<tr style="border-bottom:1px solid #f0e8d8;">
+    <td style="padding:6px 10px;"><input value="${m.name||''}" oninput="rdMenuItems[${i}].name=this.value" style="border:1px solid #E0D0B0;border-radius:6px;padding:5px 8px;font-family:Montserrat,sans-serif;font-size:.78rem;background:var(--cream);outline:none;width:100%;" placeholder="Məs. Toyuq kababı"></td>
+    <td style="padding:6px 10px;"><input value="${m.cat||''}" oninput="rdMenuItems[${i}].cat=this.value" style="border:1px solid #E0D0B0;border-radius:6px;padding:5px 8px;font-family:Montserrat,sans-serif;font-size:.78rem;background:var(--cream);outline:none;width:100%;" placeholder="Kateqoriya"></td>
+    <td style="padding:6px 10px;"><input type="number" value="${m.price||''}" oninput="rdMenuItems[${i}].price=parseFloat(this.value)||0" style="border:1px solid #E0D0B0;border-radius:6px;padding:5px 8px;font-family:Montserrat,sans-serif;font-size:.78rem;background:var(--cream);outline:none;width:70px;" placeholder="0"></td>
+    <td style="padding:6px;"><button onclick="rdMenuItems.splice(${i},1);renderRdMenu()" style="background:none;border:none;color:#dc3545;cursor:pointer;">✕</button></td>
+    </tr>`).join('')}</tbody></table>`;
 }
+
+function rdAddMenuItem(){rdMenuItems.push({name:'',cat:'Əsas Yeməklər',price:0});renderRdMenu();}
 
 async function saveRestProfile(){
   if(!db||!currentUser)return;
@@ -4244,42 +4144,44 @@ async function saveRestProfile(){
     name:document.getElementById('rd-name').value.trim(),
     phone:document.getElementById('rd-phone').value.trim(),
     city:document.getElementById('rd-city').value.trim()||'Bakı',
-    capacity:document.getElementById('rd-capacity').value,
+    capacity:document.getElementById('rd-capacity')?.value||'',
     link:document.getElementById('rd-link').value.trim(),
     desc:document.getElementById('rd-desc').value.trim(),
-    packages:rdPackages,
-    menu:rdMenuItems,
+    packages:rdPackages,menu:rdMenuItems,
     updatedAt:new Date().toISOString(),
   };
   if(rdLogoData)data.logo=rdLogoData;
   try{
     await db.collection('restaurants').doc(currentUser.uid).set(data,{merge:true});
-    document.getElementById('rest-dash-name').textContent=data.name||'Restoran Paneli';
+    const dn=document.getElementById('rest-dash-name');if(dn)dn.textContent=data.name;
     toast('Profil yadda saxlandı ✓');
   }catch(e){toast('Xəta: '+e.message);}
 }
 
-// Admin panel-də restoranları təsdiq et / rədd et
-async function approveRestaurant(uid,activate){
+// Firebase restoranlarını yüklə
+async function loadFirebaseRestaurants(){
   if(!db)return;
-  await db.collection('restaurants').doc(uid).set({status:activate?'active':'rejected'},{merge:true});
-  // Show banner to blocked restaurant
-  toast(activate?'Restoran aktivləşdirildi ✓':'Restoran bloklandı');
-  loadAdminData();
+  try{
+    const snap=await db.collection('restaurants').where('status','==','active').get();
+    snap.forEach(doc=>{
+      const d=doc.data();
+      if(RESTAURANTS.find(r=>r.firestoreId===doc.id))return;
+      const rest={id:'fb_'+doc.id,firestoreId:doc.id,name:d.name||'Restoran',icon:'🍽️',stars:4,cap:parseInt(d.capacity)||200,city:d.city||'Bakı',price:d.packages&&d.packages.length?d.packages[0].price+'₼/'+d.packages[0].unit:'—',verified:false,reserved:false,desc:d.desc||'',phone:d.phone||'',link:d.link||'',logo:d.logo||null,fromFirebase:true,menu:[]};
+      if(d.packages&&d.packages.length)rest.menu.push({cat:'Paketlər',items:d.packages.map(p=>({name:p.name,desc:p.desc||'',price:p.price||0,unit:p.unit||'nəfər'}))});
+      if(d.menu&&d.menu.length)rest.menu.push({cat:'Menyu',items:d.menu.map(m=>({name:m.name,desc:m.cat||'',price:m.price||0,unit:''}))});
+      RESTAURANTS.push(rest);
+    });
+  }catch(e){}
 }
 
-// ── Tətbiqi paylaş ──
+// Tətbiqi paylaş
 function shareApp(platform){
   const url='https://edevetaz.vercel.app';
-  const msg='💍 eDevetAz — Azərbaycanın ilk elektron toy dəvətnaməsi!\n\n✅ WhatsApp ilə dəvətnamə göndər\n✅ Qonaqlar onlayn ödəniş etsin\n✅ Qonaq siyahısı, restoran, şəkillər\n✅ Tamamilə pulsuz başla!\n\n🌐 '+url;
+  const msg='💍 eDevetAz — Azərbaycanın ilk elektron toy dəvətnaməsi!\n\n✅ WhatsApp ilə dəvətnamə göndər\n✅ Qonaqlar onlayn ödəniş etsin\n✅ Qonaq siyahısı, restoran, şəkillər\n\n🌐 '+url;
   if(platform==='wp')window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank');
   else if(platform==='tg')window.open('https://t.me/share/url?url='+encodeURIComponent(url)+'&text='+encodeURIComponent(msg),'_blank');
 }
-function copyAppLink(){
-  navigator.clipboard.writeText('eDevetAz — Azərbaycanın ilk elektron dəvətnaməsi 💍\nhttps://edevetaz.vercel.app').then(()=>toast('Link kopyalandı ✓ Paylaşa bilərsiniz!'));
-}
-
-
+function copyAppLink(){navigator.clipboard.writeText('eDevetAz — https://edevetaz.vercel.app').then(()=>toast('Link kopyalandı ✓'));}
 
 // ── INIT ──
 showPanel('overview');
