@@ -314,34 +314,6 @@ body::before{content:'';position:fixed;inset:0;background-image:var(--ornament);
   .pay-summary{grid-template-columns:1fr 1fr;}
   .photo-masonry{columns:2 150px;}
   .f2{grid-template-columns:1fr;}
-  .panel{padding:16px 14px 90px;}
-  .topbar{padding:11px 14px;}
-  .topbar-title{font-size:1rem;}
-  .tb-btn{padding:7px 14px;font-size:.7rem;}
-  .ev-grid{grid-template-columns:1fr;}
-  .rest-grid{grid-template-columns:1fr;}
-  .svc-grid{grid-template-columns:1fr;}
-  .rev-grid{grid-template-columns:1fr;}
-  .metrics{grid-template-columns:1fr 1fr;}
-  .modal-box{padding:18px 16px;border-radius:14px 14px 0 0;position:fixed;bottom:0;left:0;right:0;max-height:90vh;margin:0;max-width:100%;}
-  .modal-ov{align-items:flex-end;padding:0;}
-  .gtable td,.gtable th{padding:9px 10px;font-size:.75rem;}
-  .sec-hdr{flex-direction:column;align-items:flex-start;gap:8px;}
-  .sec-hdr>div+*{width:100%;}
-}
-
-/* ── ALT NAVİQASİYA (Mobil) ── */
-.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--dark);border-top:1px solid rgba(201,168,76,.15);z-index:200;padding:8px 0 env(safe-area-inset-bottom,8px);}
-.bottom-nav-inner{display:flex;align-items:center;justify-content:space-around;}
-.bn-item{display:flex;flex-direction:column;align-items:center;gap:3px;padding:5px 10px;cursor:pointer;background:none;border:none;flex:1;transition:color .2s;}
-.bn-item span.bn-icon{font-size:1.3rem;line-height:1;}
-.bn-item span.bn-lbl{font-size:.58rem;letter-spacing:.5px;color:rgba(250,246,239,.4);font-family:'Montserrat',sans-serif;font-weight:500;}
-.bn-item.active span.bn-lbl{color:var(--gold);}
-.bn-item:hover span.bn-lbl{color:var(--gl);}
-
-@media(max-width:768px){
-  .bottom-nav{display:block;}
-  .topbar-actions .tb-btn:not(:last-child){display:none;}
 }
 </style>
 <!-- Firebase SDK -->
@@ -364,32 +336,6 @@ body::before{content:'';position:fixed;inset:0;background-image:var(--ornament);
 
 <!-- SIDEBAR OVERLAY -->
 <div class="sb-overlay" id="sbOverlay" onclick="closeSB()"></div>
-
-<!-- ALT NAVİQASİYA (Mobil) -->
-<nav class="bottom-nav">
-  <div class="bottom-nav-inner">
-    <button class="bn-item active" id="bn-home" onclick="bnGo('overview',this)">
-      <span class="bn-icon">🏠</span>
-      <span class="bn-lbl">Əsas</span>
-    </button>
-    <button class="bn-item" id="bn-events" onclick="bnGo('ev-toy',this)">
-      <span class="bn-icon">🎊</span>
-      <span class="bn-lbl">Tədbirlər</span>
-    </button>
-    <button class="bn-item" id="bn-new" onclick="openNewEvent()">
-      <span class="bn-icon" style="background:var(--gold);border-radius:50%;width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-top:-14px;box-shadow:0 4px 16px rgba(201,168,76,.4);">＋</span>
-      <span class="bn-lbl">Yeni</span>
-    </button>
-    <button class="bn-item" id="bn-guests" onclick="bnGo('guests-all',this)">
-      <span class="bn-icon">👥</span>
-      <span class="bn-lbl">Qonaqlar</span>
-    </button>
-    <button class="bn-item" id="bn-menu" onclick="openSB()">
-      <span class="bn-icon">☰</span>
-      <span class="bn-lbl">Menyu</span>
-    </button>
-  </div>
-</nav>
 
 <!-- ══════════════ SIDEBAR ══════════════ -->
 <aside class="sidebar" id="sidebar">
@@ -417,7 +363,7 @@ body::before{content:'';position:fixed;inset:0;background-image:var(--ornament);
         <div class="sb-acc-bg"></div>
         <span class="sb-acc-icon">🎊</span>
         <span class="sb-acc-label">Tədbirlər</span>
-        <span class="sb-acc-badge" id="badge-events">0</span>
+        <span class="sb-acc-badge" id="badge-events">3</span>
         <span class="sb-acc-arrow">▶</span>
       </button>
       <div class="sb-body" id="acc-events">
@@ -434,7 +380,7 @@ body::before{content:'';position:fixed;inset:0;background-image:var(--ornament);
         <div class="sb-acc-bg"></div>
         <span class="sb-acc-icon">👥</span>
         <span class="sb-acc-label">Qonaqlar</span>
-        <span class="sb-acc-badge" id="badge-guests">0</span>
+        <span class="sb-acc-badge" id="badge-guests">48</span>
         <span class="sb-acc-arrow">▶</span>
       </button>
       <div class="sb-body" id="acc-guests">
@@ -452,7 +398,7 @@ body::before{content:'';position:fixed;inset:0;background-image:var(--ornament);
         <div class="sb-acc-bg"></div>
         <span class="sb-acc-icon">💳</span>
         <span class="sb-acc-label">Ödənişlər</span>
-        <span class="sb-acc-badge" id="badge-pay">0₼</span>
+        <span class="sb-acc-badge" id="badge-pay">1840₼</span>
         <span class="sb-acc-arrow">▶</span>
       </button>
       <div class="sb-body" id="acc-pay">
@@ -509,7 +455,7 @@ body::before{content:'';position:fixed;inset:0;background-image:var(--ornament);
         <button class="sb-item" onclick="showPanel('sent-pending');setActive(this)"><div class="sb-item-dot"></div>⏳ Gözlənilənlər</button>
         <!-- Mənə Göndərilənlər -->
         <div style="padding:10px 18px 3px 46px;font-size:.62rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(201,168,76,.35);font-weight:600;border-top:1px solid rgba(201,168,76,.07);margin-top:4px;">Mənə Göndərilənlər</div>
-        <button class="sb-item" onclick="showPanel('received-all');setActive(this)"><div class="sb-item-dot"></div>Bütün Dəvətnamələr<span class="sb-item-badge new" id="badge-received" style="background:rgba(220,53,69,.2);color:#f5a0a0;">0</span></button>
+        <button class="sb-item" onclick="showPanel('received-all');setActive(this)"><div class="sb-item-dot"></div>Bütün Dəvətnamələr<span class="sb-item-badge new" id="badge-received" style="background:rgba(220,53,69,.2);color:#f5a0a0;">3</span></button>
         <button class="sb-item" onclick="showPanel('received-new');setActive(this)"><div class="sb-item-dot"></div>🆕 Yeni (3)</button>
         <button class="sb-item" onclick="showPanel('received-accepted');setActive(this)"><div class="sb-item-dot"></div>✓ Qəbul Etdiklərim</button>
       </div>
@@ -572,7 +518,7 @@ body::before{content:'';position:fixed;inset:0;background-image:var(--ornament);
         <div class="sb-acc-bg"></div>
         <span class="sb-acc-icon">💌</span>
         <span class="sb-acc-label">Təbrik Mesajları</span>
-        <span class="sb-acc-badge new" id="badge-msgs" style="background:rgba(220,53,69,.2);color:#f5a0a0;">0</span>
+        <span class="sb-acc-badge new" id="badge-msgs" style="background:rgba(220,53,69,.2);color:#f5a0a0;">12</span>
         <span class="sb-acc-arrow">▶</span>
       </button>
       <div class="sb-body" id="acc-msgs">
@@ -582,18 +528,6 @@ body::before{content:'';position:fixed;inset:0;background-image:var(--ornament);
     </div>
 
   </nav>
-
-
-  <!-- Tətbiq haqqında / Reklam -->
-  <div style="padding:10px 16px;border-top:1px solid rgba(201,168,76,.08);">
-    <button onclick="showPanel('about')" style="width:100%;background:linear-gradient(135deg,rgba(201,168,76,.12),rgba(201,168,76,.05));border:1px solid rgba(201,168,76,.2);border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:10px;cursor:pointer;transition:all .2s;" onmouseover="this.style.background='linear-gradient(135deg,rgba(201,168,76,.2),rgba(201,168,76,.1))'" onmouseout="this.style.background='linear-gradient(135deg,rgba(201,168,76,.12),rgba(201,168,76,.05))'">
-      <span style="font-size:1.1rem;">✨</span>
-      <div style="text-align:left;">
-        <div style="font-size:.75rem;font-weight:600;color:var(--gold);font-family:'Montserrat',sans-serif;">eDevetAz haqqında</div>
-        <div style="font-size:.62rem;color:rgba(201,168,76,.4);margin-top:1px;">Paylaş · Tövsiyə et</div>
-      </div>
-    </button>
-  </div>
 
   <div class="sb-user">
     <div class="sb-avatar">AH</div>
@@ -743,7 +677,6 @@ body::before{content:'';position:fixed;inset:0;background-image:var(--ornament);
     <div class="sec-hdr"><div><h2>📸 Toyda Çəkilən Şəkillər</h2><div class="sec-hdr-sub" id="photo-count-lbl">0 şəkil yüklənib</div></div>
       <div style="display:flex;gap:7px;">
         <button class="tb-btn ghost" onclick="document.getElementById('photoFilesInput').click()">⬆ Yüklə</button>
-        <button class="tb-btn" onclick="openVideoCreator()" style="background:linear-gradient(135deg,#7B2FBE,#4A1580);">🎬 Video Yarat</button>
       </div>
     </div>
     <div class="photo-filter">
@@ -959,6 +892,7 @@ body::before{content:'';position:fixed;inset:0;background-image:var(--ornament);
       </div>
     </div>
   </div>
+
 
   <!-- ══ ADMİN PANELİ ══ -->
   <div class="panel" id="panel-admin">
@@ -1239,6 +1173,7 @@ body::before{content:'';position:fixed;inset:0;background-image:var(--ornament);
 
 
 
+
 </div><!-- end .main -->
 
 <!-- ══ MODALS ══ -->
@@ -1266,18 +1201,8 @@ body::before{content:'';position:fixed;inset:0;background-image:var(--ornament);
     </div>
     <div class="form-row2"><label>Qiymət Aralığı</label><input type="text" id="svc-price" placeholder="100-500₼ arası"></div>
     <div class="form-row2"><label>Tutum / Təklif (ixtiyari)</label><input type="text" id="svc-capacity" placeholder="məs. 300 nəfər, ya 5 saatlıq çəkiliş"></div>
-    <div class="form-row2"><label>Vebsayt / Instagram linki</label><input type="text" id="svc-link" placeholder="https://instagram.com/sizin_hesab"></div>
     <div class="form-row2"><label>Qısa Təsvir</label>
       <textarea id="svc-desc" style="width:100%;border:1.5px solid #E8E0D0;border-radius:9px;padding:9px 12px;font-family:'Montserrat',sans-serif;font-size:.8rem;resize:none;height:72px;outline:none;background:var(--cream);" placeholder="Xidmətiniz haqqında qısa məlumat…"></textarea>
-    </div>
-    <!-- Şəkil yüklə -->
-    <div class="form-row2">
-      <label>Şəkil / Logo (ixtiyari)</label>
-      <div id="svc-img-zone" onclick="document.getElementById('svc-img-inp').click()" style="border:2px dashed #E0D0B0;border-radius:10px;padding:16px;text-align:center;cursor:pointer;transition:all .2s;background:var(--cream);" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='#E0D0B0'">
-        <div id="svc-img-placeholder"><div style="font-size:1.5rem;">🖼️</div><div style="font-size:.75rem;color:var(--muted);margin-top:4px;">Şəkil seçin</div></div>
-        <img id="svc-img-prev" src="" alt="" style="display:none;max-height:80px;border-radius:6px;object-fit:cover;">
-      </div>
-      <input type="file" id="svc-img-inp" accept="image/*" style="display:none" onchange="loadSvcImg(this)">
     </div>
     <div class="modal-footer">
       <button class="tb-btn" style="flex:1;" onclick="saveService()">✓ Əlavə Et</button>
@@ -1702,79 +1627,6 @@ body::before{content:'';position:fixed;inset:0;background-image:var(--ornament);
   </div>
 </div>
 <style>@keyframes spin{to{transform:rotate(360deg)}}</style>
-<!-- VIDEO CREATOR MODAL -->
-<div class="modal-ov" id="modal-video-creator">
-  <div class="modal-box" style="max-width:560px;">
-    <div class="modal-title">🎬 Musiqili Video Yarat</div>
-    <p style="font-size:.76rem;color:var(--muted);margin-bottom:14px;">Yüklənmiş şəkillərdən animasiyalı slaydşou video hazırlayın.</p>
-
-    <!-- Settings -->
-    <div class="f2" style="margin-bottom:12px;">
-      <div class="form-row2">
-        <label>Hər şəkil nə qədər görsənsin</label>
-        <select id="vc-duration" style="width:100%;border:1.5px solid #E8E0D0;border-radius:9px;padding:9px 12px;font-family:'Montserrat',sans-serif;font-size:.8rem;outline:none;background:var(--cream);">
-          <option value="2000">2 saniyə</option>
-          <option value="3000" selected>3 saniyə</option>
-          <option value="4000">4 saniyə</option>
-          <option value="5000">5 saniyə</option>
-        </select>
-      </div>
-      <div class="form-row2">
-        <label>Keçid effekti</label>
-        <select id="vc-transition" style="width:100%;border:1.5px solid #E8E0D0;border-radius:9px;padding:9px 12px;font-family:'Montserrat',sans-serif;font-size:.8rem;outline:none;background:var(--cream);">
-          <option value="fade">Solma (Fade)</option>
-          <option value="slide">Sürüşmə (Slide)</option>
-          <option value="zoom">Böyümə (Zoom)</option>
-          <option value="blur">Bulanıq (Blur)</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- Music -->
-    <div class="form-row2" style="margin-bottom:12px;">
-      <label>🎵 Musiqi seçin</label>
-      <select id="vc-music" style="width:100%;border:1.5px solid #E8E0D0;border-radius:9px;padding:9px 12px;font-family:'Montserrat',sans-serif;font-size:.8rem;outline:none;background:var(--cream);">
-        <option value="none">Musiqisiz</option>
-        <option value="romantic">💕 Romantik (Toy)</option>
-        <option value="classic">🎻 Klassik</option>
-        <option value="modern">🎵 Modern</option>
-        <option value="custom">📁 Öz musiqimi yüklə</option>
-      </select>
-    </div>
-    <input type="file" id="vc-music-file" accept="audio/*" style="display:none" onchange="vcMusicSelected(this)">
-    <div id="vc-music-name" style="font-size:.75rem;color:var(--gr);margin-bottom:10px;display:none;"></div>
-
-    <!-- Text overlay -->
-    <div class="form-row2" style="margin-bottom:12px;">
-      <label>Video üzərindəki yazı (ixtiyari)</label>
-      <input type="text" id="vc-text" placeholder="Əli & Leyla — 15.06.2025" style="width:100%;border:1.5px solid #E8E0D0;border-radius:9px;padding:9px 12px;font-family:'Montserrat',sans-serif;font-size:.8rem;outline:none;background:var(--cream);">
-    </div>
-
-    <!-- Preview canvas -->
-    <div style="background:#000;border-radius:12px;overflow:hidden;aspect-ratio:16/9;position:relative;margin-bottom:14px;">
-      <canvas id="vc-canvas" style="width:100%;height:100%;display:block;"></canvas>
-      <div id="vc-preview-msg" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.4);font-size:.82rem;flex-direction:column;gap:8px;">
-        <span style="font-size:2rem;">🎬</span>
-        <span>Önizləmə üçün "Başlat" düyməsinə basın</span>
-      </div>
-    </div>
-
-    <!-- Progress -->
-    <div id="vc-progress" style="display:none;margin-bottom:12px;">
-      <div style="font-size:.76rem;color:var(--muted);margin-bottom:6px;" id="vc-progress-lbl">Video hazırlanır...</div>
-      <div style="height:6px;background:#f0e8d8;border-radius:4px;overflow:hidden;">
-        <div id="vc-progress-bar" style="height:100%;background:linear-gradient(135deg,#7B2FBE,var(--gold));border-radius:4px;transition:width .3s;width:0%;"></div>
-      </div>
-    </div>
-
-    <div class="modal-footer" style="flex-wrap:wrap;gap:8px;">
-      <button class="tb-btn ghost" id="vc-preview-btn" onclick="vcPreview()" style="flex:1;">▶ Önizlə</button>
-      <button class="tb-btn" id="vc-make-btn" onclick="vcMakeVideo()" style="flex:2;background:linear-gradient(135deg,#7B2FBE,#4A1580);">🎬 Video Hazırla və Yüklə</button>
-      <button class="tb-btn ghost" onclick="vcStop();closeModal('modal-video-creator')" style="width:100%;">Bağla</button>
-    </div>
-  </div>
-</div>
-
 <div class="lightbox" id="lightbox" onclick="closeLB()">
   <button class="lb-close" onclick="closeLB()">✕</button>
   <img class="lb-img" id="lb-img" src="" alt="">
@@ -1786,9 +1638,34 @@ body::before{content:'';position:fixed;inset:0;background-image:var(--ornament);
 // ══════════════════════════════════════════
 //  DATA
 // ══════════════════════════════════════════
-const EVENTS=[];
-const GUESTS=[];
-const PAYMENTS=[];
+const EVENTS=[
+  {id:1,type:'toy',n1:'Əli',n2:'Leyla',date:'2025-06-15',time:'18:00',venue:'Kristal Hall, Bakı',status:'aktiv',guests:32,gconf:24,gdecl:4},
+  {id:2,type:'toy',n1:'Murad',n2:'Günel',date:'2025-08-20',time:'17:00',venue:'Park Inn, Bakı',status:'planli',guests:18,gconf:10,gdecl:2},
+  {id:3,type:'nishan',n1:'Fərid',n2:'Sevinc',date:'2025-05-10',time:'19:00',venue:'Sahil Restaurant',status:'tamamlandi',guests:24,gconf:20,gdecl:3},
+  {id:4,type:'birthday',n1:'Nigar',n2:'',date:'2025-07-03',time:'15:00',venue:'Bay View',status:'planli',guests:15,gconf:12,gdecl:1},
+  {id:5,type:'xina',n1:'Aytən',n2:'',date:'2025-06-13',time:'20:00',venue:'Ev məclisi',status:'aktiv',guests:28,gconf:25,gdecl:2},
+];
+
+const GUESTS=[
+  {id:1,name:'Rauf Məmmədov',phone:'+994501001001',rel:'Qardaş',ev:1,status:'confirmed',vip:true,paid:200},
+  {id:2,name:'Samirə Əliyeva',phone:'+994552002002',rel:'Bacı',ev:1,status:'confirmed',vip:false,paid:100},
+  {id:3,name:'Orxan Nəcəfov',phone:'+994703003003',rel:'Dost',ev:1,status:'declined',vip:false,paid:0},
+  {id:4,name:'Lalə İsmayılova',phone:'+994554004004',rel:'Yaxın qohum',ev:1,status:'pending',vip:true,paid:0},
+  {id:5,name:'Cavid Hüseynov',phone:'+994505005005',rel:'İş yoldaşı',ev:1,status:'confirmed',vip:false,paid:150},
+  {id:6,name:'Nərmin Qasımova',phone:'+994706006006',rel:'Qohum',ev:2,status:'confirmed',vip:false,paid:80},
+  {id:7,name:'Tural Babayev',phone:'+994557007007',rel:'Dost',ev:2,status:'pending',vip:false,paid:0},
+  {id:8,name:'Aynur Rzayeva',phone:'+994508008008',rel:'Qohum',ev:1,status:'confirmed',vip:true,paid:300},
+];
+
+const PAYMENTS=[
+  {id:1,name:'Rauf Məmmədov',amount:200,date:'2025-06-10',ev:1,note:'Toy hədiyyəsi',status:'done'},
+  {id:2,name:'Samirə Əliyeva',amount:100,date:'2025-06-11',ev:1,note:'',status:'done'},
+  {id:3,name:'Cavid Hüseynov',amount:150,date:'2025-06-12',ev:1,note:'Gəlinin ailəsindən',status:'done'},
+  {id:4,name:'Aynur Rzayeva',amount:300,date:'2025-06-09',ev:1,note:'Xanımdan salam',status:'done'},
+  {id:5,name:'Nərmin Qasımova',amount:80,date:'2025-06-08',ev:2,note:'',status:'done'},
+  {id:6,name:'Lalə İsmayılova',amount:120,date:'',ev:1,note:'',status:'pending'},
+  {id:7,name:'Tural Babayev',amount:0,date:'',ev:2,note:'',status:'pending'},
+];
 
 const RESTAURANTS=[
   {id:1,name:'Kristal Hall',icon:'🏛️',stars:5,cap:800,city:'Bakı, Həzi Aslanov',price:'350-600₼/nəfər',verified:true,reserved:true,desc:'Bakının ən prestijli toy sarayı',phone:'+994124001001',
@@ -1851,7 +1728,13 @@ const RESTAURANTS=[
   ]},
 ];
 
-const MESSAGES=[];
+const MESSAGES=[
+  {id:1,name:'Rauf Məmmədov',initials:'RM',msg:'Əli müəllim, sizi bu xoşbəxt gününüzlə ürəkdən təbrik edirəm! Ailənizdə həmişə sevinc, sağlıq və xoşbəxtlik olsun!',ev:'Əli & Leyla Toyu',date:'10 İyun 2025',stars:5,new:true,starred:false},
+  {id:2,name:'Samirə Əliyeva',initials:'SƏ',msg:'Əzizlərim, bu gözəl gününüzdə sizinlə birlikdəyəm! Xoşbəxt bir ailə həyatı arzulayıram!',ev:'Əli & Leyla Toyu',date:'11 İyun 2025',stars:5,new:true,starred:true},
+  {id:3,name:'Cavid Hüseynov',initials:'CH',msg:'Toy mübarək olsun! Ömür boyu bir-birinizə dayaq olun.',ev:'Əli & Leyla Toyu',date:'12 İyun 2025',stars:4,new:false,starred:false},
+  {id:4,name:'Aynur Rzayeva',initials:'AR',msg:'Gəlin xanım çox gözəldir! Bəy cənab da yaraşıqlı. Cütlüyünüz mükəmməldir. Allah qoysa uzun illər xoşbəxt yaşayasınız!',ev:'Əli & Leyla Toyu',date:'9 İyun 2025',stars:5,new:true,starred:true},
+  {id:5,name:'Nərmin Qasımova',initials:'NQ',msg:'Murad qardaş, bu gözəl günün mübarək! Günel xanım çox gözəl bəlindir.',ev:'Murad & Günel Toyu',date:'5 İyun 2025',stars:5,new:false,starred:false},
+];
 
 let photos=[];
 let currentPhotoFilter='all';
@@ -1922,7 +1805,6 @@ const PANEL_TITLES={
   'services-decor':'Dekor & Çiçək <span>Xidmətləri</span>',
   'services-music':'Musiqi & DJ <span>Xidmətləri</span>',
   cards:'Saxlanan <span>Kartlarım</span>',
-  admin:'Admin <span>Panel</span>',
   about:'eDevetAz <span>Haqqında</span>',
   admin:'Admin <span>Paneli</span>',
   'rest-dashboard':'Restoran <span>Paneli</span>',
@@ -1936,11 +1818,11 @@ function showPanel(id){
   closeSB();
   renderPanel(id);
   if(id==='admin')setTimeout(loadAdminData,300);
+  if(id==='rest-dashboard')setTimeout(loadRestDashboard,300);
 }
 function setPage(id){showPanel(id);}
 
 function renderPanel(id){
-  if(id==='admin')loadAdminData();
   if(id==='overview')renderOverview();
   else if(id==='ev-toy')renderEvGrid('ev-grid-toy',EVENTS.filter(e=>e.type==='toy'));
   else if(id==='ev-nishan')renderEvGrid('ev-grid-nishan',EVENTS.filter(e=>e.type==='nishan'));
@@ -2354,25 +2236,7 @@ function setEvMap(venueName,encodedQ){
   window._evMapLink='https://www.google.com/maps/search/?api=1&query='+encodedQ;
   const frame=document.getElementById('ev-map-frame');
   const ok=document.getElementById('ev-map-ok');
-  // OpenStreetMap — API açarı lazım deyil, pulsuzdur
-  if(frame){
-    frame.src='https://www.openstreetmap.org/export/embed.html?bbox=&layer=mapnik&marker=&mlat=&mlon=&zoom=15&query='+encodedQ;
-    // Fallback: link göstər
-    frame.style.display='none';
-    // Show map link button instead
-    let mapBtn=document.getElementById('ev-map-link-btn');
-    if(!mapBtn){
-      mapBtn=document.createElement('a');
-      mapBtn.id='ev-map-link-btn';
-      mapBtn.target='_blank';
-      mapBtn.style.cssText='display:flex;align-items:center;gap:8px;padding:10px 14px;background:rgba(201,168,76,.08);border:1.5px solid rgba(201,168,76,.2);border-radius:10px;text-decoration:none;color:var(--gd);font-size:.8rem;font-weight:600;margin-bottom:8px;transition:all .2s;';
-      mapBtn.innerHTML='🗺️ Google Maps-də aç — <span style="font-size:.75rem;color:var(--muted);"></span>';
-      frame.parentNode.insertBefore(mapBtn,frame);
-    }
-    mapBtn.href=window._evMapLink;
-    mapBtn.style.display='flex';
-    mapBtn.querySelector('span').textContent=venueName;
-  }
+  if(frame){frame.src='https://maps.google.com/maps?q='+encodedQ+'&output=embed';frame.style.display='block';}
   if(ok)ok.style.display='block';
 }
 
@@ -2381,10 +2245,8 @@ function clearEvMap(){
   window._evMapLink=null;
   const frame=document.getElementById('ev-map-frame');
   const ok=document.getElementById('ev-map-ok');
-  const btn=document.getElementById('ev-map-link-btn');
   if(frame){frame.src='';frame.style.display='none';}
   if(ok)ok.style.display='none';
-  if(btn)btn.style.display='none';
 }
 function saveEvent(){
   const type=document.getElementById('ev-type').value;
@@ -2838,8 +2700,8 @@ function renderSvcGrid(gridId,emptyId,filter){
   if(empty)empty.style.display='none';
   grid.innerHTML=data.map(s=>`
     <div class="rest-card">
-      <div class="rest-img" style="background:linear-gradient(135deg,${SVC_COLORS[s.type]||'#1a1209'},#2c1a05);overflow:hidden;">
-        ${s.img?`<img src="${s.img}" style="width:100%;height:100%;object-fit:cover;display:block;">`:`<span>${SVC_ICONS[s.type]||'🛎️'}</span>`}
+      <div class="rest-img" style="background:linear-gradient(135deg,${SVC_COLORS[s.type]||'#1a1209'},#2c1a05);">
+        <span>${SVC_ICONS[s.type]||'🛎️'}</span>
         ${s.addedByUser?'<span class="rest-verified" style="background:rgba(201,168,76,.15);color:var(--gold);border-color:rgba(201,168,76,.3);">✦ Mənim</span>':''}
       </div>
       <div class="rest-body">
@@ -2849,11 +2711,9 @@ function renderSvcGrid(gridId,emptyId,filter){
         ${s.capacity?`<div class="rest-cap">📋 ${s.capacity}</div>`:''}
         <div class="rest-cap" style="margin-top:4px;color:var(--gd);">💰 ${s.price}</div>
         ${s.desc?`<div style="font-size:.72rem;color:var(--muted);margin-top:5px;line-height:1.5;">${s.desc}</div>`:''}
-        ${s.link?`<a href="${s.link.startsWith('http')?s.link:'https://'+s.link}" target="_blank" style="font-size:.72rem;color:var(--gold);text-decoration:none;display:inline-flex;align-items:center;gap:4px;margin-top:5px;">🔗 Səhifəyə keç</a>`:''}
       </div>
       <div class="rest-footer">
         ${s.phone?`<button class="rest-btn primary" onclick="window.open('https://wa.me/${s.phone.replace(/\D/g,'')}','_blank')">📱 WhatsApp</button>`:''}
-        ${s.link?`<button class="rest-btn outline" onclick="window.open('${s.link.startsWith('http')?s.link:'https://'+s.link}','_blank')">🔗 Səhifə</button>`:''}
         <button class="rest-btn outline" onclick="deleteSvc(${s.id})">🗑 Sil</button>
       </div>
     </div>`).join('');
@@ -3057,7 +2917,13 @@ function processSIQueue(){
 // ══════════════════════════════════════════
 //  SENT INVITATIONS
 // ══════════════════════════════════════════
-const SENT_INVITES=[];
+const SENT_INVITES=[
+  {id:1,to:'Rauf Məmmədov',phone:'+994501001001',ev:'Əli & Leyla Toyu',date:'10 İyun 2025',status:'opened',rsvp:'confirmed'},
+  {id:2,to:'Samirə Əliyeva',phone:'+994552002002',ev:'Əli & Leyla Toyu',date:'11 İyun 2025',status:'opened',rsvp:'declined'},
+  {id:3,to:'Orxan Nəcəfov',phone:'+994703003003',ev:'Əli & Leyla Toyu',date:'11 İyun 2025',status:'pending',rsvp:''},
+  {id:4,to:'Lalə İsmayılova',phone:'+994554004004',ev:'Əli & Leyla Toyu',date:'12 İyun 2025',status:'pending',rsvp:''},
+  {id:5,to:'Cavid Hüseynov',phone:'+994505005005',ev:'Murad & Günel Toyu',date:'9 İyun 2025',status:'opened',rsvp:'confirmed'},
+];
 
 function renderSentInvites(panelId){
   const maps={
@@ -3091,7 +2957,12 @@ function buildSentList(containerId,data){
 // ══════════════════════════════════════════
 //  RECEIVED INVITATIONS
 // ══════════════════════════════════════════
-const RECEIVED_INVITES=[];
+const RECEIVED_INVITES=[
+  {id:1,from:'Fərid Qasımov',phone:'+994501122334',ev:'Fərid & Nigar Nişanı',date:'2025-09-05',time:'19:00',venue:'Sahil Restaurant',msg:'Nişanımıza təşrifinizi arzulayırıq!',status:'new',myRsvp:'',cardNum:'4169 7388 1234 5678',cardHolder:'Fərid Qasımov',cardBank:'Kapital Bank'},
+  {id:2,from:'Tural Rzayev',phone:'+994700123456',ev:'Tural Toyu',date:'2025-07-20',time:'18:00',venue:'Kristal Hall',msg:'Toyuma dəvətlisiniz, gəlməyinizi arzulayıram!',status:'new',myRsvp:'',cardNum:'5243 8811 9900 1122',cardHolder:'Tural Rzayev',cardBank:'ABB'},
+  {id:3,from:'Aynur Rzayeva',phone:'+994508008008',ev:'Aynurun Ad Günü',date:'2025-06-28',time:'15:00',venue:'Bay View',msg:'Ad günümü sizinlə qeyd etmək istəyirəm!',status:'new',myRsvp:'',cardNum:'',cardHolder:'',cardBank:''},
+  {id:4,from:'Nərmin Qasımova',phone:'+994706006006',ev:'Nərmin Xınası',date:'2025-06-10',time:'20:00',venue:'Ev məclisi',msg:'Xınamıza xoş gəldiniz!',status:'read',myRsvp:'confirmed',cardNum:'4400 1234 5678 9000',cardHolder:'Nərmin Qasımova',cardBank:'PAŞA Bank'},
+];
 
 function renderReceivedInvites(panelId){
   const maps={
@@ -3858,41 +3729,13 @@ function buildEvInviteMsg(ev){
 }
 
 // Check URL hash on load
-// Dəvətnamə linki ilə gəlib-gəlmədiyini yoxla
-let IS_INVITE_LINK=false;
-
 function checkURLHash(){
   if(!location.hash.includes('#inv='))return;
-  IS_INVITE_LINK=true;
   try{
     const d=JSON.parse(decodeURIComponent(escape(atob(location.hash.split('#inv=')[1]))));
     const ev={id:0,type:d.t,n1:d.n1,n2:d.n2,date:d.date,time:d.time,venue:d.venue,msg:'',mapLink:d.mapLink||'',cardNum:d.payNum||'',cardName:d.payName||'',cardBank:d.payBank||'',cardTheme:d.payTheme||'dark',svcData:d.svc?{restName:d.svc.r,pkgName:d.svc.p,pkgDesc:d.svc.d2,pkgTotal:d.svc.price}:null,mediaGroom:null,mediaBride:null,mediaCouple:null};
-    // Dəvətnaməni dərhal göstər — qeydiyyat lazım deyil
-    setTimeout(()=>{
-      openElecFromEvent(ev);
-      // "Öz dəvətnamənizi yaradın" düyməsi əlavə et
-      setTimeout(()=>{
-        const page=document.getElementById('elec-invite-page');
-        if(!page)return;
-        const existing=document.getElementById('create-own-btn');
-        if(existing)return;
-        const btn=document.createElement('div');
-        btn.id='create-own-btn';
-        btn.style.cssText='position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:700;';
-        btn.innerHTML=`<button onclick="startOwnApp()" style="background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);color:#E8D5A3;padding:10px 20px;border-radius:30px;font-family:Montserrat,sans-serif;font-size:.75rem;cursor:pointer;backdrop-filter:blur(10px);">✨ Siz də öz dəvətnamənizi yaradın</button>`;
-        page.appendChild(btn);
-      },800);
-    },300);
+    setTimeout(()=>openElecFromEvent(ev),400);
   }catch(e){}
-}
-
-function startOwnApp(){
-  // Dəvətnamə səhifəsini bağla, login ekranını göstər
-  const page=document.getElementById('elec-invite-page');
-  if(page)page.style.display='none';
-  IS_INVITE_LINK=false;
-  if(!firebase.apps.length)initFirebase();
-  else showLoginScreen();
 }
 
 // ══════════════════════════════════════════
@@ -3912,214 +3755,32 @@ let db=null, auth=null, currentUser=null, userId='guest';
 
 // ── Google Giriş UI ──
 function showLoginScreen(){
-  if(IS_INVITE_LINK)return;
   const page=document.getElementById('elec-invite-page');
   if(page)page.style.display='none';
+  // Hide main app
   document.querySelector('.sidebar').style.display='none';
   document.querySelector('.main').style.display='none';
+  // Show login
   let loginDiv=document.getElementById('login-screen');
   if(!loginDiv){
     loginDiv=document.createElement('div');
     loginDiv.id='login-screen';
-    loginDiv.style.cssText='position:fixed;inset:0;background:var(--dark);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:800;overflow-y:auto;padding:20px;';
+    loginDiv.style.cssText='position:fixed;inset:0;background:var(--dark);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:800;';
     loginDiv.innerHTML=`
-      <div style="text-align:center;max-width:360px;width:100%;">
-        <div style="font-size:3rem;margin-bottom:12px;">💍</div>
-        <div style="font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);letter-spacing:3px;margin-bottom:4px;">eDevetAz</div>
-        <div style="font-size:.65rem;letter-spacing:3px;text-transform:uppercase;color:rgba(201,168,76,.4);margin-bottom:32px;">Elektron Dəvətnamə Platforması</div>
-
-        <!-- Email ilə giriş -->
-        <div id="email-login-form">
-          <div style="font-size:.75rem;color:rgba(255,255,255,.5);margin-bottom:12px;text-align:left;" id="auth-mode-label">📧 Email ilə daxil olun</div>
-
-          <!-- Account type selector -->
-          <div style="display:flex;gap:6px;margin-bottom:12px;background:rgba(255,255,255,.05);border-radius:12px;padding:4px;">
-            <button onclick="setAccountType('user')" id="type-user-btn" style="flex:1;padding:7px;background:rgba(201,168,76,.2);border:none;border-radius:9px;color:#C9A84C;font-family:Montserrat,sans-serif;font-size:.72rem;font-weight:600;cursor:pointer;">👤 İstifadəçi</button>
-            <button onclick="setAccountType('rest')" id="type-rest-btn" style="flex:1;padding:7px;background:transparent;border:none;border-radius:9px;color:rgba(255,255,255,.4);font-family:Montserrat,sans-serif;font-size:.72rem;cursor:pointer;">🍽️ Restoran</button>
-          </div>
-
-          <input id="auth-email" type="email" placeholder="email@gmail.com"
-            style="width:100%;background:#26180A;border:1.5px solid rgba(201,168,76,.2);border-radius:10px;padding:12px 14px;color:#FAF6EF;font-family:Montserrat,sans-serif;font-size:.88rem;outline:none;margin-bottom:10px;"
-            onkeydown="if(event.key==='Enter')document.getElementById('auth-pass').focus()">
-
-          <input id="auth-pass" type="password" placeholder="Şifrə"
-            style="width:100%;background:#26180A;border:1.5px solid rgba(201,168,76,.2);border-radius:10px;padding:12px 14px;color:#FAF6EF;font-family:Montserrat,sans-serif;font-size:.88rem;outline:none;margin-bottom:10px;"
-            onkeydown="if(event.key==='Enter')emailAuth()">
-
-          <input id="auth-name" type="text" placeholder="Ad Soyad (qeydiyyat üçün)"
-            style="width:100%;background:#26180A;border:1.5px solid rgba(201,168,76,.15);border-radius:10px;padding:12px 14px;color:#FAF6EF;font-family:Montserrat,sans-serif;font-size:.88rem;outline:none;margin-bottom:10px;display:none;">
-
-          <!-- Restaurant extra fields -->
-          <div id="rest-extra-fields" style="display:none;">
-            <input id="auth-rest-name" type="text" placeholder="Restoran adı"
-              style="width:100%;background:#26180A;border:1.5px solid rgba(201,168,76,.2);border-radius:10px;padding:12px 14px;color:#FAF6EF;font-family:Montserrat,sans-serif;font-size:.88rem;outline:none;margin-bottom:10px;">
-            <input id="auth-rest-phone" type="tel" placeholder="Telefon: +994501234567"
-              style="width:100%;background:#26180A;border:1.5px solid rgba(201,168,76,.2);border-radius:10px;padding:12px 14px;color:#FAF6EF;font-family:Montserrat,sans-serif;font-size:.88rem;outline:none;margin-bottom:10px;">
-            <input id="auth-rest-city" type="text" placeholder="Şəhər: Bakı"
-              style="width:100%;background:#26180A;border:1.5px solid rgba(201,168,76,.2);border-radius:10px;padding:12px 14px;color:#FAF6EF;font-family:Montserrat,sans-serif;font-size:.88rem;outline:none;margin-bottom:10px;">
-          </div>
-
-          <div style="display:flex;gap:8px;margin-bottom:10px;">
-            <button onclick="setAuthMode('login')" id="btn-login-tab"
-              style="flex:1;padding:8px;background:rgba(201,168,76,.2);border:1px solid rgba(201,168,76,.3);color:var(--gold);border-radius:8px;font-family:Montserrat,sans-serif;font-size:.78rem;font-weight:600;cursor:pointer;">
-              Giriş
-            </button>
-            <button onclick="setAuthMode('register')" id="btn-reg-tab"
-              style="flex:1;padding:8px;background:transparent;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.4);border-radius:8px;font-family:Montserrat,sans-serif;font-size:.78rem;cursor:pointer;">
-              Qeydiyyat
-            </button>
-          </div>
-
-          <button id="email-auth-btn" onclick="emailAuth()"
-            style="width:100%;padding:14px;background:linear-gradient(135deg,var(--gold),var(--gd));color:var(--dark);border:none;border-radius:40px;font-family:Montserrat,sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;margin-bottom:6px;">
-            📧 Daxil Ol
-          </button>
-
-          <button onclick="forgotPassword()"
-            style="background:none;border:none;color:rgba(255,255,255,.3);font-size:.72rem;cursor:pointer;font-family:Montserrat,sans-serif;width:100%;">
-            Şifrəni unutdum?
-          </button>
-        </div>
-
-        <!-- Ayırıcı -->
-        <div style="display:flex;align-items:center;gap:10px;margin:16px 0;">
-          <div style="flex:1;height:1px;background:rgba(255,255,255,.08);"></div>
-          <span style="font-size:.7rem;color:rgba(255,255,255,.25);">və ya</span>
-          <div style="flex:1;height:1px;background:rgba(255,255,255,.08);"></div>
-        </div>
-
-        <!-- Google ilə giriş -->
-        <button id="google-signin-btn" onclick="signInWithGoogle()" style="width:100%;padding:13px 20px;background:#fff;color:#3c4043;border:none;border-radius:40px;font-family:Montserrat,sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 4px 20px rgba(0,0,0,.3);">
+      <div style="text-align:center;max-width:360px;padding:0 20px;">
+        <div style="font-size:3rem;margin-bottom:16px;">💍</div>
+        <div style="font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--gold);letter-spacing:3px;margin-bottom:6px;">eDevetAz</div>
+        <div style="font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:rgba(201,168,76,.45);margin-bottom:36px;">Elektron Dəvətnamə Platforması</div>
+        <button id="google-signin-btn" onclick="signInWithGoogle()" style="width:100%;padding:14px 20px;background:#fff;color:#3c4043;border:none;border-radius:40px;font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 4px 20px rgba(0,0,0,.3);">
           <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M16.51 8H8.98v3h4.3c-.18 1-.74 1.48-1.6 2.04v2.01h2.6a7.8 7.8 0 002.38-5.88c0-.57-.05-.66-.15-1.18z"/><path fill="#34A853" d="M8.98 17c2.16 0 3.97-.72 5.3-1.94l-2.6-2.01a4.8 4.8 0 01-7.18-2.54H1.83v2.07A8 8 0 008.98 17z"/><path fill="#FBBC05" d="M4.5 10.52a4.8 4.8 0 010-3.04V5.41H1.83a8 8 0 000 7.18l2.67-2.07z"/><path fill="#EA4335" d="M8.98 4.18c1.17 0 2.23.4 3.06 1.2l2.3-2.3A8 8 0 001.83 5.4L4.5 7.49a4.77 4.77 0 014.48-3.3z"/></svg>
           Google ilə daxil ol
         </button>
-
-        <div id="login-error" style="margin-top:12px;font-size:.75rem;color:#f5a0a0;display:none;text-align:center;"></div>
-        <div style="margin-top:22px;font-size:.65rem;color:rgba(255,255,255,.18);line-height:1.7;">Daxil olaraq <span style="color:rgba(201,168,76,.4);">İstifadəçi Razılığını</span> qəbul etmiş olursunuz</div>
+        <div id="login-error" style="margin-top:14px;font-size:.76rem;color:#f5a0a0;display:none;"></div>
+        <div style="margin-top:28px;font-size:.68rem;color:rgba(255,255,255,.2);line-height:1.6;">Daxil olaraq istifadəçi razılığını<br>qəbul etmiş olursunuz</div>
       </div>`;
     document.body.appendChild(loginDiv);
-    // reCAPTCHA yüklə
-    setTimeout(()=>{
-      try{
-        window.recaptchaVerifier=new firebase.auth.RecaptchaVerifier('recaptcha-container',{
-          'size':'normal',
-          'callback':()=>{},
-          'expired-callback':()=>{}
-        });
-        window.recaptchaVerifier.render();
-      }catch(e){}
-    },500);
   }
   loginDiv.style.display='flex';
-}
-
-// ── Email Auth ──
-let authMode='login';
-
-let currentAccountType='user';
-
-function setAccountType(type){
-  currentAccountType=type;
-  const userBtn=document.getElementById('type-user-btn');
-  const restBtn=document.getElementById('type-rest-btn');
-  const restFields=document.getElementById('rest-extra-fields');
-  if(type==='rest'){
-    restBtn.style.background='rgba(201,168,76,.2)';restBtn.style.color='#C9A84C';
-    userBtn.style.background='transparent';userBtn.style.color='rgba(255,255,255,.4)';
-    if(restFields)restFields.style.display='block';
-    setAuthMode('register');
-  }else{
-    userBtn.style.background='rgba(201,168,76,.2)';userBtn.style.color='#C9A84C';
-    restBtn.style.background='transparent';restBtn.style.color='rgba(255,255,255,.4)';
-    if(restFields)restFields.style.display='none';
-  }
-}
-
-function setAuthMode(mode){
-  authMode=mode;
-  const nameEl=document.getElementById('auth-name');
-  const btnLogin=document.getElementById('btn-login-tab');
-  const btnReg=document.getElementById('btn-reg-tab');
-  const authBtn=document.getElementById('email-auth-btn');
-  const lbl=document.getElementById('auth-mode-label');
-  if(mode==='register'){
-    nameEl.style.display='block';
-    authBtn.textContent='✓ Qeydiyyatdan Keç';
-    lbl.textContent='📧 Yeni hesab yaradın';
-    btnReg.style.background='rgba(201,168,76,.2)';btnReg.style.color='var(--gold)';btnReg.style.border='1px solid rgba(201,168,76,.3)';
-    btnLogin.style.background='transparent';btnLogin.style.color='rgba(255,255,255,.4)';btnLogin.style.border='1px solid rgba(255,255,255,.1)';
-  }else{
-    nameEl.style.display='none';
-    authBtn.textContent='📧 Daxil Ol';
-    lbl.textContent='📧 Email ilə daxil olun';
-    btnLogin.style.background='rgba(201,168,76,.2)';btnLogin.style.color='var(--gold)';btnLogin.style.border='1px solid rgba(201,168,76,.3)';
-    btnReg.style.background='transparent';btnReg.style.color='rgba(255,255,255,.4)';btnReg.style.border='1px solid rgba(255,255,255,.1)';
-  }
-}
-
-async function emailAuth(){
-  const email=document.getElementById('auth-email').value.trim();
-  const pass=document.getElementById('auth-pass').value.trim();
-  const name=document.getElementById('auth-name').value.trim();
-  if(!email){showLoginError('Email daxil edin!');return;}
-  if(!pass||pass.length<6){showLoginError('Şifrə ən az 6 simvol olmalıdır!');return;}
-  const btn=document.getElementById('email-auth-btn');
-  btn.disabled=true;btn.textContent='Gözləyin...';
-  try{
-    if(authMode==='register'){
-      const cred=await auth.createUserWithEmailAndPassword(email,pass);
-      if(name)await cred.user.updateProfile({displayName:name});
-      // Restoran qeydiyyatı
-      if(currentAccountType==='rest'&&db){
-        const restName=document.getElementById('auth-rest-name')?.value.trim()||'';
-        const restPhone=document.getElementById('auth-rest-phone')?.value.trim()||'';
-        const restCity=document.getElementById('auth-rest-city')?.value.trim()||'Bakı';
-        if(!restName){showLoginError('Restoran adını daxil edin!');btn.disabled=false;btn.textContent='✓ Qeydiyyatdan Keç';return;}
-        await db.collection('restaurants').doc(cred.user.uid).set({
-          uid:cred.user.uid,email,
-          name:restName,phone:restPhone,city:restCity,
-          status:'active', // Avtomatik aktiv
-          createdAt:new Date().toISOString(),
-          menu:[],packages:[],link:'',logo:'',desc:'',capacity:'',
-          verified:false,featured:false
-        });
-        await db.collection('users').doc(cred.user.uid).set({role:'restaurant',restName,email});
-      } else if(db){
-        await db.collection('users').doc(cred.user.uid).set({role:'user',email,displayName:name||''});
-      }
-    }else{
-      await auth.signInWithEmailAndPassword(email,pass);
-    }
-    showLoginError('');
-  }catch(err){
-    btn.disabled=false;btn.textContent=authMode==='register'?'✓ Qeydiyyatdan Keç':'📧 Daxil Ol';
-    const msgs={
-      'auth/email-already-in-use':'Bu email artıq qeydiyyatdan keçib. Giriş edin.',
-      'auth/wrong-password':'Şifrə yanlışdır.',
-      'auth/user-not-found':'Bu email ilə hesab yoxdur. Qeydiyyatdan keçin.',
-      'auth/invalid-email':'Email formatı yanlışdır.',
-      'auth/weak-password':'Şifrə çox sadədir — ən az 6 simvol.',
-      'auth/too-many-requests':'Çox cəhd edildi. Bir az gözləyin.',
-      'auth/invalid-credential':'Email və ya şifrə yanlışdır.',
-    };
-    showLoginError(msgs[err.code]||'Xəta: '+err.message);
-  }
-}
-
-async function forgotPassword(){
-  const email=document.getElementById('auth-email').value.trim();
-  if(!email){showLoginError('Əvvəlcə email daxil edin!');return;}
-  try{
-    await auth.sendPasswordResetEmail(email);
-    showLoginError('✓ Şifrə sıfırlama linki emailinizə göndərildi!');
-  }catch(err){
-    showLoginError('Xəta: '+err.message);
-  }
-}
-
-function showLoginError(msg){
-  const el=document.getElementById('login-error');
-  if(el){el.style.display=msg?'block':'none';el.textContent=msg;}
 }
 
 function hideLoginScreen(){
@@ -4159,62 +3820,13 @@ function initFirebase(){
       if(user){
         currentUser=user;
         userId=user.uid;
-        const ADMIN_EMAIL='ceyhuntaqiyev1987@gmail.com';
-        const isAdmin=user.email===ADMIN_EMAIL;
         // Sidebar-da istifadəçi adını göstər
         const nameEl=document.querySelector('.sb-user-name');
         const roleEl=document.querySelector('.sb-user-role');
         const avatarEl=document.querySelector('.sb-avatar');
-        const displayName=user.displayName||user.phoneNumber||user.email||'İstifadəçi';
-        const shortName=user.phoneNumber?user.phoneNumber:(user.displayName||user.email||'İstifadəçi');
-        if(nameEl)nameEl.textContent=shortName;
-        if(roleEl)roleEl.textContent=isAdmin?'⚙️ Admin':user.email||'';
-        if(avatarEl)avatarEl.textContent=isAdmin?'⚙️':(user.displayName||'U').charAt(0).toUpperCase();
-
-        // Check if restaurant account
-        if(db){
-          db.collection('users').doc(user.uid).get().then(doc=>{
-            if(doc.exists&&doc.data().role==='restaurant'){
-              // Restaurant user
-              if(nameEl)nameEl.textContent=doc.data().restName||user.email;
-              if(roleEl)roleEl.textContent='🍽️ Restoran Hesabı';
-              if(avatarEl)avatarEl.textContent='🍽️';
-              // Add restaurant panel button to sidebar
-              if(!document.getElementById('rest-sb-btn')){
-                const sbNav=document.querySelector('.sb-nav');
-                if(sbNav){
-                  const div=document.createElement('div');
-                  div.style.cssText='border-top:1px solid rgba(201,168,76,.15);padding:10px 0 0;margin-top:8px;';
-                  div.innerHTML=`<button id="rest-sb-btn" onclick="showPanel('rest-dashboard');loadRestDashboard()" style="width:100%;display:flex;align-items:center;gap:10px;padding:9px 20px;background:none;border:none;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(201,168,76,.08)'" onmouseout="this.style.background='none'">
-                    <span style="font-size:1rem;">🍽️</span>
-                    <span style="font-size:.8rem;font-weight:600;color:var(--gold);font-family:Montserrat,sans-serif;">Restoran Paneli</span>
-                  </button>`;
-                  sbNav.appendChild(div);
-                }
-              }
-              // Check approval status
-              db.collection('restaurants').doc(user.uid).get().then(rDoc=>{
-                if(rDoc.exists){
-                  const banner=document.getElementById('rest-status-banner');
-                  if(banner&&rDoc.data().status==='pending')banner.style.display='block';
-                }
-              });
-            }
-          }).catch(()=>{});
-        }
-        // Admin menyu əlavə et
-        if(isAdmin&&!document.getElementById('admin-sb-btn')){
-          const sbNav=document.querySelector('.sb-nav');
-          if(sbNav){
-            const div=document.createElement('div');
-            div.style.cssText='border-top:1px solid rgba(201,168,76,.15);padding:10px 0 0;margin-top:8px;';
-            div.innerHTML=`<button id="admin-sb-btn" onclick="showPanel('admin')" style="width:100%;display:flex;align-items:center;gap:10px;padding:9px 20px;background:none;border:none;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(201,168,76,.08)'" onmouseout="this.style.background='none'">
-              <span style="font-size:1rem;">⚙️</span>
-              <span style="font-size:.8rem;font-weight:600;color:var(--gold);font-family:Montserrat,sans-serif;">Admin Panel</span>
-            </button>`;
-            sbNav.appendChild(div);
-          }
-        }
+        if(nameEl)nameEl.textContent=user.displayName||user.email||'İstifadəçi';
+        if(roleEl)roleEl.textContent=user.email||'';
+        if(avatarEl)avatarEl.textContent=(user.displayName||'U').charAt(0).toUpperCase();
         // Çıxış düyməsi əlavə et
         const sbUser=document.querySelector('.sb-user');
         if(sbUser&&!document.getElementById('signout-btn')){
@@ -4390,43 +4002,21 @@ async function savePayment(){
 }
 
 // ── OVERRIDE: saveService ──
-function loadSvcImg(inp){
-  const file=inp.files[0];if(!file)return;
-  const r=new FileReader();
-  r.onload=e=>{
-    window._svcImg=e.target.result;
-    document.getElementById('svc-img-prev').src=e.target.result;
-    document.getElementById('svc-img-prev').style.display='block';
-    document.getElementById('svc-img-placeholder').style.display='none';
-    document.getElementById('svc-img-zone').style.borderColor='var(--gold)';
-  };
-  r.readAsDataURL(file);
-}
-
 async function saveService(){
   const name=document.getElementById('svc-name').value.trim();
   if(!name){toast('Xidmət adını daxil edin!');return;}
-  const svc={id:Date.now(),
-    type:document.getElementById('svc-type').value,name,
-    phone:document.getElementById('svc-phone').value,
-    city:document.getElementById('svc-city').value||'Bakı',
-    price:document.getElementById('svc-price').value||'—',
-    capacity:document.getElementById('svc-capacity').value||'',
-    desc:document.getElementById('svc-desc').value||'',
-    link:document.getElementById('svc-link').value||'',
-    img:window._svcImg||null,
-    verified:false,addedByUser:true};
+  const svc={id:Date.now(),type:document.getElementById('svc-type').value,name,
+    phone:document.getElementById('svc-phone').value,city:document.getElementById('svc-city').value||'Bakı',
+    price:document.getElementById('svc-price').value||'—',capacity:document.getElementById('svc-capacity').value||'',
+    desc:document.getElementById('svc-desc').value||'',verified:false,addedByUser:true};
   const fsId=await saveToFS('services',svc);
   if(fsId)svc.firestoreId=fsId;
   SERVICES.push(svc);
   closeModal('modal-service');
-  ['svc-name','svc-phone','svc-city','svc-price','svc-capacity','svc-desc','svc-link'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
-  const prev=document.getElementById('svc-img-prev');if(prev){prev.src='';prev.style.display='none';}
-  const ph=document.getElementById('svc-img-placeholder');if(ph)ph.style.display='block';
-  window._svcImg=null;
+  ['svc-name','svc-phone','svc-city','svc-price','svc-capacity','svc-desc'].forEach(id=>{document.getElementById(id).value='';});
   document.getElementById('badge-services').textContent=SERVICES.length;
   renderServices('services-all');
-  toast('Xidmət əlavə edildi ✓ Hamı görə bilər!');
+  toast('Xidmət əlavə edildi ✓');
 }
 
 // ── OVERRIDE: saveMyCard ──
@@ -4448,333 +4038,6 @@ async function saveMyCard(){
 
 // toast alias
 function showToast(msg){toast(msg);}
-
-// Alt naviqasiya
-function bnGo(panelId, btn){
-  showPanel(panelId);
-  document.querySelectorAll('.bn-item').forEach(b=>b.classList.remove('active'));
-  if(btn)btn.classList.add('active');
-}
-
-// ══════════════════════════════════════════
-//  VİDEO YARADICI
-// ══════════════════════════════════════════
-let vcAnim=null, vcAudioCtx=null, vcStream=null, vcRecorder=null, vcChunks=[];
-let vcCurrentMusic=null;
-
-function openVideoCreator(){
-  if(!photos.length){toast('Əvvəlcə şəkil yükləyin!');return;}
-  document.getElementById('vc-music').onchange=function(){
-    if(this.value==='custom')document.getElementById('vc-music-file').click();
-  };
-  openModal('modal-video-creator');
-}
-
-function vcMusicSelected(inp){
-  const file=inp.files[0];
-  if(!file)return;
-  vcCurrentMusic=URL.createObjectURL(file);
-  document.getElementById('vc-music-name').style.display='block';
-  document.getElementById('vc-music-name').textContent='✓ '+file.name;
-}
-
-function vcStop(){
-  if(vcAnim)cancelAnimationFrame(vcAnim);
-  vcAnim=null;
-}
-
-function vcPreview(){
-  if(!photos.length){toast('Şəkil yoxdur!');return;}
-  vcStop();
-  const canvas=document.getElementById('vc-canvas');
-  const ctx=canvas.getContext('2d');
-  const msg=document.getElementById('vc-preview-msg');
-  if(msg)msg.style.display='none';
-  canvas.width=1280;canvas.height=720;
-
-  const duration=parseInt(document.getElementById('vc-duration').value)||3000;
-  const transition=document.getElementById('vc-transition').value;
-  const overlayText=document.getElementById('vc-text').value;
-  let idx=0,startTime=null,imgs=[];
-
-  // Preload images
-  Promise.all(photos.map(p=>new Promise(res=>{
-    const img=new Image();img.onload=()=>res(img);img.onerror=()=>res(null);img.src=p.src;
-  }))).then(loaded=>{
-    imgs=loaded.filter(Boolean);
-    if(!imgs.length){toast('Şəkillər yüklənə bilmədi!');return;}
-
-    function drawFrame(ts){
-      if(!startTime)startTime=ts;
-      const elapsed=(ts-startTime)%((duration+500)*imgs.length);
-      const frameIdx=Math.floor(elapsed/(duration+500));
-      const frameTime=elapsed%(duration+500);
-      const progress=Math.min(frameTime/duration,1);
-
-      idx=frameIdx%imgs.length;
-      const img=imgs[idx];
-      const nextImg=imgs[(idx+1)%imgs.length];
-
-      ctx.fillStyle='#000';ctx.fillRect(0,0,1280,720);
-
-      // Draw with transition
-      function drawImg(im,alpha){
-        ctx.globalAlpha=alpha;
-        const scale=Math.max(1280/im.width,720/im.height);
-        const w=im.width*scale,h=im.height*scale;
-        const x=(1280-w)/2,y=(720-h)/2;
-        if(transition==='zoom'){
-          const z=1+(progress*0.06);
-          ctx.save();ctx.translate(640,360);ctx.scale(z,z);ctx.translate(-640,-360);
-          ctx.drawImage(im,x,y,w,h);ctx.restore();
-        } else {
-          ctx.drawImage(im,x,y,w,h);
-        }
-        ctx.globalAlpha=1;
-      }
-
-      if(transition==='fade'&&frameTime>duration-400){
-        const fa=1-((frameTime-(duration-400))/400);
-        drawImg(img,fa);
-        drawImg(nextImg,1-fa);
-      } else {
-        drawImg(img,1);
-      }
-
-      // Overlay text
-      if(overlayText){
-        ctx.globalAlpha=0.85;
-        ctx.fillStyle='rgba(0,0,0,0.45)';
-        ctx.fillRect(0,620,1280,100);
-        ctx.globalAlpha=1;
-        ctx.font='bold 36px Georgia, serif';
-        ctx.fillStyle='#C9A84C';
-        ctx.textAlign='center';
-        ctx.fillText(overlayText,640,675);
-      }
-
-      // Frame counter
-      ctx.font='14px Montserrat,sans-serif';
-      ctx.fillStyle='rgba(255,255,255,.5)';
-      ctx.textAlign='right';
-      ctx.fillText((idx+1)+'/'+imgs.length,1260,30);
-
-      vcAnim=requestAnimationFrame(drawFrame);
-    }
-    vcAnim=requestAnimationFrame(drawFrame);
-    toast('Önizləmə başladı ▶');
-  });
-}
-
-async function vcMakeVideo(){
-  if(!photos.length){toast('Şəkil yoxdur!');return;}
-  vcStop();
-
-  const prog=document.getElementById('vc-progress');
-  const progBar=document.getElementById('vc-progress-bar');
-  const progLbl=document.getElementById('vc-progress-lbl');
-  const makeBtn=document.getElementById('vc-make-btn');
-
-  prog.style.display='block';
-  makeBtn.disabled=true;makeBtn.textContent='Hazırlanır...';
-
-  const canvas=document.getElementById('vc-canvas');
-  canvas.width=1280;canvas.height=720;
-  const ctx=canvas.getContext('2d');
-  const msg=document.getElementById('vc-preview-msg');
-  if(msg)msg.style.display='none';
-
-  const duration=parseInt(document.getElementById('vc-duration').value)||3000;
-  const transition=document.getElementById('vc-transition').value;
-  const overlayText=document.getElementById('vc-text').value;
-  const musicVal=document.getElementById('vc-music').value;
-
-  // Load images
-  progLbl.textContent='Şəkillər yüklənir...';progBar.style.width='10%';
-  const imgs=await Promise.all(photos.map(p=>new Promise(res=>{
-    const img=new Image();img.onload=()=>res(img);img.onerror=()=>res(null);img.src=p.src;
-  })));
-  const validImgs=imgs.filter(Boolean);
-  if(!validImgs.length){toast('Şəkillər yüklənə bilmədi!');return;}
-
-  progLbl.textContent='Video yazılır...';progBar.style.width='20%';
-
-  // Setup MediaRecorder
-  const stream=canvas.captureStream(30);
-  vcChunks=[];
-
-  // Add audio if selected
-  let audioTrack=null;
-  if(musicVal!=='none'){
-    try{
-      const AudioCtx=window.AudioContext||window.webkitAudioContext;
-      vcAudioCtx=new AudioCtx();
-      const dest=vcAudioCtx.createMediaStreamDestination();
-      let audioUrl=vcCurrentMusic;
-
-      // Use tone oscillator for built-in music
-      if(musicVal!=='custom'){
-        const osc=vcAudioCtx.createOscillator();
-        const gain=vcAudioCtx.createGain();
-        osc.connect(gain);gain.connect(dest);
-        osc.type='sine';
-        const freqs={romantic:[261,329,392],classic:[440,523,659],modern:[220,277,330]};
-        const f=freqs[musicVal]||freqs.romantic;
-        osc.frequency.value=f[0];
-        gain.gain.value=0.1;
-        osc.start();
-        setTimeout(()=>{osc.frequency.value=f[1];},1000);
-        setTimeout(()=>{osc.frequency.value=f[2];},2000);
-      }
-
-      audioTrack=dest.stream.getAudioTracks()[0];
-      if(audioTrack)stream.addTrack(audioTrack);
-    }catch(e){}
-  }
-
-  const recorder=new MediaRecorder(stream,{mimeType:'video/webm;codecs=vp9'});
-  recorder.ondataavailable=e=>{if(e.data.size>0)vcChunks.push(e.data);};
-
-  recorder.onstop=()=>{
-    progLbl.textContent='Fayl hazırlanır...';progBar.style.width='95%';
-    const blob=new Blob(vcChunks,{type:'video/webm'});
-    const url=URL.createObjectURL(blob);
-    const a=document.createElement('a');
-    a.href=url;a.download='toy-video-edevetaz.webm';
-    document.body.appendChild(a);a.click();
-    setTimeout(()=>{document.body.removeChild(a);URL.revokeObjectURL(url);},1000);
-    progBar.style.width='100%';
-    progLbl.textContent='✅ Video yükləndi!';
-    makeBtn.disabled=false;makeBtn.textContent='🎬 Video Hazırla və Yüklə';
-    setTimeout(()=>{prog.style.display='none';},3000);
-    toast('Video hazır! Yükləndi ✓');
-    if(vcAudioCtx)vcAudioCtx.close();
-  };
-
-  recorder.start(100);
-
-  // Render each frame
-  const fps=30;
-  const totalFrames=validImgs.length*(duration+500)/1000*fps;
-  let frame=0;
-
-  function renderNextFrame(){
-    if(frame>=totalFrames){recorder.stop();return;}
-    const elapsed=frame/fps*1000;
-    const frameIdx=Math.floor(elapsed/(duration+500));
-    const frameTime=elapsed%(duration+500);
-    const imgIdx=Math.min(frameIdx,validImgs.length-1);
-    const img=validImgs[imgIdx];
-    const nextImg=validImgs[Math.min(imgIdx+1,validImgs.length-1)];
-
-    ctx.fillStyle='#000';ctx.fillRect(0,0,1280,720);
-
-    function drawImg(im,alpha){
-      ctx.globalAlpha=alpha;
-      const scale=Math.max(1280/im.width,720/im.height);
-      const w=im.width*scale,h=im.height*scale;
-      const x=(1280-w)/2,y=(720-h)/2;
-      ctx.drawImage(im,x,y,w,h);
-      ctx.globalAlpha=1;
-    }
-
-    if(transition==='fade'&&frameTime>duration-400){
-      const fa=1-((frameTime-(duration-400))/400);
-      drawImg(img,Math.max(0,fa));
-      drawImg(nextImg,Math.max(0,1-fa));
-    } else if(transition==='zoom'){
-      const z=1+(frameTime/duration*0.06);
-      ctx.save();ctx.translate(640,360);ctx.scale(z,z);ctx.translate(-640,-360);
-      drawImg(img,1);ctx.restore();
-    } else {
-      drawImg(img,1);
-    }
-
-    if(overlayText){
-      ctx.fillStyle='rgba(0,0,0,0.5)';ctx.fillRect(0,620,1280,100);
-      ctx.font='bold 38px Georgia,serif';ctx.fillStyle='#C9A84C';
-      ctx.textAlign='center';ctx.fillText(overlayText,640,675);
-    }
-
-    frame++;
-    const pct=20+Math.round(frame/totalFrames*75);
-    progBar.style.width=pct+'%';
-    progLbl.textContent=`Video yazılır... ${Math.round(frame/totalFrames*100)}%`;
-    setTimeout(renderNextFrame,1000/fps/2);
-  }
-  renderNextFrame();
-}
-
-// ══════════════════════════════════════════
-//  ADMİN PANELİ
-// ══════════════════════════════════════════
-let adminUsersCache=[];
-
-async function loadAdminData(){
-  if(!db||!currentUser||currentUser.email!=='ceyhuntaqiyev1987@gmail.com'){
-    toast('Admin icazəsi yoxdur!');return;
-  }
-  try{
-    // Get all users from Firebase Auth via Firestore users collection
-    const usersSnap=await db.collection('users').get();
-    adminUsersCache=[];
-    let totalEvents=0;
-    const today=new Date();today.setHours(0,0,0,0);
-    let todayCount=0,activeCount=0;
-    const thirtyDaysAgo=new Date();thirtyDaysAgo.setDate(thirtyDaysAgo.getDate()-30);
-
-    usersSnap.forEach(doc=>{
-      const d=doc.data();
-      adminUsersCache.push({uid:doc.id,...d});
-    });
-
-    // Get events count per user
-    for(let u of adminUsersCache){
-      try{
-        const evSnap=await db.collection('users').doc(u.uid).collection('events').get();
-        u.eventCount=evSnap.size;
-        totalEvents+=evSnap.size;
-      }catch(e){u.eventCount=0;}
-    }
-
-    // Update stats
-    document.getElementById('admin-stat-users').textContent=adminUsersCache.length;
-    document.getElementById('admin-stat-events').textContent=totalEvents;
-    document.getElementById('admin-stat-today').textContent=todayCount;
-    document.getElementById('admin-stat-active').textContent=adminUsersCache.length;
-
-    renderAdminUsers(adminUsersCache);
-    toast('Məlumatlar yükləndi ✓');
-  }catch(e){
-    // Fallback: use Firebase Auth REST API data we have
-    document.getElementById('admin-stat-users').textContent='Firebase-dən yüklə';
-    document.getElementById('admin-users-body').innerHTML=`<tr><td colspan="5" style="text-align:center;padding:24px;color:var(--muted);">
-      İstifadəçi məlumatları üçün <a href="https://console.firebase.google.com/project/davetname-c4591/authentication/users" target="_blank" style="color:var(--gold);">Firebase Konsolu</a>-nu açın
-    </td></tr>`;
-    toast('Məlumat yüklənərkən xəta: '+e.message);
-  }
-}
-
-function renderAdminUsers(users){
-  const tbody=document.getElementById('admin-users-body');
-  if(!users.length){
-    tbody.innerHTML='<tr><td colspan="5" style="text-align:center;padding:24px;color:var(--muted);">İstifadəçi yoxdur</td></tr>';
-    return;
-  }
-  tbody.innerHTML=users.map(u=>`<tr>
-    <td><div style="font-size:.82rem;font-weight:500;">${u.email||u.phone||u.uid.slice(0,8)+'...'}</div></td>
-    <td style="font-size:.75rem;color:var(--muted);">${u.createdAt?new Date(u.createdAt).toLocaleDateString('az-AZ'):'-'}</td>
-    <td style="font-size:.75rem;color:var(--muted);">${u.lastLogin?new Date(u.lastLogin).toLocaleDateString('az-AZ'):'-'}</td>
-    <td><span style="background:rgba(201,168,76,.1);color:var(--gd);padding:2px 8px;border-radius:10px;font-size:.75rem;">${u.eventCount||0}</span></td>
-    <td><span style="background:rgba(25,135,84,.1);color:#0f6e40;padding:2px 8px;border-radius:10px;font-size:.72px;font-size:.72rem;">Aktiv</span></td>
-  </tr>`).join('');
-}
-
-function filterAdminUsers(){
-  const q=document.getElementById('admin-search').value.toLowerCase();
-  const filtered=adminUsersCache.filter(u=>(u.email||'').toLowerCase().includes(q)||(u.phone||'').includes(q));
-  renderAdminUsers(filtered);
-}
 
 // ══ ADMİN PANELİ ══
 const ADMIN_EMAIL_CHECK='ceyhuntaqiyev1987@gmail.com';
@@ -4927,44 +4190,52 @@ function rdLoadLogo(inp){
 
 function renderRdPackages(){
   const el=document.getElementById('rd-packages-list');
-  if(!rdPackages.length){el.innerHTML='<div style="text-align:center;color:var(--muted);font-size:.78rem;padding:12px;">Paket yoxdur. "+ Paket Əlavə et" düyməsini basın.</div>';return;}
+  if(!el)return;
+  if(!rdPackages.length){
+    el.innerHTML='<div style="text-align:center;color:var(--muted);font-size:.78rem;padding:16px;background:var(--cream);border-radius:10px;">Hələ paket yoxdur.<br><b>+ Paket Əlavə et</b> düyməsinə basın.</div>';
+    return;
+  }
   el.innerHTML=rdPackages.map((p,i)=>`
-    <div style="background:var(--cream);border-radius:10px;padding:10px 12px;margin-bottom:8px;display:flex;align-items:center;gap:10px;">
-      <div style="flex:1;">
-        <input value="${p.name}" onchange="rdPackages[${i}].name=this.value" style="width:100%;border:1px solid #E8E0D0;border-radius:6px;padding:5px 8px;font-family:Montserrat,sans-serif;font-size:.78rem;background:#fff;outline:none;margin-bottom:4px;" placeholder="Paket adı">
-        <input value="${p.desc||''}" onchange="rdPackages[${i}].desc=this.value" style="width:100%;border:1px solid #E8E0D0;border-radius:6px;padding:5px 8px;font-family:Montserrat,sans-serif;font-size:.72rem;background:#fff;outline:none;margin-bottom:4px;" placeholder="Təsvir">
-        <div style="display:flex;gap:6px;">
-          <input type="number" value="${p.price||0}" onchange="rdPackages[${i}].price=parseFloat(this.value)" style="flex:1;border:1px solid #E8E0D0;border-radius:6px;padding:5px 8px;font-family:Montserrat,sans-serif;font-size:.78rem;background:#fff;outline:none;" placeholder="Qiymət">
-          <select onchange="rdPackages[${i}].unit=this.value" style="border:1px solid #E8E0D0;border-radius:6px;padding:5px 8px;font-family:Montserrat,sans-serif;font-size:.72rem;background:#fff;outline:none;">
-            <option value="nəfər" ${p.unit==='nəfər'?'selected':''}>/ nəfər</option>
-            <option value="paket" ${p.unit==='paket'?'selected':''}>/ paket</option>
-            <option value="saat" ${p.unit==='saat'?'selected':''}>/ saat</option>
-          </select>
-        </div>
+    <div style="background:var(--cream);border-radius:10px;padding:12px;margin-bottom:8px;border:1.5px solid #E8E0D0;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+        <div style="font-size:.75rem;font-weight:600;color:var(--muted);">Paket ${i+1}</div>
+        <button onclick="rdPackages.splice(${i},1);renderRdPackages()" style="background:rgba(220,53,69,.1);border:none;border-radius:6px;padding:3px 8px;color:#dc3545;cursor:pointer;font-size:.75rem;">✕ Sil</button>
       </div>
-      <button onclick="rdPackages.splice(${i},1);renderRdPackages()" style="background:rgba(220,53,69,.1);border:none;border-radius:8px;padding:6px 10px;color:#dc3545;cursor:pointer;font-size:1rem;">🗑</button>
+      <input value="${p.name||''}" oninput="rdPackages[${i}].name=this.value" placeholder="Paket adı (məs. Standart Paket)" style="width:100%;border:1px solid #E0D0B0;border-radius:7px;padding:7px 10px;font-family:Montserrat,sans-serif;font-size:.8rem;background:#fff;outline:none;margin-bottom:6px;">
+      <input value="${p.desc||''}" oninput="rdPackages[${i}].desc=this.value" placeholder="Təsvir (məs. 5 yeməkli süfrə, içki daxil)" style="width:100%;border:1px solid #E0D0B0;border-radius:7px;padding:7px 10px;font-family:Montserrat,sans-serif;font-size:.78rem;background:#fff;outline:none;margin-bottom:6px;">
+      <div style="display:flex;gap:8px;">
+        <input type="number" value="${p.price||''}" oninput="rdPackages[${i}].price=parseFloat(this.value)||0" placeholder="Qiymət (₼)" style="flex:1;border:1px solid #E0D0B0;border-radius:7px;padding:7px 10px;font-family:Montserrat,sans-serif;font-size:.8rem;background:#fff;outline:none;">
+        <select oninput="rdPackages[${i}].unit=this.value" style="flex:1;border:1px solid #E0D0B0;border-radius:7px;padding:7px 10px;font-family:Montserrat,sans-serif;font-size:.78rem;background:#fff;outline:none;">
+          <option value="nəfər" ${(p.unit||'nəfər')==='nəfər'?'selected':''}>/ nəfər</option>
+          <option value="paket" ${p.unit==='paket'?'selected':''}>/ paket</option>
+          <option value="saat" ${p.unit==='saat'?'selected':''}>/ saat</option>
+          <option value="stol" ${p.unit==='stol'?'selected':''}>/ stol</option>
+        </select>
+      </div>
     </div>`).join('');
-}
-
-function rdAddPackage(){
-  rdPackages.push({name:'Yeni Paket',desc:'',price:0,unit:'nəfər'});
-  renderRdPackages();
 }
 
 function renderRdMenu(){
   const el=document.getElementById('rd-menu-list');
-  if(!rdMenuItems.length){el.innerHTML='<div style="text-align:center;color:var(--muted);font-size:.78rem;padding:12px;">Menyu maddəsi yoxdur.</div>';return;}
-  el.innerHTML=rdMenuItems.map((m,i)=>`
-    <div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid #f0e8d8;">
-      <input value="${m.name}" onchange="rdMenuItems[${i}].name=this.value" style="flex:2;border:1px solid #E8E0D0;border-radius:6px;padding:5px 8px;font-family:Montserrat,sans-serif;font-size:.78rem;background:var(--cream);outline:none;" placeholder="Maddə adı">
-      <input value="${m.cat||''}" onchange="rdMenuItems[${i}].cat=this.value" style="flex:1;border:1px solid #E8E0D0;border-radius:6px;padding:5px 8px;font-family:Montserrat,sans-serif;font-size:.72rem;background:var(--cream);outline:none;" placeholder="Kateqoriya">
-      <button onclick="rdMenuItems.splice(${i},1);renderRdMenu()" style="background:none;border:none;color:#dc3545;cursor:pointer;font-size:.9rem;">✕</button>
-    </div>`).join('');
-}
-
-function rdAddMenuItem(){
-  rdMenuItems.push({name:'',cat:'Əsas Yeməklər'});
-  renderRdMenu();
+  if(!el)return;
+  if(!rdMenuItems.length){
+    el.innerHTML='<div style="text-align:center;color:var(--muted);font-size:.78rem;padding:16px;background:var(--cream);border-radius:10px;">Hələ menyu maddəsi yoxdur.</div>';
+    return;
+  }
+  el.innerHTML=`<table style="width:100%;border-collapse:collapse;">
+    <thead><tr style="background:var(--cream);">
+      <th style="text-align:left;padding:8px 10px;font-size:.72rem;color:var(--muted);font-weight:500;">Ad</th>
+      <th style="text-align:left;padding:8px 10px;font-size:.72rem;color:var(--muted);font-weight:500;">Kateqoriya</th>
+      <th style="text-align:left;padding:8px 10px;font-size:.72rem;color:var(--muted);font-weight:500;">Qiymət (₼)</th>
+      <th style="padding:8px;"></th>
+    </tr></thead>
+    <tbody>${rdMenuItems.map((m,i)=>`<tr style="border-bottom:1px solid #f0e8d8;">
+      <td style="padding:6px 10px;"><input value="${m.name||''}" oninput="rdMenuItems[${i}].name=this.value" style="border:1px solid #E0D0B0;border-radius:6px;padding:5px 8px;font-family:Montserrat,sans-serif;font-size:.78rem;background:var(--cream);outline:none;width:100%;" placeholder="Məs. Toyuq kababı"></td>
+      <td style="padding:6px 10px;"><input value="${m.cat||''}" oninput="rdMenuItems[${i}].cat=this.value" style="border:1px solid #E0D0B0;border-radius:6px;padding:5px 8px;font-family:Montserrat,sans-serif;font-size:.78rem;background:var(--cream);outline:none;width:100%;" placeholder="Əsas yeməklər"></td>
+      <td style="padding:6px 10px;"><input type="number" value="${m.price||''}" oninput="rdMenuItems[${i}].price=parseFloat(this.value)||0" style="border:1px solid #E0D0B0;border-radius:6px;padding:5px 8px;font-family:Montserrat,sans-serif;font-size:.78rem;background:var(--cream);outline:none;width:70px;" placeholder="0"></td>
+      <td style="padding:6px;"><button onclick="rdMenuItems.splice(${i},1);renderRdMenu()" style="background:none;border:none;color:#dc3545;cursor:pointer;font-size:.85rem;">✕</button></td>
+    </tr>`).join('')}</tbody>
+  </table>`;
 }
 
 async function saveRestProfile(){
@@ -5008,7 +4279,11 @@ function copyAppLink(){
   navigator.clipboard.writeText('eDevetAz — Azərbaycanın ilk elektron dəvətnaməsi 💍\nhttps://edevetaz.vercel.app').then(()=>toast('Link kopyalandı ✓ Paylaşa bilərsiniz!'));
 }
 
+
+
+// ── INIT ──
 showPanel('overview');
+checkURLHash();
 
 // Loading ekranını gizlət
 window.addEventListener('load',()=>{
@@ -5019,27 +4294,7 @@ window.addEventListener('load',()=>{
   },1800);
 });
 
-// Firebase yüklənəndən sonra başlat
-function startApp(){
-  try{
-    if(typeof firebase !== 'undefined'){
-      initFirebase();
-    } else {
-      hideLoginScreen();
-    }
-    checkURLHash();
-  }catch(e){
-    // Firebase xətası — sessiz keç
-    hideLoginScreen();
-    checkURLHash();
-  }
-}
-
-if(document.readyState==='complete'){
-  startApp();
-} else {
-  window.addEventListener('load', startApp);
-}
+initFirebase();
 </script>
 </body>
 </html>
