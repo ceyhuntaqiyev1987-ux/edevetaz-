@@ -320,6 +320,7 @@ body::before{content:'';position:fixed;inset:0;background-image:var(--ornament);
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-storage-compat.js"></script>
 </head>
 <body>
 
@@ -3576,6 +3577,7 @@ const firebaseConfig = {
 };
 
 let db=null, auth=null, currentUser=null, userId='guest';
+const RESERVED_REST_IDS=new Set();
 
 // ── Google Giriş UI ──
 function showLoginScreen(){
@@ -3655,7 +3657,7 @@ function signInWithGoogle(){
 
 function signOut(){
   auth.signOut().then(()=>{
-    EVENTS.length=0;GUESTS.length=0;PAYMENTS.length=0;SERVICES.length=0;MY_CARDS.length=0;
+    EVENTS.length=0;GUESTS.length=0;PAYMENTS.length=0;SERVICES.length=0;MY_CARDS.length=0;CARDS.length=0;photos.length=0;RESERVED_REST_IDS.clear();
     showLoginScreen();
     toast('Çıxış edildi');
   });
@@ -3771,12 +3773,35 @@ async function loadFromFirestore(){
       if(!MY_CARDS.find(c=>c.firestoreId===doc.id))
         MY_CARDS.push({...d,firestoreId:doc.id});
     });
+    // Dəvətnamə kartlarını yüklə
+    const cardsSnap=await db.collection('users').doc(userId).collection('cards').get();
+    cardsSnap.forEach(doc=>{
+      const d=doc.data();
+      if(!CARDS.find(c=>c.firestoreId===doc.id))
+        CARDS.push({...d,firestoreId:doc.id});
+    });
+    // Şəkilləri yüklə
+    const phSnap=await db.collection('users').doc(userId).collection('photos').get();
+    phSnap.forEach(doc=>{
+      const d=doc.data();
+      if(!photos.find(p=>p.firestoreId===doc.id))
+        photos.push({...d,firestoreId:doc.id});
+    });
+    // Restoran rezervasiyalarını yüklə
+    const rsvSnap=await db.collection('users').doc(userId).collection('reservations').get();
+    rsvSnap.forEach(doc=>{
+      const d=doc.data();
+      RESERVED_REST_IDS.add(String(d.restId));
+      const r=RESTAURANTS.find(x=>String(x.id)===String(d.restId));
+      if(r)r.reserved=true;
+    });
     // Yenilə
     renderPanel('overview');
     document.getElementById('badge-events').textContent=EVENTS.length;
     document.getElementById('badge-guests').textContent=GUESTS.length;
     document.getElementById('badge-services').textContent=SERVICES.length;
     document.getElementById('badge-cards').textContent=MY_CARDS.length;
+    document.getElementById('badge-photos').textContent=photos.length;
     showToast('Məlumatlar yükləndi ✓');
   }catch(e){console.log('Load error:',e);}
 }
@@ -3915,6 +3940,115 @@ async function saveMyCard(){
   document.getElementById('badge-cards').textContent=MY_CARDS.length;
   renderMyCards();renderPayCardSelector();
   toast('Kart saxlandı ✓');
+}
+
+// ── OVERRIDE: deleteSvc / deleteMyCard (Firestore sync) ──
+async function deleteSvc(id){
+  const s=SERVICES.find(x=>x.id===id);
+  SERVICES=SERVICES.filter(x=>x.id!==id);
+  document.getElementById('badge-services').textContent=SERVICES.length;
+  renderServices('services-all');
+  toast('Xidmət silindi');
+  if(s&&s.firestoreId)deleteFromFS('services',s.firestoreId);
+}
+
+async function deleteMyCard(id){
+  const c=MY_CARDS.find(x=>x.id===id);
+  MY_CARDS=MY_CARDS.filter(x=>x.id!==id);
+  renderMyCards();renderPayCardSelector();
+  toast('Kart silindi');
+  if(c&&c.firestoreId)deleteFromFS('mycards',c.firestoreId);
+}
+
+// ── OVERRIDE: saveCard / deleteCard (dəvətnamə kartları, Firestore) ──
+async function saveCard(){
+  const name=document.getElementById('card-name').value.trim();
+  const num=document.getElementById('card-num').value.trim();
+  if(!name||!num){toast('Ad və kart nömrəsi tələb olunur!');return;}
+  const card={id:Date.now(),name,num,
+    bank:document.getElementById('card-bank').value||'',
+    note:document.getElementById('card-note').value||'',
+    theme:document.getElementById('card-theme').value||'dark'};
+  const fsId=await saveToFS('cards',card);
+  if(fsId)card.firestoreId=fsId;
+  CARDS.push(card);
+  closeModal('modal-card');
+  ['card-name','card-num','card-bank','card-note'].forEach(id=>{document.getElementById(id).value='';});
+  document.getElementById('badge-cards').textContent=CARDS.length;
+  renderCards();
+  toast('Kart saxlandı ✓');
+}
+
+async function deleteCard(id){
+  const c=CARDS.find(x=>x.id===id);
+  CARDS=CARDS.filter(x=>x.id!==id);
+  document.getElementById('badge-cards').textContent=CARDS.length;
+  renderCards();
+  toast('Kart silindi');
+  if(c&&c.firestoreId)deleteFromFS('cards',c.firestoreId);
+}
+
+// ── OVERRIDE: addPhotos / deletePhoto (Firebase Storage + Firestore) ──
+async function addPhotos(inp){
+  const files=Array.from(inp.files);
+  if(!files.length)return;
+  for(const f of files){
+    if(f.size>10*1024*1024){toast('Şəkil 10MB-dan böyük ola bilməz!');continue;}
+    try{
+      let src=null,storagePath=null;
+      if(db&&firebase.storage){
+        storagePath='users/'+userId+'/photos/'+Date.now()+'_'+f.name;
+        const ref=firebase.storage().ref(storagePath);
+        await ref.put(f);
+        src=await ref.getDownloadURL();
+      }else{
+        src=await new Promise((res,rej)=>{const r=new FileReader();r.onload=e=>res(e.target.result);r.onerror=rej;r.readAsDataURL(f);});
+      }
+      const photo={id:Date.now()+Math.random(),src,name:f.name,cat:'toy',starred:false,storagePath};
+      if(storagePath){
+        const fsId=await saveToFS('photos',photo);
+        if(fsId)photo.firestoreId=fsId;
+      }
+      photos.push(photo);
+    }catch(e){console.log('Photo upload error:',e);toast('Şəkil yüklənmədi: '+f.name);}
+  }
+  inp.value='';
+  renderPhotos();
+  document.getElementById('badge-photos').textContent=photos.length;
+  toast(files.length+' şəkil yükləndi ✓');
+}
+
+async function deletePhoto(id){
+  const p=photos.find(x=>x.id===id);
+  photos=photos.filter(x=>x.id!==id);
+  renderPhotos();
+  document.getElementById('badge-photos').textContent=photos.length;
+  if(!p)return;
+  if(p.firestoreId)deleteFromFS('photos',p.firestoreId);
+  if(p.storagePath&&firebase.storage){
+    try{await firebase.storage().ref(p.storagePath).delete();}catch(e){console.log('Storage delete error:',e);}
+  }
+}
+
+// ── OVERRIDE: reserveRest (Firestore) ──
+async function reserveRest(id){
+  const r=RESTAURANTS.find(x=>x.id===id);
+  if(!r)return;
+  r.reserved=!r.reserved;
+  renderRestaurants('rest-grid',false);
+  renderRestaurants('rest-reserved-grid',true);
+  toast(r.reserved?r.name+' rezervasiya edildi ✓':r.name+' rezervasiya ləğv edildi');
+  if(!db||!userId)return;
+  try{
+    const docId=String(id);
+    if(r.reserved){
+      RESERVED_REST_IDS.add(docId);
+      await db.collection('users').doc(userId).collection('reservations').doc(docId).set({restId:id,restName:r.name,reservedAt:new Date().toISOString()});
+    }else{
+      RESERVED_REST_IDS.delete(docId);
+      await db.collection('users').doc(userId).collection('reservations').doc(docId).delete();
+    }
+  }catch(e){console.log('Reservation sync error:',e);}
 }
 
 // toast alias
@@ -4166,7 +4300,7 @@ async function loadFirebaseRestaurants(){
     snap.forEach(doc=>{
       const d=doc.data();
       if(RESTAURANTS.find(r=>r.firestoreId===doc.id))return;
-      const rest={id:'fb_'+doc.id,firestoreId:doc.id,name:d.name||'Restoran',icon:'🍽️',stars:4,cap:parseInt(d.capacity)||200,city:d.city||'Bakı',price:d.packages&&d.packages.length?d.packages[0].price+'₼/'+d.packages[0].unit:'—',verified:false,reserved:false,desc:d.desc||'',phone:d.phone||'',link:d.link||'',logo:d.logo||null,fromFirebase:true,menu:[]};
+      const rest={id:'fb_'+doc.id,firestoreId:doc.id,name:d.name||'Restoran',icon:'🍽️',stars:4,cap:parseInt(d.capacity)||200,city:d.city||'Bakı',price:d.packages&&d.packages.length?d.packages[0].price+'₼/'+d.packages[0].unit:'—',verified:false,reserved:RESERVED_REST_IDS.has('fb_'+doc.id),desc:d.desc||'',phone:d.phone||'',link:d.link||'',logo:d.logo||null,fromFirebase:true,menu:[]};
       if(d.packages&&d.packages.length)rest.menu.push({cat:'Paketlər',items:d.packages.map(p=>({name:p.name,desc:p.desc||'',price:p.price||0,unit:p.unit||'nəfər'}))});
       if(d.menu&&d.menu.length)rest.menu.push({cat:'Menyu',items:d.menu.map(m=>({name:m.name,desc:m.cat||'',price:m.price||0,unit:''}))});
       RESTAURANTS.push(rest);
