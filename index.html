@@ -364,7 +364,7 @@ body::before{content:'';position:fixed;inset:0;background-image:var(--ornament);
         <div class="sb-acc-bg"></div>
         <span class="sb-acc-icon">🎊</span>
         <span class="sb-acc-label">Tədbirlər</span>
-        <span class="sb-acc-badge" id="badge-events">3</span>
+        <span class="sb-acc-badge" id="badge-events">0</span>
         <span class="sb-acc-arrow">▶</span>
       </button>
       <div class="sb-body" id="acc-events">
@@ -381,7 +381,7 @@ body::before{content:'';position:fixed;inset:0;background-image:var(--ornament);
         <div class="sb-acc-bg"></div>
         <span class="sb-acc-icon">👥</span>
         <span class="sb-acc-label">Qonaqlar</span>
-        <span class="sb-acc-badge" id="badge-guests">48</span>
+        <span class="sb-acc-badge" id="badge-guests">0</span>
         <span class="sb-acc-arrow">▶</span>
       </button>
       <div class="sb-body" id="acc-guests">
@@ -399,7 +399,7 @@ body::before{content:'';position:fixed;inset:0;background-image:var(--ornament);
         <div class="sb-acc-bg"></div>
         <span class="sb-acc-icon">💳</span>
         <span class="sb-acc-label">Ödənişlər</span>
-        <span class="sb-acc-badge" id="badge-pay">1840₼</span>
+        <span class="sb-acc-badge" id="badge-pay">0₼</span>
         <span class="sb-acc-arrow">▶</span>
       </button>
       <div class="sb-body" id="acc-pay">
@@ -456,8 +456,8 @@ body::before{content:'';position:fixed;inset:0;background-image:var(--ornament);
         <button class="sb-item" onclick="showPanel('sent-pending');setActive(this)"><div class="sb-item-dot"></div>⏳ Gözlənilənlər</button>
         <!-- Mənə Göndərilənlər -->
         <div style="padding:10px 18px 3px 46px;font-size:.62rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(201,168,76,.35);font-weight:600;border-top:1px solid rgba(201,168,76,.07);margin-top:4px;">Mənə Göndərilənlər</div>
-        <button class="sb-item" onclick="showPanel('received-all');setActive(this)"><div class="sb-item-dot"></div>Bütün Dəvətnamələr<span class="sb-item-badge new" id="badge-received" style="background:rgba(220,53,69,.2);color:#f5a0a0;">3</span></button>
-        <button class="sb-item" onclick="showPanel('received-new');setActive(this)"><div class="sb-item-dot"></div>🆕 Yeni (3)</button>
+        <button class="sb-item" onclick="showPanel('received-all');setActive(this)"><div class="sb-item-dot"></div>Bütün Dəvətnamələr<span class="sb-item-badge new" id="badge-received" style="background:rgba(220,53,69,.2);color:#f5a0a0;">0</span></button>
+        <button class="sb-item" onclick="showPanel('received-new');setActive(this)"><div class="sb-item-dot"></div>🆕 Yeni (0)</button>
         <button class="sb-item" onclick="showPanel('received-accepted');setActive(this)"><div class="sb-item-dot"></div>✓ Qəbul Etdiklərim</button>
       </div>
     </div>
@@ -519,7 +519,7 @@ body::before{content:'';position:fixed;inset:0;background-image:var(--ornament);
         <div class="sb-acc-bg"></div>
         <span class="sb-acc-icon">💌</span>
         <span class="sb-acc-label">Təbrik Mesajları</span>
-        <span class="sb-acc-badge new" id="badge-msgs" style="background:rgba(220,53,69,.2);color:#f5a0a0;">12</span>
+        <span class="sb-acc-badge new" id="badge-msgs" style="background:rgba(220,53,69,.2);color:#f5a0a0;">0</span>
         <span class="sb-acc-arrow">▶</span>
       </button>
       <div class="sb-body" id="acc-msgs">
@@ -559,10 +559,10 @@ body::before{content:'';position:fixed;inset:0;background-image:var(--ornament);
   <!-- ── OVERVIEW ── -->
   <div class="panel active" id="panel-overview">
     <div class="ov-grid">
-      <div class="ov-card gold"><div class="ov-icon">🎊</div><div class="ov-num">5</div><div class="ov-lbl">Cəmi Tədbir</div></div>
-      <div class="ov-card green"><div class="ov-icon">👥</div><div class="ov-num">48</div><div class="ov-lbl">Qonaq</div></div>
-      <div class="ov-card blue"><div class="ov-icon">💳</div><div class="ov-num">1840₼</div><div class="ov-lbl">Ödənişlər</div></div>
-      <div class="ov-card red"><div class="ov-icon">💌</div><div class="ov-num">12</div><div class="ov-lbl">Yeni Mesaj</div></div>
+      <div class="ov-card gold"><div class="ov-icon">🎊</div><div class="ov-num" id="ov-num-events">0</div><div class="ov-lbl">Cəmi Tədbir</div></div>
+      <div class="ov-card green"><div class="ov-icon">👥</div><div class="ov-num" id="ov-num-guests">0</div><div class="ov-lbl">Qonaq</div></div>
+      <div class="ov-card blue"><div class="ov-icon">💳</div><div class="ov-num" id="ov-num-pay">0₼</div><div class="ov-lbl">Ödənişlər</div></div>
+      <div class="ov-card red"><div class="ov-icon">💌</div><div class="ov-num" id="ov-num-msgs">0</div><div class="ov-lbl">Yeni Mesaj</div></div>
     </div>
     <div class="sec-hdr"><div><h2>Son Tədbirlər</h2><div class="sec-hdr-sub">Bütün aktiv və planlanmış tədbirləriniz</div></div><button class="tb-btn ghost" onclick="openNewEvent()">+ Yeni</button></div>
     <div class="ev-grid" id="ev-grid-overview"></div>
@@ -570,7 +570,7 @@ body::before{content:'';position:fixed;inset:0;background-image:var(--ornament);
 
   <!-- ── EVENTS: TOY ── -->
   <div class="panel" id="panel-ev-toy">
-    <div class="sec-hdr"><div><h2>💍 Toy Tədbirləri</h2><div class="sec-hdr-sub">2 toy mərasimi qeyd edilib</div></div>
+    <div class="sec-hdr"><div><h2>💍 Toy Tədbirləri</h2><div class="sec-hdr-sub" id="ev-toy-sub">0 toy mərasimi qeyd edilib</div></div>
       <div style="display:flex;gap:7px;">
         <button class="tb-btn ghost" style="font-size:.72rem;" onclick="openCongratsFor('toy')">💌 Təbrik Şablonları</button>
         <button class="tb-btn" onclick="openNewEvent()">+ Yeni Toy</button>
@@ -581,7 +581,7 @@ body::before{content:'';position:fixed;inset:0;background-image:var(--ornament);
 
   <!-- ── EVENTS: NİŞAN ── -->
   <div class="panel" id="panel-ev-nishan">
-    <div class="sec-hdr"><div><h2>💝 Nişan Tədbirləri</h2><div class="sec-hdr-sub">1 nişan mərasimi qeyd edilib</div></div>
+    <div class="sec-hdr"><div><h2>💝 Nişan Tədbirləri</h2><div class="sec-hdr-sub" id="ev-nishan-sub">0 nişan mərasimi qeyd edilib</div></div>
       <div style="display:flex;gap:7px;">
         <button class="tb-btn ghost" style="font-size:.72rem;" onclick="openCongratsFor('nishan')">💌 Təbrik Şablonları</button>
         <button class="tb-btn" onclick="openNewEvent()">+ Yeni Nişan</button>
@@ -603,7 +603,7 @@ body::before{content:'';position:fixed;inset:0;background-image:var(--ornament);
 
   <!-- ── GUESTS (common) ── -->
   <div class="panel" id="panel-guests-all">
-    <div class="sec-hdr"><div><h2>👥 Bütün Qonaqlar</h2><div class="sec-hdr-sub">48 qonaq — 32 gəlir, 8 gəlmir, 8 gözlənilir</div></div>
+    <div class="sec-hdr"><div><h2>👥 Bütün Qonaqlar</h2><div class="sec-hdr-sub" id="guests-all-sub">0 qonaq</div></div>
       <button class="tb-btn" onclick="showAddGuest()">+ Qonaq Əlavə Et</button>
     </div>
     <div class="gtable-wrap">
@@ -615,22 +615,22 @@ body::before{content:'';position:fixed;inset:0;background-image:var(--ornament);
         </div>
       </div>
       <div style="overflow-x:auto;"><table class="gtable" id="gtable-all"></table></div>
-      <div class="gtable-pag"><span id="gcount-all">48 qonaq göstərilir</span></div>
+      <div class="gtable-pag"><span id="gcount-all">0 qonaq göstərilir</span></div>
     </div>
   </div>
 
   <div class="panel" id="panel-guests-conf">
-    <div class="sec-hdr"><div><h2>✓ Gəlir (32)</h2><div class="sec-hdr-sub">Gəldiyini təsdiqlədilər</div></div></div>
+    <div class="sec-hdr"><div><h2 id="guests-conf-h2">✓ Gəlir (0)</h2><div class="sec-hdr-sub">Gəldiyini təsdiqlədilər</div></div></div>
     <div class="gtable-wrap"><div style="overflow-x:auto;"><table class="gtable" id="gtable-conf"></table></div></div>
   </div>
 
   <div class="panel" id="panel-guests-decl">
-    <div class="sec-hdr"><div><h2>✗ Gəlmir (8)</h2><div class="sec-hdr-sub">Gəlməyəcəyini bildirdilər</div></div></div>
+    <div class="sec-hdr"><div><h2 id="guests-decl-h2">✗ Gəlmir (0)</h2><div class="sec-hdr-sub">Gəlməyəcəyini bildirdilər</div></div></div>
     <div class="gtable-wrap"><div style="overflow-x:auto;"><table class="gtable" id="gtable-decl"></table></div></div>
   </div>
 
   <div class="panel" id="panel-guests-pend">
-    <div class="sec-hdr"><div><h2>⏳ Gözlənilir (8)</h2><div class="sec-hdr-sub">Hələ cavab verməyiblər</div></div>
+    <div class="sec-hdr"><div><h2 id="guests-pend-h2">⏳ Gözlənilir (0)</h2><div class="sec-hdr-sub">Hələ cavab verməyiblər</div></div>
       <button class="tb-btn" onclick="sendReminders()">📨 Xatırlatma Göndər</button>
     </div>
     <div class="gtable-wrap"><div style="overflow-x:auto;"><table class="gtable" id="gtable-pend"></table></div></div>
@@ -1463,103 +1463,15 @@ body::before{content:'';position:fixed;inset:0;background-image:var(--ornament);
 // ══════════════════════════════════════════
 //  DATA
 // ══════════════════════════════════════════
-const EVENTS=[
-  {id:1,type:'toy',n1:'Əli',n2:'Leyla',date:'2025-06-15',time:'18:00',venue:'Kristal Hall, Bakı',status:'aktiv',guests:32,gconf:24,gdecl:4},
-  {id:2,type:'toy',n1:'Murad',n2:'Günel',date:'2025-08-20',time:'17:00',venue:'Park Inn, Bakı',status:'planli',guests:18,gconf:10,gdecl:2},
-  {id:3,type:'nishan',n1:'Fərid',n2:'Sevinc',date:'2025-05-10',time:'19:00',venue:'Sahil Restaurant',status:'tamamlandi',guests:24,gconf:20,gdecl:3},
-  {id:4,type:'birthday',n1:'Nigar',n2:'',date:'2025-07-03',time:'15:00',venue:'Bay View',status:'planli',guests:15,gconf:12,gdecl:1},
-  {id:5,type:'xina',n1:'Aytən',n2:'',date:'2025-06-13',time:'20:00',venue:'Ev məclisi',status:'aktiv',guests:28,gconf:25,gdecl:2},
-];
+const EVENTS=[];
 
-const GUESTS=[
-  {id:1,name:'Rauf Məmmədov',phone:'+994501001001',rel:'Qardaş',ev:1,status:'confirmed',vip:true,paid:200},
-  {id:2,name:'Samirə Əliyeva',phone:'+994552002002',rel:'Bacı',ev:1,status:'confirmed',vip:false,paid:100},
-  {id:3,name:'Orxan Nəcəfov',phone:'+994703003003',rel:'Dost',ev:1,status:'declined',vip:false,paid:0},
-  {id:4,name:'Lalə İsmayılova',phone:'+994554004004',rel:'Yaxın qohum',ev:1,status:'pending',vip:true,paid:0},
-  {id:5,name:'Cavid Hüseynov',phone:'+994505005005',rel:'İş yoldaşı',ev:1,status:'confirmed',vip:false,paid:150},
-  {id:6,name:'Nərmin Qasımova',phone:'+994706006006',rel:'Qohum',ev:2,status:'confirmed',vip:false,paid:80},
-  {id:7,name:'Tural Babayev',phone:'+994557007007',rel:'Dost',ev:2,status:'pending',vip:false,paid:0},
-  {id:8,name:'Aynur Rzayeva',phone:'+994508008008',rel:'Qohum',ev:1,status:'confirmed',vip:true,paid:300},
-];
+const GUESTS=[];
 
-const PAYMENTS=[
-  {id:1,name:'Rauf Məmmədov',amount:200,date:'2025-06-10',ev:1,note:'Toy hədiyyəsi',status:'done'},
-  {id:2,name:'Samirə Əliyeva',amount:100,date:'2025-06-11',ev:1,note:'',status:'done'},
-  {id:3,name:'Cavid Hüseynov',amount:150,date:'2025-06-12',ev:1,note:'Gəlinin ailəsindən',status:'done'},
-  {id:4,name:'Aynur Rzayeva',amount:300,date:'2025-06-09',ev:1,note:'Xanımdan salam',status:'done'},
-  {id:5,name:'Nərmin Qasımova',amount:80,date:'2025-06-08',ev:2,note:'',status:'done'},
-  {id:6,name:'Lalə İsmayılova',amount:120,date:'',ev:1,note:'',status:'pending'},
-  {id:7,name:'Tural Babayev',amount:0,date:'',ev:2,note:'',status:'pending'},
-];
+const PAYMENTS=[];
 
-const RESTAURANTS=[
-  {id:1,name:'Kristal Hall',icon:'🏛️',stars:5,cap:800,city:'Bakı, Həzi Aslanov',price:'350-600₼/nəfər',verified:true,reserved:true,desc:'Bakının ən prestijli toy sarayı',phone:'+994124001001',
-   menu:[
-    {cat:'Paketlər',items:[
-      {name:'Standart Paket',desc:'3 yeməkli süfrə, içkilər daxil',price:350,unit:'nəfər'},
-      {name:'Premium Paket',desc:'5 yeməkli süfrə, premium içkilər, tort',price:500,unit:'nəfər'},
-      {name:'Lüks Paket',desc:'7 yeməkli süfrə, şampan, tort, gül dekorasiyası',price:600,unit:'nəfər'},
-    ]},
-    {cat:'Əlavə Xidmətlər',items:[
-      {name:'Tort (1 kat)',desc:'Bayram toyu tortu',price:150,unit:'ədəd'},
-      {name:'Gül Dekorasiyası',desc:'Salon bəzəyi',price:300,unit:'salon'},
-      {name:'Konfetti show',desc:'Gecənin yadda qalanı',price:200,unit:'göstəriş'},
-    ]},
-  ]},
-  {id:2,name:'Park Inn',icon:'🌿',stars:4,cap:400,city:'Bakı, Neftçilər pr.',price:'200-400₼/nəfər',verified:true,reserved:false,desc:'Beynəlxalq otel restoranı',phone:'+994124002002',
-   menu:[
-    {cat:'Paketlər',items:[
-      {name:'Business Paket',desc:'4 yeməkli süfrə, qeyri-alkoqollu içkilər',price:200,unit:'nəfər'},
-      {name:'Premium Paket',desc:'5 yeməkli süfrə, bütün içkilər',price:350,unit:'nəfər'},
-    ]},
-    {cat:'Əlavə',items:[
-      {name:'Foto zona',desc:'Professional hazır foto künc',price:200,unit:'gecə'},
-      {name:'DJ Xidməti',desc:'5 saat musiqi',price:400,unit:'gecə'},
-    ]},
-  ]},
-  {id:3,name:'Sahil Restaurant',icon:'🌊',stars:4,cap:300,city:'Bakı, Sahil',price:'150-300₼/nəfər',verified:true,reserved:false,desc:'Dəniz kənarında romantik məkan',phone:'+994124003003',
-   menu:[
-    {cat:'Paketlər',items:[
-      {name:'Sahil Standart',desc:'3 yeməkli süfrə',price:150,unit:'nəfər'},
-      {name:'Sahil Premium',desc:'5 yeməkli süfrə, dəniz məhsulları',price:280,unit:'nəfər'},
-    ]},
-    {cat:'Xüsusi Yeməklər',items:[
-      {name:'Balıq bozbası',desc:'Xəzər balığından hazırlanmış',price:25,unit:'nəfər'},
-      {name:'Şəkərbura',desc:'El gətirməsi',price:8,unit:'ədəd'},
-    ]},
-  ]},
-  {id:4,name:'Bay View',icon:'⚓',stars:5,cap:200,city:'Bakı, Bulvar',price:'400-700₼/nəfər',verified:true,reserved:false,desc:'Panoramic Xəzər mənzərəsi',phone:'+994124004004',
-   menu:[
-    {cat:'VIP Paketlər',items:[
-      {name:'Bay Standard',desc:'4 yeməkli, Xəzər mənzərəsi',price:400,unit:'nəfər'},
-      {name:'Bay Premium',desc:'6 yeməkli, şampan, canlı musiqi',price:600,unit:'nəfər'},
-      {name:'Bay Royal',desc:'Hər şey daxil, VIP xidmət',price:700,unit:'nəfər'},
-    ]},
-  ]},
-  {id:5,name:'Chinar',icon:'🌳',stars:4,cap:500,city:'Bakı, Nizami',price:'180-350₼/nəfər',verified:false,reserved:false,desc:'Klassik Azərbaycan mətbəxi',phone:'+994124005005',
-   menu:[
-    {cat:'Milli Paketlər',items:[
-      {name:'Ənənəvi',desc:'Plov, qovurma, dolma, salatlar',price:180,unit:'nəfər'},
-      {name:'Tam Süfrə',desc:'7 növ qızartma, plov, şorbalar',price:280,unit:'nəfər'},
-    ]},
-  ]},
-  {id:6,name:'İpək Yolu',icon:'🕌',stars:3,cap:250,city:'Bakı, Əhmədli',price:'100-200₼/nəfər',verified:true,reserved:false,desc:'Ənənəvi toy mərasimləri üçün',phone:'+994124006006',
-   menu:[
-    {cat:'Paketlər',items:[
-      {name:'Ekonom',desc:'3 yeməkli sadə süfrə',price:100,unit:'nəfər'},
-      {name:'Standart',desc:'4 yeməkli əsas süfrə',price:150,unit:'nəfər'},
-      {name:'Tam',desc:'5 yeməkli tam süfrə, çay stolu',price:200,unit:'nəfər'},
-    ]},
-  ]},
-];
+const RESTAURANTS=[];
 
-const MESSAGES=[
-  {id:1,name:'Rauf Məmmədov',initials:'RM',msg:'Əli müəllim, sizi bu xoşbəxt gününüzlə ürəkdən təbrik edirəm! Ailənizdə həmişə sevinc, sağlıq və xoşbəxtlik olsun!',ev:'Əli & Leyla Toyu',date:'10 İyun 2025',stars:5,new:true,starred:false},
-  {id:2,name:'Samirə Əliyeva',initials:'SƏ',msg:'Əzizlərim, bu gözəl gününüzdə sizinlə birlikdəyəm! Xoşbəxt bir ailə həyatı arzulayıram!',ev:'Əli & Leyla Toyu',date:'11 İyun 2025',stars:5,new:true,starred:true},
-  {id:3,name:'Cavid Hüseynov',initials:'CH',msg:'Toy mübarək olsun! Ömür boyu bir-birinizə dayaq olun.',ev:'Əli & Leyla Toyu',date:'12 İyun 2025',stars:4,new:false,starred:false},
-  {id:4,name:'Aynur Rzayeva',initials:'AR',msg:'Gəlin xanım çox gözəldir! Bəy cənab da yaraşıqlı. Cütlüyünüz mükəmməldir. Allah qoysa uzun illər xoşbəxt yaşayasınız!',ev:'Əli & Leyla Toyu',date:'9 İyun 2025',stars:5,new:true,starred:true},
-  {id:5,name:'Nərmin Qasımova',initials:'NQ',msg:'Murad qardaş, bu gözəl günün mübarək! Günel xanım çox gözəl bəlindir.',ev:'Murad & Günel Toyu',date:'5 İyun 2025',stars:5,new:false,starred:false},
-];
+const MESSAGES=[];
 
 let photos=[];
 let currentPhotoFilter='all';
@@ -1649,8 +1561,14 @@ function setPage(id){showPanel(id);}
 
 function renderPanel(id){
   if(id==='overview')renderOverview();
-  else if(id==='ev-toy')renderEvGrid('ev-grid-toy',EVENTS.filter(e=>e.type==='toy'));
-  else if(id==='ev-nishan')renderEvGrid('ev-grid-nishan',EVENTS.filter(e=>e.type==='nishan'));
+  else if(id==='ev-toy'){
+    const l=EVENTS.filter(e=>e.type==='toy');renderEvGrid('ev-grid-toy',l);
+    const s=document.getElementById('ev-toy-sub');if(s)s.textContent=l.length+' toy mərasimi qeyd edilib';
+  }
+  else if(id==='ev-nishan'){
+    const l=EVENTS.filter(e=>e.type==='nishan');renderEvGrid('ev-grid-nishan',l);
+    const s=document.getElementById('ev-nishan-sub');if(s)s.textContent=l.length+' nişan mərasimi qeyd edilib';
+  }
   else if(id==='ev-diger')renderEvGrid('ev-grid-diger',EVENTS.filter(e=>e.type!=='toy'&&e.type!=='nishan'));
   else if(id.startsWith('guests'))renderGuestTable(id);
   else if(id==='pay-all')renderPayments(false);
@@ -1674,6 +1592,10 @@ function renderPanel(id){
 // ══════════════════════════════════════════
 function renderOverview(){
   renderEvGrid('ev-grid-overview',EVENTS);
+  const elEv=document.getElementById('ov-num-events');if(elEv)elEv.textContent=EVENTS.length;
+  const elG=document.getElementById('ov-num-guests');if(elG)elG.textContent=GUESTS.length;
+  const elP=document.getElementById('ov-num-pay');if(elP)elP.textContent=PAYMENTS.filter(p=>p.status==='done').reduce((s,p)=>s+p.amount,0)+'₼';
+  const elM=document.getElementById('ov-num-msgs');if(elM)elM.textContent=MESSAGES.filter(m=>m.new).length;
 }
 
 const TYPE_ICONS={toy:'💍',nishan:'💝',xina:'🌿',birthday:'🎂',corp:'🏢',kids:'🎈'};
@@ -1728,12 +1650,21 @@ function renderGuestTable(panelId){
     'guests-vip':{tableId:'gtable-vip',filter:g=>g.vip},
   };
   const cfg=maps[panelId];if(!cfg)return;
-  buildTable(cfg.tableId,GUESTS.filter(cfg.filter));
+  const filtered=GUESTS.filter(cfg.filter);
+  buildTable(cfg.tableId,filtered);
+  const confN=GUESTS.filter(g=>g.status==='confirmed').length;
+  const declN=GUESTS.filter(g=>g.status==='declined').length;
+  const pendN=GUESTS.filter(g=>g.status==='pending').length;
+  const cnt=document.getElementById('gcount-all');if(cnt)cnt.textContent=(panelId==='guests-all'?filtered.length:GUESTS.length)+' qonaq göstərilir';
+  const allSub=document.getElementById('guests-all-sub');if(allSub)allSub.textContent=`${GUESTS.length} qonaq — ${confN} gəlir, ${declN} gəlmir, ${pendN} gözlənilir`;
+  const confH=document.getElementById('guests-conf-h2');if(confH)confH.textContent=`✓ Gəlir (${confN})`;
+  const declH=document.getElementById('guests-decl-h2');if(declH)declH.textContent=`✗ Gəlmir (${declN})`;
+  const pendH=document.getElementById('guests-pend-h2');if(pendH)pendH.textContent=`⏳ Gözlənilir (${pendN})`;
 }
 
 function buildTable(tid,data){
   const el=document.getElementById(tid);if(!el)return;
-  if(!data.length){el.outerHTML='<div class="empty-state"><div class="es-icon">👥</div><p>Qonaq yoxdur</p></div>';return;}
+  if(!data.length){el.innerHTML='<tbody><tr><td colspan="7" style="text-align:center;padding:28px 10px;color:var(--muted);">👥 Qonaq yoxdur</td></tr></tbody>';return;}
   const stlbl={pending:'Gözlənilir',confirmed:'Gəlir',declined:'Gəlmir'};
   const stcls={pending:'pend',confirmed:'conf',declined:'decl'};
   el.innerHTML=`<thead><tr>
@@ -1756,7 +1687,7 @@ function buildTable(tid,data){
 function filterGuests(q,type){
   const filtered=q?GUESTS.filter(g=>g.name.toLowerCase().includes(q.toLowerCase())||g.phone.includes(q)):GUESTS;
   buildTable('gtable-all',filtered);
-  document.getElementById('gcount-all').__count=filtered.length+' qonaq göstərilir';
+  document.getElementById('gcount-all').textContent=filtered.length+' qonaq göstərilir';
 }
 
 function showAddGuest(){
@@ -2742,13 +2673,7 @@ function processSIQueue(){
 // ══════════════════════════════════════════
 //  SENT INVITATIONS
 // ══════════════════════════════════════════
-const SENT_INVITES=[
-  {id:1,to:'Rauf Məmmədov',phone:'+994501001001',ev:'Əli & Leyla Toyu',date:'10 İyun 2025',status:'opened',rsvp:'confirmed'},
-  {id:2,to:'Samirə Əliyeva',phone:'+994552002002',ev:'Əli & Leyla Toyu',date:'11 İyun 2025',status:'opened',rsvp:'declined'},
-  {id:3,to:'Orxan Nəcəfov',phone:'+994703003003',ev:'Əli & Leyla Toyu',date:'11 İyun 2025',status:'pending',rsvp:''},
-  {id:4,to:'Lalə İsmayılova',phone:'+994554004004',ev:'Əli & Leyla Toyu',date:'12 İyun 2025',status:'pending',rsvp:''},
-  {id:5,to:'Cavid Hüseynov',phone:'+994505005005',ev:'Murad & Günel Toyu',date:'9 İyun 2025',status:'opened',rsvp:'confirmed'},
-];
+const SENT_INVITES=[];
 
 function renderSentInvites(panelId){
   const maps={
@@ -2782,12 +2707,7 @@ function buildSentList(containerId,data){
 // ══════════════════════════════════════════
 //  RECEIVED INVITATIONS
 // ══════════════════════════════════════════
-const RECEIVED_INVITES=[
-  {id:1,from:'Fərid Qasımov',phone:'+994501122334',ev:'Fərid & Nigar Nişanı',date:'2025-09-05',time:'19:00',venue:'Sahil Restaurant',msg:'Nişanımıza təşrifinizi arzulayırıq!',status:'new',myRsvp:'',cardNum:'4169 7388 1234 5678',cardHolder:'Fərid Qasımov',cardBank:'Kapital Bank'},
-  {id:2,from:'Tural Rzayev',phone:'+994700123456',ev:'Tural Toyu',date:'2025-07-20',time:'18:00',venue:'Kristal Hall',msg:'Toyuma dəvətlisiniz, gəlməyinizi arzulayıram!',status:'new',myRsvp:'',cardNum:'5243 8811 9900 1122',cardHolder:'Tural Rzayev',cardBank:'ABB'},
-  {id:3,from:'Aynur Rzayeva',phone:'+994508008008',ev:'Aynurun Ad Günü',date:'2025-06-28',time:'15:00',venue:'Bay View',msg:'Ad günümü sizinlə qeyd etmək istəyirəm!',status:'new',myRsvp:'',cardNum:'',cardHolder:'',cardBank:''},
-  {id:4,from:'Nərmin Qasımova',phone:'+994706006006',ev:'Nərmin Xınası',date:'2025-06-10',time:'20:00',venue:'Ev məclisi',msg:'Xınamıza xoş gəldiniz!',status:'read',myRsvp:'confirmed',cardNum:'4400 1234 5678 9000',cardHolder:'Nərmin Qasımova',cardBank:'PAŞA Bank'},
-];
+const RECEIVED_INVITES=[];
 
 function renderReceivedInvites(panelId){
   const maps={
