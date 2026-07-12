@@ -2088,16 +2088,7 @@ function evRemoveMedia(slot,e){
 }
 
 // ── Contact picker for sending invite ──
-const EV_SEND_CONTACTS=[
-  {name:'Rauf Məmmədov',phone:'+994501001001'},{name:'Samirə Əliyeva',phone:'+994552002002'},
-  {name:'Orxan Nəcəfov',phone:'+994703003003'},{name:'Lalə İsmayılova',phone:'+994554004004'},
-  {name:'Cavid Hüseynov',phone:'+994505005005'},{name:'Nərmin Qasımova',phone:'+994706006006'},
-  {name:'Tural Babayev',phone:'+994557007007'},{name:'Aynur Rzayeva',phone:'+994508008008'},
-  {name:'Fərid Qasımov',phone:'+994501122334'},{name:'Elçin Babayev',phone:'+994706789012'},
-  {name:'Sevinc Hüseynova',phone:'+994557890123'},{name:'Murad İsmayılov',phone:'+994508901234'},
-  {name:'Günel Kərimova',phone:'+994559012345'},{name:'Tural Rzayev',phone:'+994700123456'},
-  {name:'Aytən Nəsirov',phone:'+994505678901'},{name:'Leyla Məmmədova',phone:'+994552345678'},
-];
+const EV_SEND_CONTACTS=[];
 let evSendSelC=new Set();
 let evSendCurrentEv=null;
 
@@ -2603,14 +2594,7 @@ function useCardForInvite(cardId){
 // ══════════════════════════════════════════
 //  SEND INVITE WITH CARD TO CONTACTS
 // ══════════════════════════════════════════
-const SI_CONTACTS=[
-  {name:'Əli Həsənov',phone:'+994501234567'},{name:'Leyla Məmmədova',phone:'+994552345678'},
-  {name:'Nigar Quliyeva',phone:'+994703456789'},{name:'Rauf Əliyev',phone:'+994554567890'},
-  {name:'Aytən Nəsirov',phone:'+994505678901'},{name:'Elçin Babayev',phone:'+994706789012'},
-  {name:'Sevinc Hüseynova',phone:'+994557890123'},{name:'Murad İsmayılov',phone:'+994508901234'},
-  {name:'Günel Kərimova',phone:'+994559012345'},{name:'Tural Rzayev',phone:'+994700123456'},
-  {name:'Fərid Qasımov',phone:'+994501122334'},{name:'Samirə Əliyeva',phone:'+994552233445'},
-];
+const SI_CONTACTS=[];
 let siSelContacts=new Set();
 
 function openSendInviteModal(){
