@@ -1252,6 +1252,7 @@ body::before{content:'';position:fixed;inset:0;background-image:var(--ornament);
       <button style="flex:1;justify-content:center;background:#2AABEE;color:#fff;border:none;padding:9px;border-radius:9px;font-family:'Montserrat',sans-serif;font-size:.75rem;font-weight:600;cursor:pointer;" onclick="evSendToSel('tg')">✈️ Telegram</button>
       <button style="flex:1;justify-content:center;background:#FF6B35;color:#fff;border:none;padding:9px;border-radius:9px;font-family:'Montserrat',sans-serif;font-size:.75rem;font-weight:600;cursor:pointer;" onclick="evSendToSel('sms')">💬 SMS</button>
     </div>
+    <button class="tb-btn ghost" style="width:100%;margin-bottom:10px;" onclick="copyEvInviteLink()">🔗 Linki Kopyala</button>
     <button class="tb-btn ghost" style="width:100%;" onclick="closeModal('modal-ev-send')">Bağla</button>
   </div>
 </div>
@@ -2099,6 +2100,16 @@ const EV_SEND_CONTACTS=[
 ];
 let evSendSelC=new Set();
 let evSendCurrentEv=null;
+
+function copyEvInviteLink(){
+  if(!evSendCurrentEv){toast('Tədbir tapılmadı!');return;}
+  const link=buildEvElecLink(evSendCurrentEv);
+  navigator.clipboard.writeText(link).then(()=>{
+    toast('Link kopyalandı ✓');
+  }).catch(()=>{
+    toast('Link: '+link);
+  });
+}
 
 async function openEvSend(evId){
   evSendSelC.clear();
