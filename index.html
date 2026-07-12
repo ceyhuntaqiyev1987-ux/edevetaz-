@@ -3456,7 +3456,7 @@ function eiTitle(t,n1,n2,c){
 function buildEvElecLink(ev){
   if(!ev)return window.location.href;
   try{
-    const d={t:ev.type,n1:ev.n1||'',n2:ev.n2||'',date:ev.date||'',time:ev.time||'',venue:ev.venue||'',mapLink:ev.mapLink||'',payNum:ev.cardNum||'',payName:ev.cardName||'',payBank:ev.cardBank||'',payTheme:ev.cardTheme||'dark',svc:ev.svcData?{r:ev.svcData.restName,p:ev.svcData.pkgName,d2:ev.svcData.pkgDesc,price:ev.svcData.pkgTotal||0}:null};
+    const d={t:ev.type,n1:ev.n1||'',n2:ev.n2||'',date:ev.date||'',time:ev.time||'',venue:ev.venue||'',mapLink:ev.mapLink||'',payNum:ev.cardNum||'',payName:ev.cardName||'',payBank:ev.cardBank||'',payTheme:ev.cardTheme||'dark',svc:ev.svcData?{r:ev.svcData.restName,p:ev.svcData.pkgName,d2:ev.svcData.pkgDesc,price:ev.svcData.pkgTotal||0}:null,owner:userId||'',evFsId:ev.firestoreId||''};
     return window.location.href.split('?')[0].split('#')[0]+'#inv='+btoa(unescape(encodeURIComponent(JSON.stringify(d))));
   }catch(e){return window.location.href;}
 }
@@ -3519,6 +3519,9 @@ function openElecFromEvent(ev){
         <div class="ei-det"><div class="ei-det-lbl">📍 Yer</div><div class="ei-det-val">${ev.venue||'—'}</div></div>
       </div>
       ${mapH}${svcH}${payH}
+      <div style="margin-top:22px;">
+        <input id="ei-guest-name" type="text" placeholder="Adınız Soyadınız" style="width:100%;max-width:280px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:30px;padding:10px 18px;color:#fff;font-family:'Montserrat',sans-serif;font-size:.82rem;outline:none;text-align:center;">
+      </div>
       <div class="ei-rsvp" id="ei-rsvp">
         <button class="rsvp-y" onclick="eiRSVP(true)">✓ Gələcəyəm!</button>
         <button class="rsvp-n" onclick="eiRSVP(false)">Gələ bilmərəm</button>
@@ -3532,11 +3535,27 @@ function openElecFromEvent(ev){
   },200);
 }
 
-function eiRSVP(yes){
+async function eiRSVP(yes){
+  const nameEl=document.getElementById('ei-guest-name');
+  const guestName=nameEl?nameEl.value.trim():'';
+  if(!guestName){toast('Zəhmət olmasa adınızı daxil edin');return;}
   const el=document.getElementById('ei-rsvp');if(!el)return;
   el.innerHTML=yes
     ?'<div style="padding:12px 22px;background:rgba(201,168,76,.14);border-radius:40px;color:#E8D5A3;font-size:.86rem;font-weight:600;font-family:Montserrat,sans-serif;">🎉 Gözləyirik sizi! Təşəkkür edirik.</div>'
     :'<div style="padding:12px 22px;background:rgba(255,255,255,.07);border-radius:40px;color:rgba(255,255,255,.6);font-size:.83rem;font-family:Montserrat,sans-serif;">Başa düşdük. Xoşbəxtlik arzulayırıq! 🌹</div>';
+  const ev=window._elecEv;
+  if(db&&ev&&ev.ownerUid){
+    try{
+      await db.collection('rsvps').add({
+        ownerUid:ev.ownerUid,
+        eventFsId:ev.firestoreId||'',
+        eventTitle:(ev.n2?ev.n1+' & '+ev.n2:ev.n1)||'',
+        guestName,
+        response:yes?'confirmed':'declined',
+        respondedAt:new Date().toISOString(),
+      });
+    }catch(e){console.log('RSVP save error:',e);}
+  }
 }
 
 // Update buildEvInviteMsg to include electronic link
@@ -3558,7 +3577,7 @@ function checkURLHash(){
   if(!location.hash.includes('#inv='))return;
   try{
     const d=JSON.parse(decodeURIComponent(escape(atob(location.hash.split('#inv=')[1]))));
-    const ev={id:0,type:d.t,n1:d.n1,n2:d.n2,date:d.date,time:d.time,venue:d.venue,msg:'',mapLink:d.mapLink||'',cardNum:d.payNum||'',cardName:d.payName||'',cardBank:d.payBank||'',cardTheme:d.payTheme||'dark',svcData:d.svc?{restName:d.svc.r,pkgName:d.svc.p,pkgDesc:d.svc.d2,pkgTotal:d.svc.price}:null,mediaGroom:null,mediaBride:null,mediaCouple:null};
+    const ev={id:0,type:d.t,n1:d.n1,n2:d.n2,date:d.date,time:d.time,venue:d.venue,msg:'',mapLink:d.mapLink||'',cardNum:d.payNum||'',cardName:d.payName||'',cardBank:d.payBank||'',cardTheme:d.payTheme||'dark',svcData:d.svc?{restName:d.svc.r,pkgName:d.svc.p,pkgDesc:d.svc.d2,pkgTotal:d.svc.price}:null,mediaGroom:null,mediaBride:null,mediaCouple:null,ownerUid:d.owner||'',firestoreId:d.evFsId||''};
     setTimeout(()=>openElecFromEvent(ev),400);
   }catch(e){}
 }
@@ -3723,8 +3742,12 @@ function initFirebase(){
           }).catch(()=>{});
         }
       } else {
-        // Giriş edilməyib
-        showLoginScreen();
+        // Giriş edilməyib — dəvətnamə linki açılıbsa qonağı qeydiyyatsız buraxaq
+        if(location.hash.includes('#inv=')){
+          auth.signInAnonymously().catch(()=>showLoginScreen());
+        }else{
+          showLoginScreen();
+        }
       }
     });
   }catch(e){
@@ -3795,6 +3818,8 @@ async function loadFromFirestore(){
       const r=RESTAURANTS.find(x=>String(x.id)===String(d.restId));
       if(r)r.reserved=true;
     });
+    // Qonaqlardan gələn RSVP cavablarını qonaq siyahısına köçür
+    await importIncomingRsvps();
     // Yenilə
     renderPanel('overview');
     document.getElementById('badge-events').textContent=EVENTS.length;
@@ -3804,6 +3829,25 @@ async function loadFromFirestore(){
     document.getElementById('badge-photos').textContent=photos.length;
     showToast('Məlumatlar yükləndi ✓');
   }catch(e){console.log('Load error:',e);}
+}
+
+// ── QONAQLARDAN GƏLƏN RSVP-LƏRİ İDXAL ET ──
+async function importIncomingRsvps(){
+  if(!db||!userId)return;
+  try{
+    const snap=await db.collection('rsvps').where('ownerUid','==',userId).get();
+    for(const doc of snap.docs){
+      if(GUESTS.find(g=>g.rsvpFsId===doc.id))continue;
+      const d=doc.data();
+      const ev=EVENTS.find(e=>e.firestoreId===d.eventFsId);
+      const g={id:Date.now()+Math.random(),name:d.guestName||'Qonaq',phone:'',rel:'Qonaq',
+        ev:ev?ev.id:(EVENTS[0]?EVENTS[0].id:1),
+        status:d.response==='confirmed'?'confirmed':'declined',vip:false,paid:0,rsvpFsId:doc.id};
+      const fsId=await saveToFS('guests',g);
+      if(fsId)g.firestoreId=fsId;
+      GUESTS.push(g);
+    }
+  }catch(e){console.log('RSVP import error:',e);}
 }
 
 // ── FIRESTORE SAXLA ──
